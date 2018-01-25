@@ -1,6 +1,5 @@
 
 from setuptools import setup, find_packages
-from codecs import open
 
 setup(name='Ohtu-neural-networks',
       version='0.1',
