@@ -44,58 +44,61 @@ def saveLosses(hist, name="dnn"):
     f.close()
 
 ## Model
+def initAutoencoderModel(encoding_dim, image_dim):
+    # this is the size of our encoded representations
+    encoding_dim = encoding_dim  # 32 floats -> compression of factor 24.5, assuming the input is 784 floats
 
-# this is the size of our encoded representations
-encoding_dim = 100  # 32 floats -> compression of factor 24.5, assuming the input is 784 floats
+    # this is our input placeholder
+    input_img = Input(shape=(image_dim,))
+    # "encoded" is the encoded representation of the input
+    encoded = Dense(encoding_dim, activation='relu')(input_img)
+    # "decoded" is the lossy reconstruction of the input
+    decoded = Dense(image_dim, activation='sigmoid')(encoded)
 
-# this is our input placeholder
-input_img = Input(shape=(1310720,))
-# "encoded" is the encoded representation of the input
-encoded = Dense(encoding_dim, activation='relu')(input_img)
-# "decoded" is the lossy reconstruction of the input
-decoded = Dense(1310720, activation='sigmoid')(encoded)
+    # this model maps an input to its reconstruction
+    autoencoder = Model(input_img, decoded)
 
-# this model maps an input to its reconstruction
-autoencoder = Model(input_img, decoded)
+    encoder = Model(input_img, encoded)
 
-encoder = Model(input_img, encoded)
+    # create a placeholder for an encoded (32-dimensional) input
+    encoded_input = Input(shape=(encoding_dim,))
+    # retrieve the last layer of the autoencoder model
+    decoder_layer = autoencoder.layers[-1]
+    # create the decoder model
+    decoder = Model(encoded_input, decoder_layer(encoded_input))
 
-# create a placeholder for an encoded (32-dimensional) input
-encoded_input = Input(shape=(encoding_dim,))
-# retrieve the last layer of the autoencoder model
-decoder_layer = autoencoder.layers[-1]
-# create the decoder model
-decoder = Model(encoded_input, decoder_layer(encoded_input))
+    autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
 
-autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
+    saveModel(autoencoder)
 
-saveModel(autoencoder)
+    return autoencoder
+
+## Getting data
+def getData(d):
+    #d = '/cs/work/home/barimpac/NN/Neural Network Trainung Data/Defect training/'
+    files = os.listdir(d)
+    inp = []
+
+    for i in files:
+        if (".jpg" not in i):
+            continue
+        img=mpimg.imread(d+i)
+        inp.append(img)
+    inp = np.asarray(inp)
+
+    norm = inp.astype('float32') / 255.
+
+    norm = norm.reshape((len(norm), np.prod(norm.shape[1:])))
+
+    train = norm[0:36]
+
+    val = norm[37:73]
+
+    return train, val
 
 
-## Geting data
-import numpy as np
-import os
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
-
-d = '/cs/work/home/barimpac/NN/Neural Network Trainung Data/Defect training/'
-files = os.listdir(d)
-inp = []
-
-for i in files:
-    if (".jpg" not in i):
-        continue
-    img=mpimg.imread(d+i)
-    inp.append(img)
-inp = np.asarray(inp)
-
-norm = inp.astype('float32') / 255.
-
-norm = norm.reshape((len(norm), np.prod(norm.shape[1:])))
-
-train = norm[0:36]
-
-val = norm[37:73]
+autoencoder = initAutoencoderModel(100, 1310720)
+train, val = getData('/cs/work/home/barimpac/NN/Neural Network Trainung Data/Defect training/')
 
 hist = autoencoder.fit(train, train,
                 epochs=50,
