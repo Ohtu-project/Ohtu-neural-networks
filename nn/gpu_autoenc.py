@@ -75,8 +75,7 @@ def initAutoencoderModel(encoding_dim, image_dim):
     return autoencoder
 
 ## Getting data
-def getData(d):
-    #d = '/cs/work/home/barimpac/NN/Neural Network Trainung Data/Defect training/'
+def getData(d, train_size, size):
     files = os.listdir(d)
     inp = []
 
@@ -91,13 +90,13 @@ def getData(d):
 
     norm = norm.reshape((len(norm), np.prod(norm.shape[1:])))
 
-    train = norm[0:36]
+    train = norm[0:train_size]
 
-    val = norm[37:73]
+    val = norm[train_size + 1:size]
 
     return train, val
 
-def getPath(text):
+def getUserInputPath(text):
     inp = input(text)
     while not (os.path.isdir(inp)):
         inp = input("There is no such directory. Try again.\n" + text)
@@ -107,15 +106,18 @@ def getPath(text):
 
     return inp
 
+training_data_size = 36
+data_size = 73
+
 autoencoder = initAutoencoderModel(100, 1310720)
-train, val = getData(getPath("Enter data directory: "))
+train, val = getData(getUserInputPath("Enter data directory: "), training_data_size, data_size)
 
 hist = autoencoder.fit(train, train,
-                epochs=1,
-                batch_size=1,
+                epochs=50,
+                batch_size=256,
                 shuffle=True,
                 validation_data=(val, val),
 		callbacks=[EarlyStopping(monitor='val_loss', patience=5, verbose=1, mode='min'),
-		ModelCheckpoint(filepath=getPath("Enter directory for saved model: ") + '/autoencoder.h5', verbose=0)])
+		ModelCheckpoint(filepath=getUserInputPath("Enter directory for saved model: ") + '/autoencoder.h5', verbose=0)])
 
 saveLosses(hist, name='autoenc')
