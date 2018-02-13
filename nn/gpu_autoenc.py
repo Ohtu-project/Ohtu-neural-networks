@@ -1,3 +1,4 @@
+
 from keras.layers import Input, Dense
 from keras.models import Model
 import numpy as np
@@ -96,16 +97,25 @@ def getData(d):
 
     return train, val
 
+def getPath(text):
+    inp = input(text)
+    while not (os.path.isdir(inp)):
+        inp = input("There is no such directory. Try again.\n" + text)
+
+    if not (inp.endswith('/')):
+        inp = inp + '/'
+
+    return inp
 
 autoencoder = initAutoencoderModel(100, 1310720)
-train, val = getData('/cs/work/home/barimpac/NN/Neural Network Trainung Data/Defect training/')
+train, val = getData(getPath("Enter data directory: "))
 
 hist = autoencoder.fit(train, train,
-                epochs=50,
-                batch_size=256,
+                epochs=1,
+                batch_size=1,
                 shuffle=True,
                 validation_data=(val, val),
 		callbacks=[EarlyStopping(monitor='val_loss', patience=5, verbose=1, mode='min'),
-		ModelCheckpoint(filepath='/cs/work/home/barimpac/autoencoder.h5', verbose=0)])
+		ModelCheckpoint(filepath=getPath("Enter directory for saved model: ") + '/autoencoder.h5', verbose=0)])
 
 saveLosses(hist, name='autoenc')
