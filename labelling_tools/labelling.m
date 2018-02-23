@@ -12,18 +12,18 @@
 % Then save it with descriptive name
 
 % Change variables 'from' and 'to' to choose images to label  
-from = 51
-to = 99 % Amount of images drawn is (from - to + 1)
+from = 11
+to = 11 % Amount of images drawn is (from - to + 1)
 n = to - from + 1
 
-labels = cell(n,2);
+labels = cell(n,2)
 
 figure(1)
 for i=from:to
     
     % generate name of image to read 
-    number = 1000 + i;
-    name = "Acrorad_1503-3101-1-01-0" + number + ".jpg";
+    number = 1028 + i;
+    name = "/home/barimpac/Downloads/NN/Neural Network Trainung Data/Defect training/Acrorad_0712-1001-1-07-0" + number + ".jpg";
     name = char(name);
     
     % Show image
@@ -53,7 +53,9 @@ for i=from:to
 end   
 
 %% rename file to save (first word after save)
-save 'Acrorad_1503-3101-1-01-0(1051-1099)LABELS.mat' labels 
+fileName = strcat('Acrorad_0712-1001-1-07-0(', int2str(1028 + from), '-', int2str(1028 + to), ')LABELS.mat')
+%save strcat('Acrorad_0712-1001-1-07-0(', int2str(1028 + from), '-', int2str(1028 + to), ')LABELS.mat') labels 
+save(fileName, 'labels')
 
 function label_vec =  label(x, y)
     x = floor(x);
