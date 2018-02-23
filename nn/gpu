@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --job-name=train
+#SBATCH -c 2
+#SBATCH --gres=gpu:1
+#SBATCH -p gpu
+#SBATCH -t 5-0
+#SBATCH --mem-per-cpu=50G
+#SBATCH --output test-job.out
+module load CUDA
+# Whatever additional modules you need
+ 
+#Executable here
+keras_retinanet/bin/train.py --snapshot /home/barimpac/keras-retinanet/snapshots/mirrored/resnet50_csv_70.h5 --epochs 10 --steps 1167 csv train_annotations_mirror.csv class_mapping.csv
