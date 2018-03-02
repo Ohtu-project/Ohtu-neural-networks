@@ -1,4 +1,3 @@
-# import keras
 import keras
 
 # import keras_retinanet
