@@ -1,3 +1,5 @@
+%% CLASSES NEED TO BE STILL HANDLED SOMEHOW
+
 function labels2csv(file_name, labels, path, mirror_x, mirror_y)
 % Writes cell array content into a csv file. This is our annotation file
 % given to neural network in training or testing phase
