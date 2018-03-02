@@ -7,5 +7,13 @@ matrix:
 
 install:
   - pip install tox
+  - pip install 'numpy>=1.14'
+  - pip install 'opencv-python>=3.3.0'
+  - pip install 'pillow'
+  - pip install 'git+https://github.com/broadinstitute/keras-resnet'
+  - pip install 'pytest-pep8'
+  - pip install 'cython'
+  - pip install 'matplotlib'
+  - pip install 'h5py
 script:
   - tox
