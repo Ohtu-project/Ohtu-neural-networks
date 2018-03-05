@@ -12,18 +12,18 @@
 % Then save it with descriptive name
 
 % Change variables 'from' and 'to' to choose images to label  
-from = 11
-to = 11 % Amount of images drawn is (from - to + 1)
+from = 230
+to = 231 % Amount of images drawn is (from - to + 1)
 n = to - from + 1
 
-labels = cell(n,2)
+labels = cell(n,3);
 
 figure(1)
 for i=from:to
     
     % generate name of image to read 
-    number = 1028 + i;
-    name = "/home/barimpac/Downloads/NN/Neural Network Trainung Data/Defect training/Acrorad_0712-1001-1-07-0" + number + ".jpg";
+    number = 1000 + i;
+    name = "Acrorad_1503-3101-1-01-0" + number + ".jpg";
     name = char(name);
     
     % Show image
@@ -36,13 +36,20 @@ for i=from:to
     A = [0, 0];
     X = [];
     Y = [];
+    classes = [];
+    counter = 0;
     
     while ~isempty(A)
+        counter = counter + 1;
         hold on
         [x,y] = ginput(1);
         X = [X; x];
         Y = [Y; y];
         
+        if rem(counter, 2) == 0
+            classes = [classes; "round"];
+        end    
+       
         plot(x,y, 'r*', 'LineWidth', 2)
        
         A  = [x, y];  
@@ -50,12 +57,12 @@ for i=from:to
     
     labels{i-from + 1,1} = name;
     labels{i-from + 1,2} = label(X, Y);
+    labels{i-from + 1,3} = classes;
 end   
-
 %% rename file to save (first word after save)
-fileName = strcat('Acrorad_0712-1001-1-07-0(', int2str(1028 + from), '-', int2str(1028 + to), ')LABELS.mat')
-%save strcat('Acrorad_0712-1001-1-07-0(', int2str(1028 + from), '-', int2str(1028 + to), ')LABELS.mat') labels 
-save(fileName, 'labels')
+%save 'Acrorad_1503-3101-1-01-0(1130-1168)LABELS.mat' labels 
+
+labels2csv('Acrorad_1503-3101-1-01-0(1230-1233)LABELS.csv', labels, 'data/imgs/train/')
 
 function label_vec =  label(x, y)
     x = floor(x);
@@ -67,6 +74,10 @@ function label_vec =  label(x, y)
         index = (2*j-1);
         dx = x(index+1) - x(index);
         dy = y(index+1) - y(index);
+        %%%%% how to add classes to labels?
+        %%% this will turn coordinate integers to strings
+        %%% alternative options is to use same kind of format as in our csv
+        %%% files ... OR ADD CLASSES VECTOR WITH AS MANY ROWS AS COORDINATES FOR EACH IMAGE
         label_vec(j,:) = [x(index) y(index) dx dy];      
     end   
     

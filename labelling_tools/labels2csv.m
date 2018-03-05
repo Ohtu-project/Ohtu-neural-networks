@@ -42,26 +42,28 @@ end
 
 %% To avoid repetition
 function write_lines(file, labels, path, image_name_ending)
-    formatSpec1 = strcat(path,'%s,%i,%i,%i,%i,defect\n');
+    formatSpec1 = strcat(path,'%s,%i,%i,%i,%i,%s\n');
     formatSpec2 = strcat(path,'%s,,,,,\n'); % for images with no defect
 
-    n = length(labels); 
+    [n, ~] = size(labels);
 
     for i=1:n
         coordinates = labels{i,2};
-        [m, ~] = size(coordinates);
+        [m, ~] = size(coordinates)
     
             name = labels{i,1};
             Cell = strsplit(name, '.');
             name = strcat(Cell{1}, image_name_ending);
-        
+            classes = labels{i,3}
+            
         if m > 0
             for k=1:m
                 x1 = coordinates(k,1);
                 y1 = coordinates(k,2);
                 x2 = x1 + coordinates(k,3);
                 y2 = y1 + coordinates(k,4);
-                fprintf(file, formatSpec1, name, x1, y1, x2, y2);
+                class = classes(k)
+                fprintf(file, formatSpec1, name, x1, y1, x2, y2, class);
             end
         else
             fprintf(file, formatSpec2, name);
