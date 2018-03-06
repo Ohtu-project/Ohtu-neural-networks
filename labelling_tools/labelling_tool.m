@@ -1,4 +1,4 @@
-function labeling_tool
+function labelling_tool
 % SIMPLE_GUI2 Select a data set from the pop-up menu, then
 % click one of the plot-type push buttons. Clicking the button
 % plots the selected data in the axes.
