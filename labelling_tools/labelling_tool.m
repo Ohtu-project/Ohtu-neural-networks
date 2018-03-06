@@ -10,6 +10,9 @@ margin = 20;
 button_width_start = image_width;
 button_heigth_start = window_heigth - button_heigth - margin;
 
+color_on = 'yellow';
+color_off = [0.95 0.95 0.95];
+
 folder = '';
 
 while ~exist(folder)
@@ -33,30 +36,30 @@ csv_file = fopen(char(folder + "LABELS.csv"), 'w');
 f = figure('Visible','off','Position',[margin, margin,window_width,window_heigth]);
 
 % Construct the components.
-next_image   = uicontrol('Style','pushbutton',...
+next_image   = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Done','Position',[button_width_start,button_heigth_start - button_heigth,button_width * 0.7,button_heigth],...
              'Callback',@nextimage_callback);
-undo         = uicontrol('Style','pushbutton',...
+undo         = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Undo','Position',[button_width_start + button_width,button_heigth_start - button_heigth,button_width * 0.5,button_heigth],...
              'Callback',@undo_callback);   
 text_classes = uicontrol('Style','text','String','Select classes',...
              'Position',[button_width_start,button_heigth_start - margin - button_heigth * 2,button_width,button_heigth]);
-round        = uicontrol('Style','pushbutton',...
+round        = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Round','Position',[button_width_start,button_heigth_start - margin * 2 - button_heigth * 3,button_width,button_heigth],...
              'Callback',@round_callback);
-hexagonal    = uicontrol('Style','pushbutton',...
+hexagonal    = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Hexagonal','Position',[button_width_start,button_heigth_start - margin * 3 - button_heigth * 4,button_width,button_heigth],...
              'Callback',@hexagonal_callback); 
-trigonal     = uicontrol('Style','pushbutton',...
+trigonal     = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Trigonal','Position',[button_width_start,button_heigth_start - margin * 4 - button_heigth * 5,button_width,button_heigth],...
              'Callback',@trigonal_callback);  
-square       = uicontrol('Style','pushbutton',...
+square       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Square','Position',[button_width_start,button_heigth_start - margin * 5 - button_heigth * 6,button_width,button_heigth],...
              'Callback',@square_callback);        
-unclear      = uicontrol('Style','pushbutton',...
+unclear      = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Unclear','Position',[button_width_start,button_heigth_start - margin * 6 - button_heigth * 7,button_width,button_heigth],...
              'Callback',@unclear_callback);       
-double       = uicontrol('Style','pushbutton',...
+double       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Double','Position',[button_width_start,button_heigth_start - margin * 7 - button_heigth * 8,button_width,button_heigth],...
              'Callback',@double_callback);       
 
@@ -143,7 +146,7 @@ fclose(csv_file);
     function show_image()
         cla(ha) % clear previous image
         f.Name = images(index).name;
-        file_name = images(index).name
+        file_name = images(index).name;
         file_name = strcat(folder, file_name);
         file_name = char(file_name);
         img = imread(file_name);  
@@ -160,14 +163,18 @@ fclose(csv_file);
        end
     end
 
-    % add a class to a box. Parameter 'class' is is number from 1 to 6
-    function put_class(class)
+    % add a class to a box. Parameter 'class' is is number from 1 to 6.
+    % Return wheter class is turned on or off
+    function turn_on = put_class(class)
         len = length_of(classes);
+        
         if class == 6
            classes(len, class) = ~classes(len, class);
+           turn_on = classes(len, class);
         else
+           turn_on = ~classes(len,class);
            classes(len,:) = [0,0,0,0,0,classes(len,6)];
-           classes(len,class) = 1;
+           classes(len,class) = turn_on;
         end    
     end    
     
@@ -312,26 +319,88 @@ fclose(csv_file);
     end
 
     function round_callback(source,eventdata) 
-        put_class(1);
+        if is_even(points) && ~isempty(points)
+            turn_on = put_class(1);
+            if turn_on
+                set(round, 'BackgroundColor', color_on);
+                set(hexagonal, 'BackgroundColor', color_off);
+                set(trigonal, 'BackgroundColor', color_off);
+                set(square, 'BackgroundColor', color_off);
+                set(unclear, 'BackgroundColor', color_off);
+            else
+                set(round, 'BackgroundColor', color_off);
+            end    
+        end
     end
 
     function hexagonal_callback(source,eventdata) 
-        put_class(2);
+        if is_even(points) && ~isempty(points)
+            turn_on = put_class(2);
+            if turn_on
+                set(round, 'BackgroundColor', color_off);
+                set(hexagonal, 'BackgroundColor', color_on);
+                set(trigonal, 'BackgroundColor', color_off);
+                set(square, 'BackgroundColor', color_off);
+                set(unclear, 'BackgroundColor', color_off);
+            else
+                set(hexagonal, 'BackgroundColor', color_off);
+            end    
+        end
     end
 
     function trigonal_callback(source,eventdata) 
-        put_class(3);
+        if is_even(points) && ~isempty(points)
+            turn_on = put_class(3);
+            if turn_on
+                set(round, 'BackgroundColor', color_off);
+                set(hexagonal, 'BackgroundColor', color_off);
+                set(trigonal, 'BackgroundColor', color_on);
+                set(square, 'BackgroundColor', color_off);
+                set(unclear, 'BackgroundColor', color_off);
+            else
+                set(trigonal, 'BackgroundColor', color_off);
+            end    
+        end
     end
 
     function square_callback(source,eventdata) 
-        put_class(4);
+        if is_even(points) && ~isempty(points)
+            turn_on = put_class(4);
+            if turn_on
+                set(round, 'BackgroundColor', color_off);
+                set(hexagonal, 'BackgroundColor', color_off);
+                set(trigonal, 'BackgroundColor', color_off);
+                set(square, 'BackgroundColor', color_on);
+                set(unclear, 'BackgroundColor', color_off);
+            else
+                set(square, 'BackgroundColor', color_off);
+            end    
+        end
     end
 
     function unclear_callback(source,eventdata) 
-        put_class(5);
+        if is_even(points) && ~isempty(points)
+            turn_on = put_class(5);
+            if turn_on
+                set(round, 'BackgroundColor', color_off);
+                set(hexagonal, 'BackgroundColor', color_off);
+                set(trigonal, 'BackgroundColor', color_off);
+                set(square, 'BackgroundColor', color_off);
+                set(unclear, 'BackgroundColor', color_on);
+            else
+                set(unclear, 'BackgroundColor', color_off);
+            end    
+        end
     end
 
     function double_callback(source,eventdata) 
-        put_class(6);
+        if is_even(points) && ~isempty(points)
+            turn_on = put_class(6);
+            if turn_on
+                set(double, 'BackgroundColor', color_on);
+            else
+                set(double, 'BackgroundColor', color_off);
+            end    
+        end
     end
 end
