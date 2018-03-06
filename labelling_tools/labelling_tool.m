@@ -1,7 +1,4 @@
 function labelling_tool
-% SIMPLE_GUI2 Select a data set from the pop-up menu, then
-% click one of the plot-type push buttons. Clicking the button
-% plots the selected data in the axes.
 
 window_width = 1500;
 window_heigth = 1200;
@@ -20,7 +17,7 @@ index = 1;
 
 name_first = images(1).name;
 name_last = images(length_of(images)).name;
-% name csv file according to image numbers
+% !name csv file according to image numbers
 csv_file = fopen(char(folder + "LABELS.csv"), 'w');
 
 %  Create and then hide the UI as it is being constructed.
