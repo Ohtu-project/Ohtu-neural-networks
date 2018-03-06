@@ -10,7 +10,16 @@ margin = 20;
 button_width_start = image_width;
 button_heigth_start = window_heigth - button_heigth - margin;
 
-folder = "/home/lauimmon/Ohtuprojekti/NN/Neural Network Trainung Data/Defect training/";
+folder = '';
+
+while ~exist(folder)
+    prompt = 'Choose folder ';
+    folder = input(prompt,'s');
+
+    if ~endsWith(folder, '/')
+       folder = strcat(folder, '/'); 
+    end
+end
 
 images = dir(char(folder + "*.jpg"));
 index = 1;
@@ -103,7 +112,7 @@ while ~close
     plot(x,y, 'r*', 'LineWidth', 2)
        
     A  = [x, y];
-    points = [points; A] % Add new point to matrix
+    points = [points; A]; % Add new point to matrix
     
     % if both points of a bounding box have been given, draw a box
     if is_even(points)
@@ -134,8 +143,8 @@ fclose(csv_file);
     function show_image()
         cla(ha) % clear previous image
         f.Name = images(index).name;
-        file_name = images(index).name;
-        file_name = folder + file_name;
+        file_name = images(index).name
+        file_name = strcat(folder, file_name);
         file_name = char(file_name);
         img = imread(file_name);  
         imshow(img);
