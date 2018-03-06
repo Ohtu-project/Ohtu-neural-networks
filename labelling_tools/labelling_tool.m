@@ -289,7 +289,8 @@ fclose(csv_file)
           save_points();
           show_new_image();
         else
-          % käyttäjälle tieto, että väärä määrä pisteitä tai luokka puuttuu
+          % !tell user that the ammount of points is wrong or class is
+          % missing
         end  
     end    
 
