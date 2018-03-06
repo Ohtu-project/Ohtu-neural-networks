@@ -90,7 +90,7 @@ f.Visible = 'on';
 
 show_image();
 
-empty_class = [0, 0, 0, 0, 0, 0];
+empty_class = [1, 0, 0, 0, 0, 0]; % round is default class
 points = [];
 classes = [];
 close = false;
