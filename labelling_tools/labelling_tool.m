@@ -83,7 +83,6 @@ points = [];
 classes = [];
 close = false;
 
-
 while ~close
     hold on
     % ask inputs
@@ -106,19 +105,19 @@ while ~close
     A  = [x, y];
     points = [points; A] % Add new point to matrix
     
-    % if both points of a bounding box have been given, save points in a
-    % right order and draw a box
+    % if both points of a bounding box have been given, draw a box
     if is_even(points)
         draw_rectangles();  
         classes = [classes; empty_class];
     end   
 end
-fclose(csv_file)
+fclose(csv_file);
 % !tell user that all images have been labeled
    
     % switch to next image and reset input points.
     function show_new_image()
         index = index + 1;
+        % if previous image was the last, end program
         if index > length_of(images)
            close = true;
            return 
@@ -126,6 +125,7 @@ fclose(csv_file)
         
         show_image();
         
+        % reset points and classes for the new image
         points = [];
         classes = [];
     end  
@@ -148,11 +148,10 @@ fclose(csv_file)
             given = false;
        else    
             given = (classes(len, 1) || classes(len, 2) || classes(len, 3) || classes(len, 4) || classes(len, 5));
-    
        end
     end
 
-    % add a class to a box
+    % add a class to a box. Parameter 'class' is is number from 1 to 6
     function put_class(class)
         len = length_of(classes);
         if class == 6
@@ -281,6 +280,7 @@ fclose(csv_file)
 
   % Push button callbacks. 
 
+    % save points of the current image and show next image
     function nextimage_callback(source,eventdata) 
         if (is_even(points) && class_given()) || isempty(points)
           save_points();
@@ -291,6 +291,7 @@ fclose(csv_file)
         end  
     end    
 
+    % clear last given point and draw everything again
     function undo_callback(source,eventdata) 
         length = length_of(points);
         points = points(1:length-1, 1:2);
