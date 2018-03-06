@@ -122,6 +122,7 @@ while ~close
         draw_rectangles();  
         classes = [classes; empty_class];
     end   
+    set_button_colors();
 end
 fclose(csv_file);
 % !tell user that all images have been labeled
@@ -140,6 +141,7 @@ fclose(csv_file);
         % reset points and classes for the new image
         points = [];
         classes = [];
+        set_button_colors();
     end  
 
     % show current image
@@ -151,7 +153,7 @@ fclose(csv_file);
         file_name = char(file_name);
         img = imread(file_name);  
         imshow(img);
-    end    
+    end     
 
     % check if a necessary class has been given
     function given = class_given()
@@ -165,17 +167,17 @@ fclose(csv_file);
 
     % add a class to a box. Parameter 'class' is is number from 1 to 6.
     % Return wheter class is turned on or off
-    function turn_on = put_class(class)
+    function put_class(class)
         len = length_of(classes);
         
         if class == 6
            classes(len, class) = ~classes(len, class);
-           turn_on = classes(len, class);
         else
-           turn_on = ~classes(len,class);
+           on = classes(len, class);
            classes(len,:) = [0,0,0,0,0,classes(len,6)];
-           classes(len,class) = turn_on;
-        end    
+           classes(len,class) = ~on;
+        end
+        set_button_colors();
     end    
     
     function length = length_of(matrix)
@@ -195,7 +197,7 @@ fclose(csv_file);
            y1 = floor(points(i*2 - 1, 2));
            y2 = floor(points(i*2, 2));
            [class1, class2] = class_names(i);
-           fprintf(csv_file, '%s,%i,%i,%i,%i,%s,%s\n', images(index).name, x1, x2, y1, y2, class1, class2);
+           fprintf(csv_file, '%s,%i,%i,%i,%i,%s,%s\n', images(index).name, x1, y1, x2, y2, class1, class2);
         end    
         
         if len == 0
@@ -294,6 +296,56 @@ fclose(csv_file);
         line([x+dx, x+dx],[y, y+dy], 'Color', color);
     end       
 
+    function delete_class()
+        len = length_of(classes);
+        classes = classes(1:len-1, :);
+        set_button_colors();
+    end    
+
+    function set_button_colors()
+       if isempty(classes)
+            set(round, 'BackgroundColor', color_off);
+            set(hexagonal, 'BackgroundColor', color_off);
+            set(trigonal, 'BackgroundColor', color_off);
+            set(square, 'BackgroundColor', color_off);
+            set(unclear, 'BackgroundColor', color_off);
+            set(double, 'BackgroundColor', color_off);
+            return
+       end
+       
+       len = length_of(classes);
+       if classes(len, 1)
+           set(round, 'BackgroundColor', color_on);
+       else
+           set(round, 'BackgroundColor', color_off);
+       end    
+       if classes(len, 2)
+           set(hexagonal, 'BackgroundColor', color_on);
+       else
+           set(hexagonal, 'BackgroundColor', color_off);
+       end 
+       if classes(len, 3)
+           set(trigonal, 'BackgroundColor', color_on);
+       else
+           set(trigonal, 'BackgroundColor', color_off);
+       end 
+       if classes(len, 4)
+           set(square, 'BackgroundColor', color_on);
+       else
+           set(square, 'BackgroundColor', color_off);
+       end 
+       if classes(len, 5)
+           set(unclear, 'BackgroundColor', color_on);
+       else
+           set(unclear, 'BackgroundColor', color_off);
+       end 
+       if classes(len, 6)
+           set(double, 'BackgroundColor', color_on);
+       else
+           set(double, 'BackgroundColor', color_off);
+       end 
+    end    
+
   % Push button callbacks. 
 
     % save points of the current image and show next image
@@ -311,96 +363,56 @@ fclose(csv_file);
     function undo_callback(source,eventdata) 
         length = length_of(points);
         points = points(1:length-1, 1:2);
+        if is_even(points)
+           delete_class();
+        end    
         show_image();
         for i=1:length-1
             plot(points(i,1),points(i,2), 'r*', 'LineWidth', 2)
         end      
-        draw_rectangles()
+        draw_rectangles();
+        set_button_colors();
     end
 
     function round_callback(source,eventdata) 
         if is_even(points) && ~isempty(points)
-            turn_on = put_class(1);
-            if turn_on
-                set(round, 'BackgroundColor', color_on);
-                set(hexagonal, 'BackgroundColor', color_off);
-                set(trigonal, 'BackgroundColor', color_off);
-                set(square, 'BackgroundColor', color_off);
-                set(unclear, 'BackgroundColor', color_off);
-            else
-                set(round, 'BackgroundColor', color_off);
-            end    
+            put_class(1);
+            set_button_colors();    
         end
     end
 
     function hexagonal_callback(source,eventdata) 
         if is_even(points) && ~isempty(points)
-            turn_on = put_class(2);
-            if turn_on
-                set(round, 'BackgroundColor', color_off);
-                set(hexagonal, 'BackgroundColor', color_on);
-                set(trigonal, 'BackgroundColor', color_off);
-                set(square, 'BackgroundColor', color_off);
-                set(unclear, 'BackgroundColor', color_off);
-            else
-                set(hexagonal, 'BackgroundColor', color_off);
-            end    
+            put_class(2);
+            set_button_colors();     
         end
     end
 
     function trigonal_callback(source,eventdata) 
         if is_even(points) && ~isempty(points)
-            turn_on = put_class(3);
-            if turn_on
-                set(round, 'BackgroundColor', color_off);
-                set(hexagonal, 'BackgroundColor', color_off);
-                set(trigonal, 'BackgroundColor', color_on);
-                set(square, 'BackgroundColor', color_off);
-                set(unclear, 'BackgroundColor', color_off);
-            else
-                set(trigonal, 'BackgroundColor', color_off);
-            end    
+            put_class(3);
+            set_button_colors();     
         end
     end
 
     function square_callback(source,eventdata) 
         if is_even(points) && ~isempty(points)
-            turn_on = put_class(4);
-            if turn_on
-                set(round, 'BackgroundColor', color_off);
-                set(hexagonal, 'BackgroundColor', color_off);
-                set(trigonal, 'BackgroundColor', color_off);
-                set(square, 'BackgroundColor', color_on);
-                set(unclear, 'BackgroundColor', color_off);
-            else
-                set(square, 'BackgroundColor', color_off);
-            end    
+            put_class(4);
+            set_button_colors();    
         end
     end
 
     function unclear_callback(source,eventdata) 
         if is_even(points) && ~isempty(points)
-            turn_on = put_class(5);
-            if turn_on
-                set(round, 'BackgroundColor', color_off);
-                set(hexagonal, 'BackgroundColor', color_off);
-                set(trigonal, 'BackgroundColor', color_off);
-                set(square, 'BackgroundColor', color_off);
-                set(unclear, 'BackgroundColor', color_on);
-            else
-                set(unclear, 'BackgroundColor', color_off);
-            end    
+            put_class(5);
+            set_button_colors();     
         end
     end
 
     function double_callback(source,eventdata) 
         if is_even(points) && ~isempty(points)
-            turn_on = put_class(6);
-            if turn_on
-                set(double, 'BackgroundColor', color_on);
-            else
-                set(double, 'BackgroundColor', color_off);
-            end    
+            put_class(6);
+            set_button_colors();  
         end
     end
 end
