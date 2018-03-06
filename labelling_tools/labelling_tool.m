@@ -10,6 +10,7 @@ margin = 20;
 button_width_start = image_width;
 button_heigth_start = window_heigth - button_heigth - margin;
 
+% button colors
 color_on = 'yellow';
 color_off = [0.95 0.95 0.95];
 
@@ -24,12 +25,15 @@ while ~exist(folder)
     end
 end
 
+% get all jpg files from the folder
 images = dir(char(folder + "*.jpg"));
 index = 1;
 
 name_first = images(1).name;
 name_last = images(length_of(images)).name;
-% !name csv file according to image numbers
+% !To do: name csv file according to image numbers
+
+% make csv file
 csv_file = fopen(char(folder + "LABELS.csv"), 'w');
 
 %  Create and then hide the UI as it is being constructed.
@@ -90,6 +94,7 @@ f.Visible = 'on';
 
 show_image();
 
+% initialize points and classes to be empty
 empty_class = [1, 0, 0, 0, 0, 0]; % round is default class
 points = [];
 classes = [];
@@ -101,15 +106,15 @@ while ~close
     [x,y] = ginput(1);
     % only accept inputs inside the image
     if x > image_width || x < 0 || y > image_heigth || y < 0
-       continue 
-    end  
+       continue
+    end
     
     if ~isempty(points)
         if is_even(points) && ~class_given()
-            % !add a message warning about missing class
+            % !To do: add a message warning about missing class
             continue
-        end    
-    end    
+        end
+    end
         
     % plot given input points
     plot(x,y, 'r*', 'LineWidth', 2)
@@ -119,13 +124,14 @@ while ~close
     
     % if both points of a bounding box have been given, draw a box
     if is_even(points)
-        draw_rectangles();  
         classes = [classes; empty_class];
     end   
+    
+    draw_rectangles();  
     set_button_colors();
 end
 fclose(csv_file);
-% !tell user that all images have been labeled
+% !To do: tell user that all images have been labeled
    
     % switch to next image and reset input points.
     function show_new_image()
@@ -270,13 +276,15 @@ fclose(csv_file);
     function draw_rectangles()
        length = length_of(points);
        if length > 1
-           ammount = floor(length/2);
+           ammount = ceil(length/2);
 
            for i=1:ammount - 1
                draw_rectangle(i*2, 'blue');
            end   
 
-           draw_rectangle(ammount*2, 'red');
+           if is_even(points)
+               draw_rectangle(ammount*2, 'red');
+           end 
        end    
     end    
 
@@ -296,12 +304,13 @@ fclose(csv_file);
         line([x+dx, x+dx],[y, y+dy], 'Color', color);
     end       
 
-    function delete_class()
+    function remove_class()
         len = length_of(classes);
         classes = classes(1:len-1, :);
         set_button_colors();
     end    
 
+    % set button colors to match with how classes have been set
     function set_button_colors()
        if isempty(classes)
             set(round, 'BackgroundColor', color_off);
@@ -354,7 +363,7 @@ fclose(csv_file);
           save_points();
           show_new_image();
         else
-          % !tell user that the ammount of points is wrong or class is
+          % !To do: tell user that the ammount of points is wrong or class is
           % missing
         end  
     end    
@@ -364,7 +373,7 @@ fclose(csv_file);
         length = length_of(points);
         points = points(1:length-1, 1:2);
         if is_even(points)
-           delete_class();
+           remove_class();
         end    
         show_image();
         for i=1:length-1
