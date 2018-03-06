@@ -32,6 +32,7 @@ index = 1;
 name_first = images(1).name;
 name_last = images(length_of(images)).name;
 % !To do: name csv file according to image numbers
+% !To do: save points so that an existing csv file is not overwritten
 
 % make csv file
 csv_file = fopen(char(folder + "LABELS.csv"), 'w');
@@ -46,8 +47,8 @@ next_image   = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
 undo         = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Undo','Position',[button_width_start + button_width,button_heigth_start - button_heigth,button_width * 0.5,button_heigth],...
              'Callback',@undo_callback);   
-text_classes = uicontrol('Style','text','String','Select classes',...
-             'Position',[button_width_start,button_heigth_start - margin - button_heigth * 2,button_width,button_heigth]);
+text_classes = uicontrol('Style','text','String','Select classes','HorizontalAlignment','left',...
+             'Position',[button_width_start,button_heigth_start - margin - button_heigth * 2,button_width * 2,button_heigth]);
 round        = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Round','Position',[button_width_start,button_heigth_start - margin * 2 - button_heigth * 3,button_width,button_heigth],...
              'Callback',@round_callback);
@@ -65,7 +66,9 @@ unclear      = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'Callback',@unclear_callback);       
 double       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Double','Position',[button_width_start,button_heigth_start - margin * 7 - button_heigth * 8,button_width,button_heigth],...
-             'Callback',@double_callback);       
+             'Callback',@double_callback);  
+warning      = uicontrol('Style','text','String','Not enough points to select classes',...
+             'FontSize',15,'ForegroundColor','red','Visible','off','Position',[button_width_start,button_heigth_start - margin * 8 - button_heigth * 25,button_width * 2,button_heigth * 10]);
 
 ha = axes('Units','pixels','Position',[0,window_heigth - image_heigth - margin,image_width,image_heigth],'Box','on');
 
@@ -82,6 +85,7 @@ trigonal.Units = 'normalized';
 square.Units = 'normalized';
 unclear.Units = 'normalized';
 double.Units = 'normalized';
+warning.Units = 'normalized';
 
 % Assign the a name to appear in the window title.
 f.Name = images(index).name;
@@ -104,6 +108,7 @@ while ~close
     hold on
     % ask inputs
     [x,y] = ginput(1);
+    set(warning, 'Visible', 'off');
     % only accept inputs inside the image
     if x > image_width || x < 0 || y > image_heigth || y < 0
        continue
@@ -111,7 +116,7 @@ while ~close
     
     if ~isempty(points)
         if is_even(points) && ~class_given()
-            % !To do: add a message warning about missing class
+            set(warning, 'String', 'One of following classes need to be selected: round, hexagonal, trigonal, square or unclear', 'Visible', 'on');
             continue
         end
     end
@@ -126,8 +131,8 @@ while ~close
     if is_even(points)
         classes = [classes; empty_class];
     end   
-    
-    draw_rectangles();  
+
+    draw_rectangles();
     set_button_colors();
 end
 fclose(csv_file);
@@ -363,8 +368,7 @@ fclose(csv_file);
           save_points();
           show_new_image();
         else
-          % !To do: tell user that the ammount of points is wrong or class is
-          % missing
+          set(warning, 'String', 'Not enough points or class is not given', 'Visible', 'on')
         end  
     end    
 
@@ -372,7 +376,7 @@ fclose(csv_file);
     function undo_callback(source,eventdata) 
         length = length_of(points);
         points = points(1:length-1, 1:2);
-        if is_even(points)
+        if ~is_even(points)
            remove_class();
         end    
         show_image();
