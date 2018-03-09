@@ -4,7 +4,7 @@ function defect_detector(path, trained_model_path, trained_model_file, image_dir
 change_directory = strcat("cd ", path);
 system(change_directory)
 
-command = strcat("python Predictions.py ", trained_model_path + " " + trained_model_file + " " + image_directory_path);
+command = strcat("python Predictions.py ", trained_model_path , " " , trained_model_file , " " + image_directory_path);
 system(command)
 
 end
