@@ -8,6 +8,7 @@ from keras_retinanet.utils.image import read_image_bgr, preprocess_image, resize
 import matplotlib.pyplot as plt
 import cv2
 import os
+import sys
 import numpy as np
 import time
 
@@ -25,13 +26,15 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 # set the modified tf session as backend in keras
 keras.backend.tensorflow_backend.set_session(get_session())
 
-TRAINED_MODEL_PATH = '/home/matleino/Desktop/python/matlab_integration/trained-model'
-TRAINED_MODEL_NAME = 'resnet50_csv_50.h5'
-IMAGE_DIRECTORY_PATH = '/home/matleino/Desktop/python/matlab_integration/images/'
-
 import pandas as pd
 
-def save_prediction_to_csv():
+#def save_prediction_to_csv():
+def main(argv):
+    sys.argv[0]
+    TRAINED_MODEL_PATH = sys.argv[1]
+    TRAINED_MODEL_NAME = sys.argv[2]
+    IMAGE_DIRECTORY_PATH = sys.argv[3]
+
     # adjust this to point to your downloaded/trained model
     model_path = os.path.join(TRAINED_MODEL_PATH, TRAINED_MODEL_NAME)
 
@@ -85,3 +88,6 @@ def save_prediction_to_csv():
 
     # name of the file to save the predictions
     df.to_csv("results.csv")
+
+if __name__ == "__main__":
+   main(sys.argv[1:])
