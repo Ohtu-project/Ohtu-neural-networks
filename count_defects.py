@@ -71,7 +71,7 @@ def getDefectLabels(file_name):
     '''
     Opens .csv file containing the defect coordinates and loads it in a list.
     To implement: check .csv ending of file_name.
-    :param file_name: (str) name of the csv file, must contain .csv ending.
+    :param file_name: (str) name of the csv file (or the path to it), must contain .csv ending.
     :return: (list) defect labels.
     '''
     with open(file_name, 'rt') as csvfile:
@@ -105,7 +105,7 @@ def saveCount(nameToSave):
 # Change the label name, image name and number for different images
 # To implement: give those as arguments to parse
 
-defect_labels = getDefectLabels('/home/barimpac/keras-retinanet/Acrorad_1704-0601-8.csv')
+defect_labels = getDefectLabels('Acrorad_1704-0601-8.csv')
 
 defect_counts = count_defects(defect_labels, 'Acrorad_0712-1001-1-07-01028.jpg', 1030)
 
