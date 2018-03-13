@@ -1,0 +1,27 @@
+Instructions for using defect_detector.m
+
+Make sure you have Python 3.6 installed. Then you need to install Keras RetinaNet 
+(https://github.com/fizyr/keras-retinanet) which is the open source neural network that we are using for this project.
+
+You should install RetinaNet in the same matlab_integration-folder where defect_detector.m and Predictions.py files are. Use the command line to get in the matlab_integration-folder and then
+you can install RetinaNet through git (https://git-scm.com/downloads) with following commands:
+git clone https://github.com/fizyr/keras-retinanet.git
+cd keras-retinanet
+pip install . --user
+pip install --user --upgrade git+https://github.com/broadinstitute/keras-resnet
+Then RetinaNet should be ready for use.
+
+defect_detector.m only has one function called defect_detector with four parameters. More documentation on the function can be found in the defect_detector.m-file itself.
+
+defect_detector.m can be moved from the matlab_integration-folder to be used as a part of any matlab-project. The parameters given to the function are used to find the Predictions.py file.
+
+Images that you want to use should be put in the images-folder inside matlab_integration. Images-folder shouldn't contain any subfolders at this stage, just the jpg-files of the images.
+
+It currently takes about 6 seconds to find the defects in a single picture on my HP EliteBook.
+
+Lastly here is an example of parameters for using the defect_detector-function:
+path = '/home/matleino/Ohtu-neural-networks/matlab_integration'
+trained_model_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/trained-model/'
+trained_model_file = 'resnet50_csv_50.h5'
+image_directory_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/images/'
+defect_detector(path, trained_model_path, trained_model_file, image_directory_path)
