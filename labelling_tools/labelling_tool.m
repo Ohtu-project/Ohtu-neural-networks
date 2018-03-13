@@ -17,25 +17,52 @@ color_off = [0.95 0.95 0.95];
 folder = '';
 
 while ~exist(folder)
-    prompt = 'Choose folder ';
+    prompt = '\nChoose folder ';
     folder = input(prompt,'s');
 
     if ~endsWith(folder, '/')
-       folder = strcat(folder, '/'); 
+       folder = strcat(folder, '/');
     end
 end
 
+csv_file_name = fullfile(folder, 'LABELS.csv');
+
 % get all jpg files from the folder
-images = dir(char(folder + "*.jpg"));
+images = dir(fullfile(folder, '*.jpg'));
 index = 1;
 
-name_first = images(1).name;
-name_last = images(length_of(images)).name;
 % !To do: name csv file according to image numbers
 % !To do: save points so that an existing csv file is not overwritten
 
-% make csv file
-csv_file = fopen(char(folder + "LABELS.csv"), 'w');
+% open csv file if it already exists or create a new file
+csv_file = fopen(csv_file_name, 'a+');
+csv_data = fscanf(csv_file, '%s \n');
+fclose(csv_file);
+while true
+   k = strfind(csv_data, images(index).name);
+   if isempty(k)
+      break
+   end
+       index = index + 1;
+   if index > length_of(images)
+       break
+   end
+end
+
+if index > 1
+    prompt = char("\nImages from " + images(1).name + " to " + images(index - 1).name + " have already been labeled.\nDo you want to label everything again [L] or only label non-labeled images [ENTER]? ");
+    label = input(prompt,'s');
+    if label == 'L' | label == 'l'
+        csv_file = fopen(csv_file_name, 'w');
+        fclose(csv_file);
+        index = 1; 
+    end    
+end    
+
+if index > length_of(images)
+    fprintf('\nAll images have already been labeled.\n')
+    return
+end    
 
 %  Create and then hide the UI as it is being constructed.
 f = figure('Visible','off','Position',[margin, margin,window_width,window_heigth]);
@@ -47,7 +74,7 @@ next_image   = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
 undo         = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Undo','Position',[button_width_start + button_width,button_heigth_start - button_heigth,button_width * 0.5,button_heigth],...
              'Callback',@undo_callback);   
-text_classes = uicontrol('Style','text','String','Select classes','HorizontalAlignment','left',...
+text_shape = uicontrol('Style','text','String','Select shape','HorizontalAlignment','left',...
              'Position',[button_width_start,button_heigth_start - margin - button_heigth * 2,button_width * 2,button_heigth]);
 round        = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Round','Position',[button_width_start,button_heigth_start - margin * 2 - button_heigth * 3,button_width,button_heigth],...
@@ -64,11 +91,16 @@ square       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
 unclear      = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Unclear','Position',[button_width_start,button_heigth_start - margin * 6 - button_heigth * 7,button_width,button_heigth],...
              'Callback',@unclear_callback);       
+text_double  = uicontrol('Style','text','String','Select single or double','HorizontalAlignment','left',...
+             'Position',[button_width_start,button_heigth_start - margin * 7 - button_heigth * 8,button_width * 2,button_heigth]);
+single       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+             'String','Single','Position',[button_width_start,button_heigth_start - margin * 8 - button_heigth * 9,button_width,button_heigth],...
+             'Callback',@single_callback);  
 double       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-             'String','Double','Position',[button_width_start,button_heigth_start - margin * 7 - button_heigth * 8,button_width,button_heigth],...
+             'String','Double','Position',[button_width_start,button_heigth_start - margin * 9 - button_heigth * 10,button_width,button_heigth],...
              'Callback',@double_callback);  
-warning      = uicontrol('Style','text','String','Not enough points to select classes',...
-             'FontSize',15,'ForegroundColor','red','Visible','off','Position',[button_width_start,button_heigth_start - margin * 8 - button_heigth * 25,button_width * 2,button_heigth * 10]);
+warning      = uicontrol('Style','text','String','','HorizontalAlignment','left',...
+             'FontSize',15,'ForegroundColor','red','Visible','off','Position',[button_width_start,button_heigth_start - margin * 10 - button_heigth * 30,button_width * 2,button_heigth * 20]);
 
 ha = axes('Units','pixels','Position',[0,window_heigth - image_heigth - margin,image_width,image_heigth],'Box','on');
 
@@ -78,12 +110,14 @@ f.Units = 'normalized';
 ha.Units = 'normalized';
 next_image.Units = 'normalized';
 undo.Units = 'normalized';
-text_classes.Units = 'normalized';
+text_shape.Units = 'normalized';
 round.Units = 'normalized';
 hexagonal.Units = 'normalized';
 trigonal.Units = 'normalized';
 square.Units = 'normalized';
 unclear.Units = 'normalized';
+text_double.Units = 'normalized';
+single.Units = 'normalized';
 double.Units = 'normalized';
 warning.Units = 'normalized';
 
@@ -102,12 +136,18 @@ show_image();
 empty_class = [1, 0, 0, 0, 0, 0]; % round is default class
 points = [];
 classes = [];
-close = false;
 
-while ~close
+while true
     hold on
     % ask inputs
-    [x,y] = ginput(1);
+    try
+        [x,y] = ginput(1);  
+    catch
+        % end program if window has been closed
+        break
+    end
+    
+    % hide previous warnings
     set(warning, 'Visible', 'off');
     % only accept inputs inside the image
     if x > image_width || x < 0 || y > image_heigth || y < 0
@@ -116,7 +156,7 @@ while ~close
     
     if ~isempty(points)
         if is_even(points) && ~class_given()
-            set(warning, 'String', 'One of following classes need to be selected: round, hexagonal, trigonal, square or unclear', 'Visible', 'on');
+            set(warning, 'String', 'One of following classes needs to be selected: round, hexagonal, trigonal, square or unclear', 'Visible', 'on');
             continue
         end
     end
@@ -135,16 +175,15 @@ while ~close
     draw_rectangles();
     set_button_colors();
 end
-fclose(csv_file);
-% !To do: tell user that all images have been labeled
-   
+
+
     % switch to next image and reset input points.
     function show_new_image()
         index = index + 1;
         % if previous image was the last, end program
         if index > length_of(images)
-           close = true;
-           return 
+            set(warning, 'String', 'All images have been labeled.', 'Visible', 'on')
+            return 
         end    
         
         show_image();
@@ -160,8 +199,7 @@ fclose(csv_file);
         cla(ha) % clear previous image
         f.Name = images(index).name;
         file_name = images(index).name;
-        file_name = strcat(folder, file_name);
-        file_name = char(file_name);
+        file_name = fullfile(folder, file_name);
         img = imread(file_name);  
         imshow(img);
     end     
@@ -182,7 +220,9 @@ fclose(csv_file);
         len = length_of(classes);
         
         if class == 6
-           classes(len, class) = ~classes(len, class);
+           classes(len, 6) = 0;
+        elseif class == 7
+           classes(len, 6) = 1;
         else
            on = classes(len, class);
            classes(len,:) = [0,0,0,0,0,classes(len,6)];
@@ -198,6 +238,8 @@ fclose(csv_file);
 
     % save given input points into a csv file
     function save_points()
+        csv_file = fopen(csv_file_name, 'a+');
+
         rearrange_points();
         
         len = length_of(points);
@@ -208,12 +250,13 @@ fclose(csv_file);
            y1 = floor(points(i*2 - 1, 2));
            y2 = floor(points(i*2, 2));
            [class1, class2] = class_names(i);
-           fprintf(csv_file, '%s,%i,%i,%i,%i,%s,%s\n', images(index).name, x1, y1, x2, y2, class1, class2);
-        end    
+           fprintf(csv_file, '%s,%i,%i,%i,%i,%s,%s\n', char(images(index).name), x1, y1, x2, y2, class1, class2);
+        end
         
         if len == 0
-           fprintf(csv_file, '%s,,,,,,\n', images(index).name);
-        end    
+           fprintf(csv_file, '%s,,,,,,\n', char(images(index).name));
+        end
+        fclose(csv_file);
     end  
 
     % return classes as class names
@@ -323,6 +366,7 @@ fclose(csv_file);
             set(trigonal, 'BackgroundColor', color_off);
             set(square, 'BackgroundColor', color_off);
             set(unclear, 'BackgroundColor', color_off);
+            set(single, 'BackgroundColor', color_off);
             set(double, 'BackgroundColor', color_off);
             return
        end
@@ -354,8 +398,10 @@ fclose(csv_file);
            set(unclear, 'BackgroundColor', color_off);
        end 
        if classes(len, 6)
+           set(single, 'BackgroundColor', color_off);
            set(double, 'BackgroundColor', color_on);
        else
+           set(single, 'BackgroundColor', color_on);
            set(double, 'BackgroundColor', color_off);
        end 
     end    
@@ -364,11 +410,17 @@ fclose(csv_file);
 
     % save points of the current image and show next image
     function nextimage_callback(source,eventdata) 
+        if index > length_of(images)
+            set(warning, 'String', 'All images have been labeled', 'Visible', 'on')
+            return 
+        end    
         if (is_even(points) && class_given()) || isempty(points)
-          save_points();
-          show_new_image();
+            save_points();
+            show_new_image();
+        elseif ~is_even(points)
+            set(warning, 'String', 'Wrong ammount of points. Add or remove points before moving to next image.', 'Visible', 'on')
         else
-          set(warning, 'String', 'Not enough points or class is not given', 'Visible', 'on')
+            set(warning, 'String', 'One of following classes needs to be selected: round, hexagonal, trigonal, square or unclear', 'Visible', 'on')
         end  
     end    
 
@@ -422,9 +474,16 @@ fclose(csv_file);
         end
     end
 
-    function double_callback(source,eventdata) 
+    function single_callback(source,eventdata) 
         if is_even(points) && ~isempty(points)
             put_class(6);
+            set_button_colors();  
+        end
+    end
+
+    function double_callback(source,eventdata) 
+        if is_even(points) && ~isempty(points)
+            put_class(7);
             set_button_colors();  
         end
     end
