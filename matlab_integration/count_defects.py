@@ -84,7 +84,7 @@ def getDefectLabels(file_name):
     return defect_labels
 
 
-def saveCount(nameToSave):
+def saveCount(defCount, nameToSave):
     '''
     Saves a .csv file containing the name of the image in the first column, and the number of defects in the second
     column.
@@ -98,18 +98,20 @@ def saveCount(nameToSave):
         writer.writerow(['image', 'amount of defects'])
     
         #Write content
-        for row in defect_counts:
+        for row in defCount:
             writer.writerow(row)
 
 
 # Change the label name, image name and number for different images
 # To implement: give those as arguments to parse
 
-defect_labels = getDefectLabels('test1.csv')
 
-defect_counts = count_defects(defect_labels, 1098)
+def main(csvFile='test1.csv', lastNum=1098, toSave='test1-defect_count.csv'):
+	defect_labels = getDefectLabels(csvFile)
+	defect_counts = count_defects(defect_labels, lastNum)
+	saveCount(defect_counts, toSave)
 
-saveCount('Acrorad_1704-0601-8-0(0963-3813)-defect_counts.csv')
+main()
 
 
 

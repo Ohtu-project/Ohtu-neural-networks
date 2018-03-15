@@ -12,7 +12,7 @@ class TestBasicFunction(unittest.TestCase):
           ['0', 'Acrorad_0712-1001-1-07-01028.jpg', '[ 970  741 1012  792]']
         ]
 
-        self.assertEqual(count_defects(defect_labels, 'Acrorad_0712-1001-1-07-01028.jpg', 1028), [['Acrorad_0712-1001-1-07-01028.jpg', 1]])
+        self.assertEqual(count_defects(defect_labels, 1028), [['Acrorad_0712-1001-1-07-01028.jpg', 1]])
  
     def test_counting_right_longer_list(self):
         defect_labels = [
@@ -39,7 +39,7 @@ class TestBasicFunction(unittest.TestCase):
           ['Acrorad_0712-1001-1-07-01035.jpg', 2]          
         ]
 
-        self.assertEqual(count_defects(defect_labels, 'Acrorad_0712-1001-1-07-01028.jpg', 1035), expected_ouput)
+        self.assertEqual(count_defects(defect_labels, 1035), expected_ouput)
 
 if __name__ == '__main__':
     unittest.main()
