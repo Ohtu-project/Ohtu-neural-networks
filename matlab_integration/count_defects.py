@@ -24,7 +24,7 @@ def next_image_name(image_name):
     return name[:-4] + str_number + '.' + ending
 
 
-def count_defects (defect_labels, last_image_number):
+def countDefects (defect_labels, last_image_number):
     '''
     Returns a list containing the number of defects in each image.
     Expects first_image_name to be in 'Acrorad_0712-1001-1-07-01028.jpg'-like format
@@ -108,10 +108,10 @@ def saveCount(defCount, nameToSave):
 
 def main(csvFile='test1.csv', lastNum=1098, toSave='test1-defect_count.csv'):
 	defect_labels = getDefectLabels(csvFile)
-	defect_counts = count_defects(defect_labels, lastNum)
+	defect_counts = countDefects(defect_labels, lastNum)
 	saveCount(defect_counts, toSave)
 
-main()
+#main()
 
 
 
