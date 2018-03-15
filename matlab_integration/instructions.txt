@@ -1,7 +1,8 @@
 Instructions for using defect_detector.m
 
-Make sure you have Python 3.6 installed. Then you need to install Keras RetinaNet 
-(https://github.com/fizyr/keras-retinanet) which is the open source neural network that we are using for this project.
+Make sure you have Python 3.6 installed. You also need to install TensorFlow (https://www.tensorflow.org/install/) on 
+your computer beforehand. Then you need to install Keras RetinaNet (https://github.com/fizyr/keras-retinanet) 
+which is the open source neural network that we are using for this project. Tensorflow is the backend that Keras uses.
 
 You should install RetinaNet in the same matlab_integration-folder where defect_detector.m and Predictions.py files are. Use the command line to get in the matlab_integration-folder and then
 you can install RetinaNet through git (https://git-scm.com/downloads) with following commands:
