@@ -107,7 +107,7 @@ def saveCount(nameToSave):
 
 defect_labels = getDefectLabels('test1.csv')
 
-defect_counts = count_defects(defect_labels, 'Acrorad_0712-1001-1-07-01028.jpg', 1030)
+defect_counts = count_defects(defect_labels, 1098)
 
 saveCount('Acrorad_1704-0601-8-0(0963-3813)-defect_counts.csv')
 
