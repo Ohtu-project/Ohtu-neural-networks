@@ -1,6 +1,6 @@
 import unittest
 import sys
-sys.path.append('.')
+sys.path.append('./matlab_integration/')
 
 from count_defects import *
  
