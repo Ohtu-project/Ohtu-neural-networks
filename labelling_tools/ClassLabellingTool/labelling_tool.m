@@ -1,5 +1,6 @@
 function labelling_tool
 
+% window, button and image size initialization
 window_width = 1500;
 window_heigth = 1200;
 image_width = 1280;
@@ -16,6 +17,7 @@ color_off = [0.95 0.95 0.95];
 
 folder = '';
 
+% ask folder and check that it exists
 while ~exist(folder)
     prompt = '\nChoose folder ';
     folder = input(prompt,'s');
@@ -25,30 +27,34 @@ while ~exist(folder)
     end
 end
 
+% determine the name of the csv file, where labels are saved
+% !To do: name csv file according to image numbers?
 csv_file_name = fullfile(folder, 'LABELS.csv');
 
 % get all jpg files from the folder
 images = dir(fullfile(folder, '*.jpg'));
-index = 1;
-
-% !To do: name csv file according to image numbers
-% !To do: save points so that an existing csv file is not overwritten
 
 % open csv file if it already exists or create a new file
 csv_file = fopen(csv_file_name, 'a+');
 csv_data = fscanf(csv_file, '%s \n');
 fclose(csv_file);
+
+% check which images have been labeled. 'index' is the index of the first
+% image, that has not been labeled
+index = 1;
 while true
    k = strfind(csv_data, images(index).name);
    if isempty(k)
       break
    end
-       index = index + 1;
+   index = index + 1;
    if index > length_of(images)
        break
    end
 end
 
+% if some images have been labeled, ask user if they want to label only 
+% unlabelled images 
 if index > 1
     prompt = char("\nImages from " + images(1).name + " to " + images(index - 1).name + " have already been labeled.\nDo you want to label everything again [L] or only label non-labeled images [ENTER]? ");
     label = input(prompt,'s');
@@ -59,6 +65,7 @@ if index > 1
     end    
 end    
 
+% if all images have been labelled, stop the program
 if index > length_of(images)
     fprintf('\nAll images have already been labeled.\n')
     return
@@ -74,7 +81,7 @@ next_image   = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
 undo         = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Undo','Position',[button_width_start + button_width,button_heigth_start - button_heigth,button_width * 0.5,button_heigth],...
              'Callback',@undo_callback);   
-text_shape = uicontrol('Style','text','String','Select shape','HorizontalAlignment','left',...
+text_shape   = uicontrol('Style','text','String','Select shape','HorizontalAlignment','left',...
              'Position',[button_width_start,button_heigth_start - margin - button_heigth * 2,button_width * 2,button_heigth]);
 round        = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Round','Position',[button_width_start,button_heigth_start - margin * 2 - button_heigth * 3,button_width,button_heigth],...
@@ -121,7 +128,7 @@ single.Units = 'normalized';
 double.Units = 'normalized';
 warning.Units = 'normalized';
 
-% Assign the a name to appear in the window title.
+% Assign the image name to appear in the window title.
 f.Name = images(index).name;
 
 % Move the window to the center of the screen.
@@ -133,10 +140,11 @@ f.Visible = 'on';
 show_image();
 
 % initialize points and classes to be empty
-empty_class = [1, 0, 0, 0, 0, 0]; % round is default class
+default_class = [1, 0, 0, 0, 0, 0]; % round and single are default classes
 points = [];
 classes = [];
 
+% ask points and add them to the array repeatedly
 while true
     hold on
     % ask inputs
@@ -154,6 +162,7 @@ while true
        continue
     end
     
+    % don't accept new point if two points are given, but no class is given
     if ~isempty(points)
         if is_even(points) && ~class_given()
             set(warning, 'String', 'One of following classes needs to be selected: round, hexagonal, trigonal, square or unclear', 'Visible', 'on');
@@ -161,15 +170,17 @@ while true
         end
     end
         
-    % plot given input points
+    % plot given points
     plot(x,y, 'r*', 'LineWidth', 2)
        
+    % Add new point to matrix
     A  = [x, y];
-    points = [points; A]; % Add new point to matrix
+    points = [points; A];
     
-    % if both points of a bounding box have been given, draw a box
+    % if both points of a bounding box have been given, add a default class
+    % for the box
     if is_even(points)
-        classes = [classes; empty_class];
+        classes = [classes; default_class];
     end   
 
     draw_rectangles();
@@ -177,10 +188,10 @@ while true
 end
 
 
-    % switch to next image and reset input points.
+    % switch to next image
     function show_new_image()
         index = index + 1;
-        % if previous image was the last, end program
+        % tell user if the previous image was the last
         if index > length_of(images)
             set(warning, 'String', 'All images have been labeled.', 'Visible', 'on')
             return 
@@ -204,7 +215,7 @@ end
         imshow(img);
     end     
 
-    % check if a necessary class has been given
+    % check if the necessary classes has been given
     function given = class_given()
        len = length_of(classes);
        if len == 0
@@ -215,7 +226,7 @@ end
     end
 
     % add a class to a box. Parameter 'class' is is number from 1 to 6.
-    % Return wheter class is turned on or off
+    % Return whether class is turned on or off
     function put_class(class)
         len = length_of(classes);
         
@@ -352,15 +363,16 @@ end
         line([x+dx, x+dx],[y, y+dy], 'Color', color);
     end       
 
+    % remove last given class
     function remove_class()
         len = length_of(classes);
         classes = classes(1:len-1, :);
         set_button_colors();
     end    
 
-    % set button colors to match with how classes have been set
+    % set button colors to match with the given classes
     function set_button_colors()
-       if isempty(classes)
+       if isempty(classes) || ~is_even(points)
             set(round, 'BackgroundColor', color_off);
             set(hexagonal, 'BackgroundColor', color_off);
             set(trigonal, 'BackgroundColor', color_off);
@@ -413,7 +425,7 @@ end
         if index > length_of(images)
             set(warning, 'String', 'All images have been labeled', 'Visible', 'on')
             return 
-        end    
+        end
         if (is_even(points) && class_given()) || isempty(points)
             save_points();
             show_new_image();
@@ -424,67 +436,67 @@ end
         end  
     end    
 
-    % clear last given point and draw everything again
+    % clear last given point and show image
     function undo_callback(source,eventdata) 
         length = length_of(points);
         points = points(1:length-1, 1:2);
         if ~is_even(points)
            remove_class();
-        end    
+        end
         show_image();
         for i=1:length-1
             plot(points(i,1),points(i,2), 'r*', 'LineWidth', 2)
-        end      
+        end
         draw_rectangles();
         set_button_colors();
     end
 
+    % when button round is pressed
     function round_callback(source,eventdata) 
         if is_even(points) && ~isempty(points)
-            put_class(1);
-            set_button_colors();    
+            put_class(1);   
         end
     end
 
+    % when button hexagonal is pressed
     function hexagonal_callback(source,eventdata) 
         if is_even(points) && ~isempty(points)
-            put_class(2);
-            set_button_colors();     
+            put_class(2);    
         end
     end
 
+    % when button trigonal is pressed
     function trigonal_callback(source,eventdata) 
         if is_even(points) && ~isempty(points)
-            put_class(3);
-            set_button_colors();     
+            put_class(3);    
         end
     end
 
+    % when button square is pressed
     function square_callback(source,eventdata) 
         if is_even(points) && ~isempty(points)
-            put_class(4);
-            set_button_colors();    
+            put_class(4);   
         end
     end
 
+    % when button unclear is pressed
     function unclear_callback(source,eventdata) 
         if is_even(points) && ~isempty(points)
-            put_class(5);
-            set_button_colors();     
+            put_class(5);    
         end
     end
 
+    % when button single is pressed
     function single_callback(source,eventdata) 
         if is_even(points) && ~isempty(points)
-            put_class(6);
-            set_button_colors();  
+            put_class(6); 
         end
     end
 
+    % when button double is pressed
     function double_callback(source,eventdata) 
         if is_even(points) && ~isempty(points)
             put_class(7);
-            set_button_colors();  
         end
     end
 end
