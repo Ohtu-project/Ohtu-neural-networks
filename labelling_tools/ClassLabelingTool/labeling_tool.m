@@ -1,4 +1,4 @@
-function labelling_tool
+function labeling_tool
 
 % window, button and image size initialization
 window_width = 1500;
@@ -155,6 +155,11 @@ while true
         break
     end
     
+    if isempty(x)
+        nextimage_callback() 
+        continue
+    end
+    
     % hide previous warnings
     set(warning, 'Visible', 'off');
     % only accept inputs inside the image
@@ -169,7 +174,7 @@ while true
             continue
         end
     end
-       
+        
     % Add new point to matrix
     A  = [x, y];
     points = [points; A];
