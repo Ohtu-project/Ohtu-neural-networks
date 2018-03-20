@@ -35,7 +35,7 @@ csv_file_name = fullfile(folder, 'LABELS.csv');
 images = dir(fullfile(folder, '*.jpg'));
 
 % open csv file if it already exists or create a new file
-csv_file = fopen(csv_file_name, 'a+');
+csv_file = fopen(csv_file_name, 'r');
 csv_data = fscanf(csv_file, '%s \n');
 fclose(csv_file);
 
