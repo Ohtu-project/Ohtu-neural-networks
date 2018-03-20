@@ -1,4 +1,4 @@
-function labelling_tool
+function labeling_tool
 
 % window, button and image size initialization
 window_width = 1500;
@@ -149,7 +149,7 @@ while true
     hold on
     % ask inputs
     try
-        [x,y] = ginput(1);  
+        [x,y] = ginput(1);
     catch
         % end program if window has been closed
         break
@@ -225,8 +225,14 @@ end
        end
     end
 
-    % add a class to a box. Parameter 'class' is is number from 1 to 6.
-    % Return whether class is turned on or off
+    % change a class only if enough points are given
+    function change_class(class)
+        if is_even(points) && ~isempty(points)
+            put_class(class);
+        end
+    end
+
+    % change a class. Parameter 'class' is is number from 1 to 6.
     function put_class(class)
         len = length_of(classes);
         
@@ -447,50 +453,36 @@ end
 
     % when button round is pressed
     function round_callback(source,eventdata) 
-        if is_even(points) && ~isempty(points)
-            put_class(1);   
-        end
+        change_class(1)
     end
 
     % when button hexagonal is pressed
     function hexagonal_callback(source,eventdata) 
-        if is_even(points) && ~isempty(points)
-            put_class(2);    
-        end
+        change_class(2)
     end
 
     % when button trigonal is pressed
     function trigonal_callback(source,eventdata) 
-        if is_even(points) && ~isempty(points)
-            put_class(3);    
-        end
+        change_class(3)
     end
 
     % when button square is pressed
     function square_callback(source,eventdata) 
-        if is_even(points) && ~isempty(points)
-            put_class(4);   
-        end
+        change_class(4)
     end
 
     % when button unclear is pressed
     function unclear_callback(source,eventdata) 
-        if is_even(points) && ~isempty(points)
-            put_class(5);    
-        end
+        change_class(5)
     end
 
     % when button single is pressed
     function single_callback(source,eventdata) 
-        if is_even(points) && ~isempty(points)
-            put_class(6); 
-        end
+        change_class(6)
     end
 
     % when button double is pressed
     function double_callback(source,eventdata) 
-        if is_even(points) && ~isempty(points)
-            put_class(7);
-        end
+        change_class(7)
     end
 end
