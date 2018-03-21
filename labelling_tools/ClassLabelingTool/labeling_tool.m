@@ -157,7 +157,7 @@ while true
     hold on
     % ask inputs
     try
-        [x,y] = ginput(1);  
+        [x,y] = ginput(1);
     catch
         % end program if window has been closed
         break
@@ -238,8 +238,15 @@ end
        end
     end
 
-    % add a class to a box. Parameter 'class' is is number from 1 to 8.
-    % Return whether class is turned on or off
+
+    % change a class only if enough points are given
+    function change_class(class)
+        if is_even(points) && ~isempty(points)
+            put_class(class);
+        end
+    end
+
+    % change a class. Parameter 'class' is is number from 1 to 6.
     function put_class(class)
         len = length_of(classes);
         
