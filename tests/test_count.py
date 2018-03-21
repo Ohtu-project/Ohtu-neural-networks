@@ -1,8 +1,8 @@
 import unittest
 import os, sys
 
-if __package__ is None:
-    sys.path.append("../matlab_integration/")
+#if __package__ is None:
+sys.path.append("../matlab_integration/")
 
 from count_defects import *
 
