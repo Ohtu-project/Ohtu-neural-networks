@@ -3,10 +3,10 @@ from __future__ import absolute_import
 import unittest
 import os, sys
 
-#if __package__ is None:
-sys.path.append("../matlab_integration/")
+if __package__ is None:
+	sys.path.append("../")
 
-from count_defects import *
+from matlab_integration.count_defects import *
 
 #def test_main():
 #	count_defects.main(csvFile='test-data/test1.csv')
