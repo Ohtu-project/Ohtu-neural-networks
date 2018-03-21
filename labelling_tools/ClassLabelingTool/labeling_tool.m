@@ -74,7 +74,7 @@ end
 %  Create and then hide the UI as it is being constructed.
 f = figure('Visible','off','Position',[margin, margin,window_width,window_heigth]);
 
-% Construct the components.
+% Construct the components.  %%REFACTOR, CLASS BUTTONS TO CALL SAME CALLBACK??%%
 next_image   = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Done','Position',[button_width_start,button_heigth_start - button_heigth,button_width * 0.7,button_heigth],...
              'Callback',@nextimage_callback);
@@ -85,29 +85,35 @@ text_shape   = uicontrol('Style','text','String','Select shape','HorizontalAlign
              'Position',[button_width_start,button_heigth_start - margin - button_heigth * 2,button_width * 2,button_heigth]);
 round        = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Round','Position',[button_width_start,button_heigth_start - margin * 2 - button_heigth * 3,button_width,button_heigth],...
-             'Callback',@round_callback);
+             'Callback',@class_button_callback);
 hexagonal    = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Hexagonal','Position',[button_width_start,button_heigth_start - margin * 3 - button_heigth * 4,button_width,button_heigth],...
-             'Callback',@hexagonal_callback); 
+             'Callback',@class_button_callback); 
 trigonal     = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Trigonal','Position',[button_width_start,button_heigth_start - margin * 4 - button_heigth * 5,button_width,button_heigth],...
-             'Callback',@trigonal_callback);  
+             'Callback',@class_button_callback);  
 square       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Square','Position',[button_width_start,button_heigth_start - margin * 5 - button_heigth * 6,button_width,button_heigth],...
-             'Callback',@square_callback);        
+             'Callback',@class_button_callback);        
 unclear      = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Unclear','Position',[button_width_start,button_heigth_start - margin * 6 - button_heigth * 7,button_width,button_heigth],...
-             'Callback',@unclear_callback);       
+             'Callback',@class_button_callback);    
+void         = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+             'String','Void','Position',[button_width_start,button_heigth_start - margin * 7 - button_heigth * 8,button_width,button_heigth],...
+             'Callback',@class_button_callback); 
+bubbles      = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+             'String','Bubbles','Position',[button_width_start,button_heigth_start - margin * 8 - button_heigth * 9,button_width,button_heigth],...
+             'Callback',@class_button_callback);          
 text_double  = uicontrol('Style','text','String','Select single or double','HorizontalAlignment','left',...
-             'Position',[button_width_start,button_heigth_start - margin * 7 - button_heigth * 8,button_width * 2,button_heigth]);
+             'Position',[button_width_start,button_heigth_start - margin * 9 - button_heigth * 10,button_width * 2,button_heigth]);
 single       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-             'String','Single','Position',[button_width_start,button_heigth_start - margin * 8 - button_heigth * 9,button_width,button_heigth],...
-             'Callback',@single_callback);  
+             'String','Single','Position',[button_width_start,button_heigth_start - margin * 10 - button_heigth * 11,button_width,button_heigth],...
+             'Callback',@class_button_callback);  
 double       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-             'String','Double','Position',[button_width_start,button_heigth_start - margin * 9 - button_heigth * 10,button_width,button_heigth],...
-             'Callback',@double_callback);  
+             'String','Double','Position',[button_width_start,button_heigth_start - margin * 11 - button_heigth * 12,button_width,button_heigth],...
+             'Callback',@class_button_callback);  
 warning      = uicontrol('Style','text','String','','HorizontalAlignment','left',...
-             'FontSize',15,'ForegroundColor','red','Visible','off','Position',[button_width_start,button_heigth_start - margin * 10 - button_heigth * 30,button_width * 2,button_heigth * 20]);
+             'FontSize',15,'ForegroundColor','red','Visible','off','Position',[button_width_start,button_heigth_start - margin * 12 - button_heigth * 30,button_width * 2,button_heigth * 20]);
 
 ha = axes('Units','pixels','Position',[0,window_heigth - image_heigth - margin,image_width,image_heigth],'Box','on');
 
@@ -123,6 +129,8 @@ hexagonal.Units = 'normalized';
 trigonal.Units = 'normalized';
 square.Units = 'normalized';
 unclear.Units = 'normalized';
+void.Units = 'normalized';
+bubbles.Units = 'normalized';
 text_double.Units = 'normalized';
 single.Units = 'normalized';
 double.Units = 'normalized';
@@ -137,8 +145,8 @@ movegui(f,'center')
 % Make the window visible.
 f.Visible = 'on';
 
-% initialize points and classes to be empty
-default_class = [1, 0, 0, 0, 0, 0]; % round and single are default classes
+% initialize points and classes to be empty  %%REFACTOR, CLASS BUTTONS TO CALL SAME CALLBACK??%%
+default_class = [1, 0, 0, 0, 0, 0, 0, 0]; % round and single are default classes
 points = [];
 classes = [];
 
@@ -170,7 +178,7 @@ while true
     % don't accept new point if two points are given, but no class is given
     if ~isempty(points)
         if is_even(points) && ~class_given()
-            set(warning, 'String', 'One of following classes needs to be selected: round, hexagonal, trigonal, square or unclear', 'Visible', 'on');
+            set(warning, 'String', 'One of following classes needs to be selected: round, hexagonal, trigonal, square, unclear, void or bubbles', 'Visible', 'on');
             continue
         end
     end
@@ -220,28 +228,28 @@ end
         set_button_colors();
     end     
 
-    % check if the necessary classes has been given
+    % check if the necessary classes has been given %%REFACTOR, CLASS BUTTONS TO CALL SAME CALLBACK??%%
     function given = class_given()
        len = length_of(classes);
        if len == 0
             given = false;
        else    
-            given = (classes(len, 1) || classes(len, 2) || classes(len, 3) || classes(len, 4) || classes(len, 5));
+            given = (classes(len, 1) || classes(len, 2) || classes(len, 3) || classes(len, 4) || classes(len, 5) || classes(len, 6) || classes(len, 7));
        end
     end
 
-    % add a class to a box. Parameter 'class' is is number from 1 to 6.
+    % add a class to a box. Parameter 'class' is is number from 1 to 8.
     % Return whether class is turned on or off
     function put_class(class)
         len = length_of(classes);
         
-        if class == 6
-           classes(len, 6) = 0;
-        elseif class == 7
-           classes(len, 6) = 1;
+        if class == 8
+           classes(len, 8) = 0;
+        elseif class == 9
+           classes(len, 8) = 1;
         else
            on = classes(len, class);
-           classes(len,:) = [0,0,0,0,0,classes(len,6)];
+           classes(len,:) = [0,0,0,0,0,0,0,classes(len,8)];
            classes(len,class) = ~on;
         end
         set_button_colors();
@@ -280,20 +288,20 @@ end
         class2 = 'single';
         if classes(index, 1)
             class1 = 'round';
-        end
-        if classes(index, 2)
+        elseif classes(index, 2)
             class1 = 'hexagonal';
-        end
-        if classes(index, 3)
+        elseif classes(index, 3)
             class1 = 'trigonal';
-        end
-        if classes(index, 4)
+        elseif classes(index, 4)
             class1 = 'square';
-        end
-        if classes(index, 5)
+        elseif classes(index, 5)
             class1 = 'unclear';
+        elseif classes(index, 6)
+            class1 = 'void';
+        elseif classes(index, 7)
+            class1 = 'bubbles';
         end
-        if classes(index, 6)
+        if classes(index, 8)
             class2 = 'double';
         end
     end    
@@ -376,44 +384,40 @@ end
 
     % set button colors to match with the given classes
     function set_button_colors()
+       % set all buttons off mode
+       set(round, 'BackgroundColor', color_off);
+       set(hexagonal, 'BackgroundColor', color_off);
+       set(trigonal, 'BackgroundColor', color_off);
+       set(square, 'BackgroundColor', color_off);
+       set(unclear, 'BackgroundColor', color_off);
+       set(void, 'BackgroundColor', color_off);
+       set(bubbles, 'BackgroundColor', color_off);
+       set(single, 'BackgroundColor', color_off);
+       set(double, 'BackgroundColor', color_off); 
+       
        if isempty(classes) || ~is_even(points)
-            set(round, 'BackgroundColor', color_off);
-            set(hexagonal, 'BackgroundColor', color_off);
-            set(trigonal, 'BackgroundColor', color_off);
-            set(square, 'BackgroundColor', color_off);
-            set(unclear, 'BackgroundColor', color_off);
-            set(single, 'BackgroundColor', color_off);
-            set(double, 'BackgroundColor', color_off);
             return
        end
        
+       % set right buttons on if needed
        len = length_of(classes);
        if classes(len, 1)
            set(round, 'BackgroundColor', color_on);
-       else
-           set(round, 'BackgroundColor', color_off);
-       end    
-       if classes(len, 2)
+       elseif classes(len, 2)
            set(hexagonal, 'BackgroundColor', color_on);
-       else
-           set(hexagonal, 'BackgroundColor', color_off);
-       end 
-       if classes(len, 3)
+       elseif classes(len, 3)
            set(trigonal, 'BackgroundColor', color_on);
-       else
-           set(trigonal, 'BackgroundColor', color_off);
-       end 
-       if classes(len, 4)
+       elseif classes(len, 4)
            set(square, 'BackgroundColor', color_on);
-       else
-           set(square, 'BackgroundColor', color_off);
-       end 
-       if classes(len, 5)
+       elseif classes(len, 5)
            set(unclear, 'BackgroundColor', color_on);
-       else
-           set(unclear, 'BackgroundColor', color_off);
-       end 
-       if classes(len, 6)
+       elseif classes(len, 6)
+           set(void, 'BackgroundColor', color_on);
+       elseif classes(len, 7)
+           set(bubbles, 'BackgroundColor', color_on);
+       end
+       
+       if classes(len, 8)
            set(single, 'BackgroundColor', color_off);
            set(double, 'BackgroundColor', color_on);
        else
@@ -450,52 +454,15 @@ end
         show_image();
     end
 
-    % when button round is pressed
-    function round_callback(source,eventdata) 
+    % when class button is pressed
+    function class_button_callback(source, eventdata)
+        key_set =   {'Round', 'Hexagonal', 'Trigonal', 'Square', 'Unclear', 'Void', 'Bubbles', 'Single', 'Double'};
+        value_set = 1:9;
+        class_map = containers.Map(key_set,value_set);
+        
         if is_even(points) && ~isempty(points)
-            put_class(1);   
-        end
-    end
-
-    % when button hexagonal is pressed
-    function hexagonal_callback(source,eventdata) 
-        if is_even(points) && ~isempty(points)
-            put_class(2);    
-        end
-    end
-
-    % when button trigonal is pressed
-    function trigonal_callback(source,eventdata) 
-        if is_even(points) && ~isempty(points)
-            put_class(3);    
-        end
-    end
-
-    % when button square is pressed
-    function square_callback(source,eventdata) 
-        if is_even(points) && ~isempty(points)
-            put_class(4);   
-        end
-    end
-
-    % when button unclear is pressed
-    function unclear_callback(source,eventdata) 
-        if is_even(points) && ~isempty(points)
-            put_class(5);    
-        end
-    end
-
-    % when button single is pressed
-    function single_callback(source,eventdata) 
-        if is_even(points) && ~isempty(points)
-            put_class(6); 
-        end
-    end
-
-    % when button double is pressed
-    function double_callback(source,eventdata) 
-        if is_even(points) && ~isempty(points)
-            put_class(7);
+            class_name = source.String;
+            put_class(class_map(class_name))
         end
     end
 end
