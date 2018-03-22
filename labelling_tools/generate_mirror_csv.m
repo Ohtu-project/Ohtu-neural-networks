@@ -49,11 +49,11 @@ function write_lines(file, lines, image_path, image_name_ending)
 
             % test will coordinates be mirrored
             if contains(image_name_ending, 'x')
-                x1 = 1280 - x2;
-                x2 = 1280 - x1;
+                x1 = 1280 - str2num(content{4}); % im_width - initial_x2
+                x2 = 1280 - str2num(content{2}); % im_width - initial_x1
             elseif contains(image_name_ending, 'y')
-                y1 = 1024 - y2;
-                y2 = 1024 - y1;
+                y1 = 1024 - str2num(content{5}); % im_heigth - initial_y2
+                y2 = 1024 - str2num(content{3}); % im_heigth - initial_y1
             end    
 
             class = content{6};
