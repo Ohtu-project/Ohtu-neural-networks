@@ -25,7 +25,7 @@ end
 %% To avoid repetition
 function write_lines(file, lines, image_path, image_name_ending)
     formatSpec1 = strcat(image_path,'%s,%i,%i,%i,%i,%s\n');
-    formatSpec2 = strcat(image_path,'%s,,,,,,\n'); % for images with no defects
+    formatSpec2 = strcat(image_path,'%s,,,,,\n'); % for images with no defects
 
     [n, ~] = size(lines);
 
