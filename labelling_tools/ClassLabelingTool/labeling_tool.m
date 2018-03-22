@@ -35,9 +35,12 @@ csv_file_name = fullfile(folder, 'LABELS.csv');
 images = dir(fullfile(folder, '*.jpg'));
 
 % open csv file if it already exists or create a new file
-csv_file = fopen(csv_file_name, 'a+');
-csv_data = fscanf(csv_file, '%s \n');
-fclose(csv_file);
+csv_file = fopen(csv_file_name, 'r');
+csv_data = [];
+if csv_file ~= -1
+    csv_data = fscanf(csv_file, '%s \n');
+    fclose(csv_file);
+end    
 
 % check which images have been labeled. 'index' is the index of the first
 % image, that has not been labeled
@@ -74,7 +77,7 @@ end
 %  Create and then hide the UI as it is being constructed.
 f = figure('Visible','off','Position',[margin, margin,window_width,window_heigth]);
 
-% Construct the components.  %%REFACTOR, CLASS BUTTONS TO CALL SAME CALLBACK??%%
+% Construct the components. 
 next_image   = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Done','Position',[button_width_start,button_heigth_start - button_heigth,button_width * 0.7,button_heigth],...
              'Callback',@nextimage_callback);
@@ -157,7 +160,7 @@ while true
     hold on
     % ask inputs
     try
-        [x,y] = ginput(1);
+        [x,y] = ginput(1);  
     catch
         % end program if window has been closed
         break
@@ -238,15 +241,8 @@ end
        end
     end
 
-
-    % change a class only if enough points are given
-    function change_class(class)
-        if is_even(points) && ~isempty(points)
-            put_class(class);
-        end
-    end
-
-    % change a class. Parameter 'class' is is number from 1 to 6.
+    % add a class to a box. Parameter 'class' is is number from 1 to 8.
+    % Return whether class is turned on or off
     function put_class(class)
         len = length_of(classes);
         
