@@ -24,7 +24,7 @@ end
 
 %% To avoid repetition
 function write_lines(file, lines, image_path, image_name_ending)
-    formatSpec1 = strcat(image_path,'%s,%i,%i,%i,%i,%s,%s\n');
+    formatSpec1 = strcat(image_path,'%s,%i,%i,%i,%i,%s\n');
     formatSpec2 = strcat(image_path,'%s,,,,,,\n'); % for images with no defects
 
     [n, ~] = size(lines);
@@ -36,7 +36,7 @@ function write_lines(file, lines, image_path, image_name_ending)
         % generate name of image
         image_name = content{1};
         Cell = strsplit(image_name, '.');
-        name = strcat(image_path, Cell{1}, image_name_ending);
+        name = strcat(Cell{1}, image_name_ending);
         
         if length(content) == 2  % image has no defects
             fprintf(file, formatSpec2, name);
@@ -57,9 +57,8 @@ function write_lines(file, lines, image_path, image_name_ending)
             end    
 
             class = content{6};
-            single_or_double = content{7};
             
-            fprintf(file, formatSpec1, name, x1, y1, x2, y2, class, single_or_double);
+            fprintf(file, formatSpec1, name, x1, y1, x2, y2, class);
         end
     end
 end
