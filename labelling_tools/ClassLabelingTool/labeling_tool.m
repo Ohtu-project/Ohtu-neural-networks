@@ -148,8 +148,7 @@ movegui(f,'center')
 % Make the window visible.
 f.Visible = 'on';
 
-% initialize points and classes to be empty  %%REFACTOR, CLASS BUTTONS TO CALL SAME CALLBACK??%%
-%default_class = [1, 0, 0, 0, 0, 0, 0, 0]; % round and single are default classes
+% initialize points and classes to be empty 
 default_class = ["round" "single"];
 points = [];
 classes = [];
