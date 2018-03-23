@@ -1,12 +1,11 @@
 import keras
 
 # import keras_retinanet
-import keras_retinanet.models.resnet.custom_objects
-import keras_retinanet.utils.image.read_image_bgr
-import keras_retinanet.utils.image.preprocess_image
-import keras_retinanet.utils.image.resize_image
+from keras_retinanet.models.resnet import custom_objects
+from keras_retinanet.utils.image import read_image_bgr, preprocess_image, resize_image
 
 # import miscellaneous modules
+import cv2
 import os
 import sys
 import numpy as np
@@ -14,22 +13,23 @@ import time
 import pandas as pd
 
 # set tf backend to allow memory to grow, instead of claiming everything
-#import tensorflow as tf
-
-#def get_session():
-#    config = tf.ConfigProto()
-#    config.gpu_options.allow_growth = True
-#    return tf.Session(config=config)
+import tensorflow as tf
 
 # use this environment flag to change which GPU to use
-#os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 # set the modified tf session as backend in keras
-#keras.backend.tensorflow_backend.set_session(get_session())
+def get_session():
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True
+    return tf.Session(config=config)
 
-TRAINED_MODEL_PATH = '/home/barimpac/Documents/Ohtu-neural-networks/matlab_integration/snapshots/'
-TRAINED_MODEL_NAME = 'resnet50_csv_68.h5'
-IMAGE_DIRECTORY_PATH = '/home/barimpac/Documents/Ohtu-neural-networks/matlab_integration/images/'
+keras.backend.tensorflow_backend.set_session(get_session())
+
+def get_model(trained_model_path, trained_model_name):
+    model_path = os.path.join(trained_model_path, trained_model_name)
+    model = keras.models.load_model(model_path, custom_objects=custom_objects)
+    return model
 
 def image_preprocessing(image):
     # preprocess image for network
@@ -88,4 +88,5 @@ def main(argv):
     # name of the file to save the predictions
     df.to_csv("results.csv")
 
-save_prediction_to_csv()
+if __name__ == "__main__":
+main(sys.argv[1:])
