@@ -24,8 +24,8 @@ end
 
 %% To avoid repetition
 function write_lines(file, lines, image_path, image_name_ending)
-    formatSpec1 = strcat(image_path,'%s,%i,%i,%i,%i,%s,%s\n');
-    formatSpec2 = strcat(image_path,'%s,,,,,,\n'); % for images with no defects
+    formatSpec1 = strcat(image_path,'%s,%i,%i,%i,%i,%s\n');
+    formatSpec2 = strcat(image_path,'%s,,,,,\n'); % for images with no defects
 
     [n, ~] = size(lines);
 
@@ -36,7 +36,7 @@ function write_lines(file, lines, image_path, image_name_ending)
         % generate name of image
         image_name = content{1};
         Cell = strsplit(image_name, '.');
-        name = strcat(image_path, Cell{1}, image_name_ending);
+        name = strcat(Cell{1}, image_name_ending);
         
         if length(content) == 2  % image has no defects
             fprintf(file, formatSpec2, name);
@@ -49,17 +49,16 @@ function write_lines(file, lines, image_path, image_name_ending)
 
             % test will coordinates be mirrored
             if contains(image_name_ending, 'x')
-                x1 = 1280 - x2;
-                x2 = 1280 - x1;
+                x1 = 1280 - str2num(content{4}); % im_width - initial_x2
+                x2 = 1280 - str2num(content{2}); % im_width - initial_x1
             elseif contains(image_name_ending, 'y')
-                y1 = 1024 - y2;
-                y2 = 1024 - y1;
+                y1 = 1024 - str2num(content{5}); % im_heigth - initial_y2
+                y2 = 1024 - str2num(content{3}); % im_heigth - initial_y1
             end    
 
             class = content{6};
-            single_or_double = content{7};
             
-            fprintf(file, formatSpec1, name, x1, y1, x2, y2, class, single_or_double);
+            fprintf(file, formatSpec1, name, x1, y1, x2, y2, class);
         end
     end
 end

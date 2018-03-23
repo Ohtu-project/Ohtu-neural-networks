@@ -35,9 +35,12 @@ csv_file_name = fullfile(folder, 'LABELS.csv');
 images = dir(fullfile(folder, '*.jpg'));
 
 % open csv file if it already exists or create a new file
-csv_file = fopen(csv_file_name, 'a+');
-csv_data = fscanf(csv_file, '%s \n');
-fclose(csv_file);
+csv_file = fopen(csv_file_name, 'r');
+csv_data = [];
+if csv_file ~= -1
+    csv_data = fscanf(csv_file, '%s \n');
+    fclose(csv_file);
+end    
 
 % check which images have been labeled. 'index' is the index of the first
 % image, that has not been labeled
@@ -74,7 +77,7 @@ end
 %  Create and then hide the UI as it is being constructed.
 f = figure('Visible','off','Position',[margin, margin,window_width,window_heigth]);
 
-% Construct the components.  %%REFACTOR, CLASS BUTTONS TO CALL SAME CALLBACK??%%
+% Construct the components. 
 next_image   = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
              'String','Done','Position',[button_width_start,button_heigth_start - button_heigth,button_width * 0.7,button_heigth],...
              'Callback',@nextimage_callback);
@@ -145,8 +148,8 @@ movegui(f,'center')
 % Make the window visible.
 f.Visible = 'on';
 
-% initialize points and classes to be empty  %%REFACTOR, CLASS BUTTONS TO CALL SAME CALLBACK??%%
-default_class = [1, 0, 0, 0, 0, 0, 0, 0]; % round and single are default classes
+% initialize points and classes to be empty 
+default_class = ["round" "single"];
 points = [];
 classes = [];
 
@@ -157,7 +160,7 @@ while true
     hold on
     % ask inputs
     try
-        [x,y] = ginput(1);
+        [x,y] = ginput(1);  
     catch
         % end program if window has been closed
         break
@@ -228,43 +231,34 @@ end
         set_button_colors();
     end     
 
-    % check if the necessary classes has been given %%REFACTOR, CLASS BUTTONS TO CALL SAME CALLBACK??%%
+    % check if the necessary classes has been given 
     function given = class_given()
        len = length_of(classes);
        if len == 0
             given = false;
        else    
-            given = (classes(len, 1) || classes(len, 2) || classes(len, 3) || classes(len, 4) || classes(len, 5) || classes(len, 6) || classes(len, 7));
+            given = ~(classes(len,1) == "" || classes(len,2) == "");
        end
     end
 
-
-    % change a class only if enough points are given
-    function change_class(class)
-        if is_even(points) && ~isempty(points)
-            put_class(class);
-        end
-    end
-
-    % change a class. Parameter 'class' is is number from 1 to 6.
+    % add a class to a box.
+    % Return whether class is turned on or off
     function put_class(class)
         len = length_of(classes);
         
-        if class == 8
-           classes(len, 8) = 0;
-        elseif class == 9
-           classes(len, 8) = 1;
+        if class == "single" || class == "double"
+           classes(len, 2) = class;
+        elseif classes(len, 1) == class
+           classes(len, 1) = "";
         else
-           on = classes(len, class);
-           classes(len,:) = [0,0,0,0,0,0,0,classes(len,8)];
-           classes(len,class) = ~on;
+           classes(len, 1) = class;
         end
-        set_button_colors();
+        
+        set_button_colors(); 
     end    
     
     function length = length_of(matrix)
-        [size_x, size_y] = size(matrix);
-        length = size_x;
+        [length, ~] = size(matrix);
     end  
 
     % save given input points into a csv file
@@ -280,39 +274,17 @@ end
            x2 = floor(points(i*2, 1));
            y1 = floor(points(i*2 - 1, 2));
            y2 = floor(points(i*2, 2));
-           [class1, class2] = class_names(i);
-           fprintf(csv_file, '%s,%i,%i,%i,%i,%s,%s\n', char(images(index).name), x1, y1, x2, y2, class1, class2);
+           class1 = classes(i, 1);
+           class2 = classes(i, 2);
+           fprintf(csv_file, '%s,%i,%i,%i,%i,%s_%s\n', char(images(index).name), x1, y1, x2, y2, class1, class2);
         end
         
         if len == 0
-           fprintf(csv_file, '%s,,,,,,\n', char(images(index).name));
+           fprintf(csv_file, '%s,,,,,\n', char(images(index).name));
         end
         fclose(csv_file);
     end  
-
-    % return classes as class names
-    function [class1, class2] = class_names(index)
-        class2 = 'single';
-        if classes(index, 1)
-            class1 = 'round';
-        elseif classes(index, 2)
-            class1 = 'hexagonal';
-        elseif classes(index, 3)
-            class1 = 'trigonal';
-        elseif classes(index, 4)
-            class1 = 'square';
-        elseif classes(index, 5)
-            class1 = 'unclear';
-        elseif classes(index, 6)
-            class1 = 'void';
-        elseif classes(index, 7)
-            class1 = 'bubbles';
-        end
-        if classes(index, 8)
-            class2 = 'double';
-        end
-    end    
-
+   
     % check if the ammount of items in a matrix is even
     function even = is_even(matrix)
         length = length_of(matrix);
@@ -408,28 +380,26 @@ end
        
        % set right buttons on if needed
        len = length_of(classes);
-       if classes(len, 1)
+       if classes(len, 1) == "round"
            set(round, 'BackgroundColor', color_on);
-       elseif classes(len, 2)
+       elseif classes(len, 1) == "hexagonal"
            set(hexagonal, 'BackgroundColor', color_on);
-       elseif classes(len, 3)
+       elseif classes(len, 1) == "trigonal"
            set(trigonal, 'BackgroundColor', color_on);
-       elseif classes(len, 4)
+       elseif classes(len, 1) == "square"
            set(square, 'BackgroundColor', color_on);
-       elseif classes(len, 5)
+       elseif classes(len, 1) == "unclear"
            set(unclear, 'BackgroundColor', color_on);
-       elseif classes(len, 6)
+       elseif classes(len, 1) == "void"
            set(void, 'BackgroundColor', color_on);
-       elseif classes(len, 7)
+       elseif classes(len, 1) == "bubbles"
            set(bubbles, 'BackgroundColor', color_on);
        end
        
-       if classes(len, 8)
-           set(single, 'BackgroundColor', color_off);
-           set(double, 'BackgroundColor', color_on);
-       else
+       if classes(len, 2) == "single"
            set(single, 'BackgroundColor', color_on);
-           set(double, 'BackgroundColor', color_off);
+       elseif classes(len, 2) == "double"
+           set(double, 'BackgroundColor', color_on);
        end 
     end    
 
@@ -462,14 +432,10 @@ end
     end
 
     % when class button is pressed
-    function class_button_callback(source, eventdata)
-        key_set =   {'Round', 'Hexagonal', 'Trigonal', 'Square', 'Unclear', 'Void', 'Bubbles', 'Single', 'Double'};
-        value_set = 1:9;
-        class_map = containers.Map(key_set,value_set);
-        
+    function class_button_callback(source, eventdata)        
         if is_even(points) && ~isempty(points)
-            class_name = source.String;
-            put_class(class_map(class_name))
+            class_name = lower(source.String);
+            put_class(class_name);
         end
     end
 end
