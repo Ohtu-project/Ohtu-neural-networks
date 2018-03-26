@@ -37,6 +37,29 @@ def image_preprocessing(image):
     image, scale = resize_image(image)
     return (image, scale)
 
+def process_image(model, image, image_path):
+    # load image
+    img_name = image
+    #image = read_image_bgr(d+image)
+    image = read_image_bgr(image_path)
+    
+    # preprocess image for network
+    image, scale = image_preprocessing(image)
+
+    # process image
+    start = time.time()
+    _, _, detections = model.predict_on_batch(np.expand_dims(image, axis=0))
+    print("processing time: ", time.time() - start)
+
+    # compute predicted labels and scores
+    predicted_labels = np.argmax(detections[0, :, 4:], axis=1)
+    scores = detections[0, np.arange(detections.shape[1]), 4 + predicted_labels]
+
+    # correct for image scale
+    detections[0, :, :4] /= scale
+
+    return predicted_labels, scores, detections
+
 # This main function uses Keras RetinaNet to recognise defects in images.
 def main(argv):
     sys.argv[0]
@@ -58,23 +81,7 @@ def main(argv):
     for image in images:
         # load image
         img_name = image
-        #image = read_image_bgr(d+image)
-        image = read_image_bgr(IMAGE_DIRECTORY_PATH + image)
-    
-        # preprocess image for network
-        image, scale = image_preprocessing(image)
-
-        # process image
-        start = time.time()
-        _, _, detections = model.predict_on_batch(np.expand_dims(image, axis=0))
-        print("processing time: ", time.time() - start)
-
-        # compute predicted labels and scores
-        predicted_labels = np.argmax(detections[0, :, 4:], axis=1)
-        scores = detections[0, np.arange(detections.shape[1]), 4 + predicted_labels]
-
-        # correct for image scale
-        detections[0, :, :4] /= scale
+        predicted_labels, scores, detections = process_image(model, image, IMAGE_DIRECTORY_PATH + image)
 
         # visualize detections
         for idx, (label, score) in enumerate(zip(predicted_labels, scores)):
