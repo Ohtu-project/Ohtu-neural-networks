@@ -47,6 +47,7 @@ def save_prediction_to_csv():
     d = IMAGE_DIRECTORY_PATH
 
     images = os.listdir(d)
+    images.sort()
 
     labels = []
 
@@ -84,6 +85,7 @@ def save_prediction_to_csv():
     df = pd.DataFrame(labels, columns=['image', 'defect coordinates'])
 
     # name of the file to save the predictions
-    df.to_csv("latest_Acrorad_1704-0601-8.csv")
+    df.to_csv("corrected_Acrorad_1704-0601-8.csv")
+    print("Done!")
 
 save_prediction_to_csv()
