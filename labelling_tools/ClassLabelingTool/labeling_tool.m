@@ -242,7 +242,6 @@ end
     end
 
     % add a class to a box.
-    % Return whether class is turned on or off
     function put_class(class)
         len = length_of(classes);
         
@@ -283,7 +282,7 @@ end
            fprintf(csv_file, '%s,,,,,\n', char(images(index).name));
         end
         fclose(csv_file);
-    end  
+    end
    
     % check if the ammount of items in a matrix is even
     function even = is_even(matrix)
@@ -306,8 +305,8 @@ end
                    points(i*2, 1) = x1;
                    points(i*2 - 1, 2) = y2;
                    points(i*2, 2) = y1;
-                   return
-                end    
+                   continue
+                end   
                 points(i*2 - 1, 2) = y2;
                 points(i*2, 2) = y1;
                 y1 = points(i*2 - 1, 2);
@@ -317,11 +316,10 @@ end
                    points(i*2, 1) = x1;
                    points(i*2 - 1, 2) = y2;
                    points(i*2, 2) = y1;
-                   return
                 end
-            end 
+            end
         end
-    end   
+    end
 
     % draw all rectangles
     function draw_rectangles()
