@@ -3,10 +3,12 @@ from __future__ import absolute_import
 import unittest
 import os, sys
 
-if __package__ is None:
-	sys.path.append("../")
+#if __package__ is None:
+#	sys.path.append(os.path.realpath("../"))
 
-from matlab_integration.count_defects import *
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from matlab_integration import count_defects
 
 #def test_main():
 #	count_defects.main(csvFile='test-data/test1.csv')
@@ -22,7 +24,7 @@ class TestBasicFunction(unittest.TestCase):
           ['0', 'Acrorad_0712-1001-1-07-01028.jpg', '[ 970  741 1012  792]']
         ]
 
-        self.assertEqual(countDefects(defect_labels, 1028), [['Acrorad_0712-1001-1-07-01028.jpg', 1]])
+        self.assertEqual(count_defects.countDefects(defect_labels, 1028), [['Acrorad_0712-1001-1-07-01028.jpg', 1]])
  
     def test_counting_right_longer_list(self):
         defect_labels = [
@@ -49,7 +51,7 @@ class TestBasicFunction(unittest.TestCase):
           ['Acrorad_0712-1001-1-07-01035.jpg', 2]          
         ]
 
-        self.assertEqual(countDefects(defect_labels, 1035), expected_ouput)
+        self.assertEqual(count_defects.countDefects(defect_labels, 1035), expected_ouput)
 
 if __name__ == '__main__':
     unittest.main()
