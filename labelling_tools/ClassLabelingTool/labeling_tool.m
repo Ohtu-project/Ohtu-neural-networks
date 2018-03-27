@@ -37,6 +37,10 @@ csv_file_name = fullfile(folder, 'LABELS.csv');
 % get all jpg files from the folder
 global images
 images = dir(fullfile(folder, '*.jpg'));
+if isempty(images)
+    disp('No jpg images to label in that folder!');
+    return
+end    
 
 % open csv file if it already exists or create a new file
 csv_file = fopen(csv_file_name, 'r');
