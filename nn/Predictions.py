@@ -10,6 +10,7 @@ import cv2
 import os
 import numpy as np
 import time
+import glob
 
 # set tf backend to allow memory to grow, instead of claiming everything
 import tensorflow as tf
@@ -43,18 +44,19 @@ def save_prediction_to_csv():
     labels_to_names = {0: 'round_single', 1: 'round_double', 2: 'unclear_single', 3: 'unclear_double', 4: 'hexagonal_single'}
 
     # Path of the directory containing the images that you would like to label.
-    # Make sure you have only images in this directory"
     d = IMAGE_DIRECTORY_PATH
 
-    images = os.listdir(d)
+    # Make sure you have only images in this directory
+    images = glob.glob(d + '/*.jpg')
     images.sort()
 
     labels = []
 
     for image in images:
         # load image
-        img_name = image
-        image = read_image_bgr(d+image)
+	path_separated = im.split("/")
+        img_name = path_separated[len(path_separated) - 1]
+        image = read_image_bgr(d+img_name)
     
     # preprocess image for network
         image = preprocess_image(image)
