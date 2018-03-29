@@ -54,7 +54,7 @@ def save_prediction_to_csv():
 
     for image in images:
         # load image
-	path_separated = im.split("/")
+	    path_separated = im.split("/")
         img_name = path_separated[len(path_separated) - 1]
         image = read_image_bgr(d+img_name)
     
