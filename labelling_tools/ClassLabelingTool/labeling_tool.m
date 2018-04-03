@@ -248,11 +248,12 @@ end
 
     % clear last given point and show image
     function undo_callback(source,eventdata)
-        points = remove_last_item(points);
+        length = length_of(points);
+        points = points(1:length-1, 1:2);
         if ~is_even(points)
-            classes = remove_last_item(classes);
+            remove_last_item(classes);
         end
-        show_image();
+            show_image();
     end
 
     % when class button is pressed
