@@ -453,7 +453,214 @@ end
     function class_button_callback(source, eventdata)        
         if is_even(points) && ~isempty(points)
             class_name = lower(source.String);
-            put_class(class_name);
+            classes = put_class(class_name, classes);
+            show_image();
         end
+    end
+end
+
+% check if the ammount of items in a matrix is even
+function even = is_even(matrix)
+    length = length_of(matrix);
+    even = (mod(length,2) == 0);
+end
+
+% check the length of a matrix
+function length = length_of(matrix)
+    [length, ~] = size(matrix);
+end
+
+% remove the last item of a matrix
+function matrix = remove_last_item(matrix)
+    len = length_of(matrix);
+    matrix = matrix(1:len-1, :);
+end
+
+% switch to next image
+function show_new_image()
+    global warning index images points classes
+    index = index + 1;
+    % tell user if the previous image was the last one
+    if index > length_of(images)
+        set(warning, 'String', 'All images have been labeled.', 'Visible', 'on')
+        return
+    end
+
+    % reset points and classes for the new image
+    points = [];
+    classes = [];
+
+    show_image();
+end
+
+% show current image, points and rectangles
+function show_image()
+    global index f ha images points folder
+    cla(ha) % clear previous image
+    f.Name = images(index).name;
+    file_name = images(index).name;
+    file_name = fullfile(folder, file_name);
+    img = imread(file_name);
+    imshow(img);
+
+    for i=1:length_of(points)
+        plot(points(i,1),points(i,2), 'r*', 'LineWidth', 2)
+    end
+    draw_rectangles(points);
+    set_button_colors();
+end
+
+% draw all rectangles
+function draw_rectangles(points)
+   length = length_of(points);
+   if length > 1
+       ammount = ceil(length/2);
+
+       for i=1:ammount - 1
+           draw_rectangle(points(i*2 - 1 : i*2, :), 'blue');
+       end
+
+       if is_even(points)
+           draw_rectangle(points(ammount*2 - 1 : ammount*2, :), 'red');
+       end
+   end
+end
+
+% draw one rectangle from two points given in a matrix
+function draw_rectangle(matrix, color)
+    x = min(matrix(1, 1), matrix(2, 1));
+    y = min(matrix(1, 2), matrix(2, 2));
+    dx = abs(matrix(1, 1) - matrix(2, 1));
+    dy = abs(matrix(1, 2) - matrix(2, 2));
+    plot_rectangle(x, y, dx, dy, color);
+end
+
+% draw lines of a rectangle
+function plot_rectangle(x, y, dx, dy, color)
+    line([x, x+dx],[y ,y], 'Color', color );
+    line([x, x+dx],[y+dy ,y+dy], 'Color', color);
+    line([x, x],[y, y+dy], 'Color', color);
+    line([x+dx, x+dx],[y, y+dy], 'Color', color);
+end
+
+% set button colors to match with the given classes
+function set_button_colors()
+   % set all buttons off mode
+   global round hexagonal trigonal square unclear void bubbles single double color_on color_off classes points
+   set(round, 'BackgroundColor', color_off);
+   set(hexagonal, 'BackgroundColor', color_off);
+   set(trigonal, 'BackgroundColor', color_off);
+   set(square, 'BackgroundColor', color_off);
+   set(unclear, 'BackgroundColor', color_off);
+   set(void, 'BackgroundColor', color_off);
+   set(bubbles, 'BackgroundColor', color_off);
+   set(single, 'BackgroundColor', color_off);
+   set(double, 'BackgroundColor', color_off); 
+
+   if isempty(classes) || ~is_even(points)
+        return
+   end
+
+   % set right buttons on if needed
+   len = length_of(classes);
+   if classes(len, 1) == "round"
+       set(round, 'BackgroundColor', color_on);
+   elseif classes(len, 1) == "hexagonal"
+       set(hexagonal, 'BackgroundColor', color_on);
+   elseif classes(len, 1) == "trigonal"
+       set(trigonal, 'BackgroundColor', color_on);
+   elseif classes(len, 1) == "square"
+       set(square, 'BackgroundColor', color_on);
+   elseif classes(len, 1) == "unclear"
+       set(unclear, 'BackgroundColor', color_on);
+   elseif classes(len, 1) == "void"
+       set(void, 'BackgroundColor', color_on);
+   elseif classes(len, 1) == "bubbles"
+       set(bubbles, 'BackgroundColor', color_on);
+   end
+
+   if classes(len, 2) == "single"
+       set(single, 'BackgroundColor', color_on);
+   elseif classes(len, 2) == "double"
+       set(double, 'BackgroundColor', color_on);
+   end
+end
+
+% save given input points into a csv file
+function save_points()
+    global csv_file_name points classes index images
+    csv_file = fopen(csv_file_name, 'a+');
+
+    points = rearrange_points(points);
+
+    len = length_of(points);
+
+    for i=1:len/2
+       x1 = floor(points(i*2 - 1, 1));
+       x2 = floor(points(i*2, 1));
+       y1 = floor(points(i*2 - 1, 2));
+       y2 = floor(points(i*2, 2));
+       class1 = classes(i, 1);
+       class2 = classes(i, 2);
+       fprintf(csv_file, '%s,%i,%i,%i,%i,%s_%s\n', char(images(index).name), x1, y1, x2, y2, class1, class2);
+    end
+
+    if len == 0
+       fprintf(csv_file, '%s,,,,,\n', char(images(index).name));
+    end
+    fclose(csv_file);
+end
+
+% rearrange the points so that for every box the first point is in the
+% upper left corner and the second point is the bottom right corner
+function points = rearrange_points(points)
+    length = length_of(points);
+    for i=1:length/2
+        x1 = points(i*2 - 1, 1);
+        x2 = points(i*2, 1);
+        y1 = points(i*2 - 1, 2);
+        y2 = points(i*2, 2);
+        if ~(x2 > x1 && y2 > y1)
+            if (x2 < x1 && y2 < y1)
+               points(i*2 - 1, 1) = x2;
+               points(i*2, 1) = x1;
+               points(i*2 - 1, 2) = y2;
+               points(i*2, 2) = y1;
+               continue
+            end
+            points(i*2 - 1, 2) = y2;
+            points(i*2, 2) = y1;
+            y1 = points(i*2 - 1, 2);
+            y2 = points(i*2, 2);
+            if (x2 < x1 && y2 < y1)
+               points(i*2 - 1, 1) = x2;
+               points(i*2, 1) = x1;
+               points(i*2 - 1, 2) = y2;
+               points(i*2, 2) = y1;
+            end
+        end
+    end
+end
+
+% check if the necessary classes have been given
+function given = class_given(classes)
+   len = length_of(classes);
+   if len == 0
+        given = false;
+   else
+        given = ~(classes(len,1) == "" || classes(len,2) == "");
+   end
+end
+
+% add a class to a box.
+function classes = put_class(class, classes)
+    len = length_of(classes);
+
+    if class == "single" || class == "double"
+       classes(len, 2) = class;
+    elseif classes(len, 1) == class
+       classes(len, 1) = "";
+    else
+       classes(len, 1) = class;
     end
 end
