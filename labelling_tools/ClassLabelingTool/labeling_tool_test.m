@@ -188,7 +188,7 @@ function test_class_given_trigonal_double(testCase)
     verifyEqual(testCase, actSolution, expSolution)
 end
 
-function setup(~)
+function setup(testCase)
     global map
     map = labeling_tool;
 end
