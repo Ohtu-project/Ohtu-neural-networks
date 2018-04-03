@@ -426,11 +426,10 @@ end
     end    
 
     % clear last given point and show image
-    function undo_callback(source,eventdata) 
-        length = length_of(points);
-        points = points(1:length-1, 1:2);
+    function undo_callback(source,eventdata)
+        points = remove_last_item(points);
         if ~is_even(points)
-           remove_class();
+            classes = remove_last_item(classes);
         end
         show_image();
     end
