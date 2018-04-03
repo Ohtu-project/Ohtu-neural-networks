@@ -4,9 +4,7 @@ function M = labeling_tool
     
     % Create a map that has chars of all function handles as their key, so
     % that it is easy to call the functions outside of this file
-    functions_ammount = length_of(functionhandles);
-    keys = cell(1, functions_ammount);
-    for i = 1:functions_ammount
+    for i = 1:length_of(functionhandles)
        keys{i} = char(functionhandles{i});
     end 
     M = containers.Map(keys, functionhandles);
