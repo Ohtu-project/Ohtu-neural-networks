@@ -261,6 +261,7 @@ end
         if is_even(points) && ~isempty(points)
             class_name = lower(source.String);
             classes = put_class(class_name, classes);
+            show_image();
         end
     end
 end
@@ -469,6 +470,4 @@ function classes = put_class(class, classes)
     else
        classes(len, 1) = class;
     end
-
-    set_button_colors();
 end
