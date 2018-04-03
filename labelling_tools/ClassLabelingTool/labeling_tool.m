@@ -1,4 +1,19 @@
-function labeling_tool
+
+function M = labeling_tool
+    % Create a cell array of function handles of all local functions
+    functionhandles = localfunctions;
+    
+    % Create a map that has chars of all function handles as their key, so
+    % that it is easy to call the functions outside of this file
+    functions_ammount = length_of(functionhandles);
+    keys = cell(1, functions_ammount);
+    for i = 1:functions_ammount
+       keys{i} = char(functionhandles{i});
+    end 
+    M = containers.Map(keys, functionhandles);
+end
+
+function run()
 
 % window, button and image size initialization
 window_width = 1500;
