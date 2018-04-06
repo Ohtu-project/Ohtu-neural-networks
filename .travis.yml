@@ -16,5 +16,6 @@ install:
   - pip install 'cython'
   - pip install 'matplotlib'
   - pip install 'h5py'
+cache: pip
 script:
   - py.test --pep8
