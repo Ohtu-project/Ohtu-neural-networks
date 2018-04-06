@@ -15,6 +15,5 @@ install:
   - pip install 'cython'
   - pip install 'matplotlib'
   - pip install 'h5py'
-  - pip install 'CommonMark==0.7.5'
 script:
-  - tox
+  - py.test --pep8
