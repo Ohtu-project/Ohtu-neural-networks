@@ -3,7 +3,7 @@ import os
 
 def _flip_x(image_path, saved_location):
     """
-    Flip or mirror the image
+    Mirror the image in horizontal direction
  
     @param image_path: The path to the image to edit
     @param saved_location: Path to save the cropped image
@@ -15,7 +15,7 @@ def _flip_x(image_path, saved_location):
 
 def _flip_y(image_path, saved_location):
     """
-    Flip or mirror the image
+    Mirror the image in vertical direction
  
     @param image_path: The path to the image to edit
     @param saved_location: Path to save the cropped image
