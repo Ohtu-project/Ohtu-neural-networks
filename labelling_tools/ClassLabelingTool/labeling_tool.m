@@ -262,6 +262,7 @@ end
             class_name = lower(source.String);
             classes = put_class(class_name, classes);
         end
+        show_image();
     end
 end
 
