@@ -89,7 +89,106 @@ function test_rearrange_points(testCase)
     verifyEqual(testCase, actSolution, expSolution)
 end
 
-function setup(testCase)
+function test_put_class_round_when_empty(testCase)
+    global map
+    classes = ["", ""];
+    f = map('put_class');
+    actSolution = f("round", classes);
+    expSolution = ["round", ""];
+    verifyEqual(testCase, actSolution, expSolution)
+end
+
+function test_put_class_single_when_empty(testCase)
+    global map
+    classes = ["", ""];
+    f = map('put_class');
+    actSolution = f("single", classes);
+    expSolution = ["", "single"];
+    verifyEqual(testCase, actSolution, expSolution)
+end
+
+function test_put_class_double_when_empty(testCase)
+    global map
+    classes = ["", ""];
+    f = map('put_class');
+    actSolution = f("double", classes);
+    expSolution = ["", "double"];
+    verifyEqual(testCase, actSolution, expSolution)
+end
+
+function test_put_class_trigonal_when_trigonal(testCase)
+    global map
+    classes = ["trigonal", ""];
+    f = map('put_class');
+    actSolution = f("trigonal", classes);
+    expSolution = ["", ""];
+    verifyEqual(testCase, actSolution, expSolution)
+end
+
+function test_put_class_trigonal_when_round(testCase)
+    global map
+    classes = ["round", ""];
+    f = map('put_class');
+    actSolution = f("trigonal", classes);
+    expSolution = ["trigonal", ""];
+    verifyEqual(testCase, actSolution, expSolution)
+end
+
+function test_put_class_single_when_double(testCase)
+    global map
+    classes = ["", "double"];
+    f = map('put_class');
+    actSolution = f("single", classes);
+    expSolution = ["", "single"];
+    verifyEqual(testCase, actSolution, expSolution)
+end
+
+function test_put_class_trigonal_when_round_double(testCase)
+    global map
+    classes = ["round", "double"];
+    f = map('put_class');
+    actSolution = f("trigonal", classes);
+    expSolution = ["trigonal", "double"];
+    verifyEqual(testCase, actSolution, expSolution)
+end
+
+function test_class_given_empty(testCase)
+    global map
+    classes = [];
+    f = map('class_given');
+    actSolution = f(classes);
+    expSolution = false;
+    verifyEqual(testCase, actSolution, expSolution)
+end
+
+function test_class_given_round(testCase)
+    global map
+    classes = ["round", ""];
+    f = map('class_given');
+    actSolution = f(classes);
+    expSolution = false;
+    verifyEqual(testCase, actSolution, expSolution)
+end
+
+function test_class_given_single(testCase)
+    global map
+    classes = ["", "single"];
+    f = map('class_given');
+    actSolution = f(classes);
+    expSolution = false;
+    verifyEqual(testCase, actSolution, expSolution)
+end
+
+function test_class_given_trigonal_double(testCase)
+    global map
+    classes = ["trigonal", "double"];
+    f = map('class_given');
+    actSolution = f(classes);
+    expSolution = true;
+    verifyEqual(testCase, actSolution, expSolution)
+end
+
+function setup(~)
     global map
     map = labeling_tool;
 end
