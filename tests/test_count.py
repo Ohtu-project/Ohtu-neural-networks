@@ -53,5 +53,16 @@ class TestBasicFunction(unittest.TestCase):
 
         self.assertEqual(count_defects.countDefects(defect_labels, 1035), expected_ouput)
 
+    def test_next_image_name(self):
+      test_image_name1 = 'Acrorad_0712-1001-1-07-00009.jpg'
+      self.assertEqual(count_defects.next_image_name(test_image_name1), 'Acrorad_0712-1001-1-07-00010.jpg')
+
+      test_image_name2 = 'Acrorad_0712-1001-1-07-00099.jpg'
+      self.assertEqual(count_defects.next_image_name(test_image_name2), 'Acrorad_0712-1001-1-07-00100.jpg')
+
+      test_image_name3 = 'Acrorad_0712-1001-1-07-00999.jpg'
+      self.assertEqual(count_defects.next_image_name(test_image_name3), 'Acrorad_0712-1001-1-07-01000.jpg')
+
+
 if __name__ == '__main__':
     unittest.main()
