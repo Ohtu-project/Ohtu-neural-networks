@@ -26,9 +26,15 @@ def get_session():
 # set the modified tf session as backend in keras
 keras.backend.tensorflow_backend.set_session(get_session())
 
+<<<<<<< HEAD:nn/Predictions.py
 TRAINED_MODEL_PATH = '/home/barimpac/keras-retinanet/snapshots/resubmit/'
 TRAINED_MODEL_NAME = 'resnet50_csv_34.h5'
 IMAGE_DIRECTORY_PATH = '/home/barimpac/Acrorad_1704-0601-8/Acrorad_1704-0601-8/Measurement_1/RAW/'
+=======
+TRAINED_MODEL_PATH = 'snapshots/'
+TRAINED_MODEL_NAME = 'all_data1_66.h5'
+IMAGE_DIRECTORY_PATH = 'data/imgs/test/subset/'
+>>>>>>> dev:matlab_integration/Predictions.py
 
 import pandas as pd
 
@@ -41,6 +47,7 @@ def save_prediction_to_csv():
     #print(model.summary())
 
     # load label to names mapping for visualization purposes
+<<<<<<< HEAD:nn/Predictions.py
     labels_to_names = {0: 'round_single', 1: 'round_double', 2: 'unclear_single', 3: 'unclear_double', 4: 'hexagonal_single'}
 
     # Path of the directory containing the images that you would like to label.
@@ -50,13 +57,33 @@ def save_prediction_to_csv():
     images = glob.glob(d + '/*.jpg')
     images.sort()
 
+=======
+    labels_to_names = {0: 'round_single', 1: 'round_double', 2: 'unclear_single', 3: 'unclear_double', 4: 'hexagonal_single', 5: 'square_single', 6: 'trigonal_single'}
+
+    # Path of the directory containing the images that you would like to label.
+    d = IMAGE_DIRECTORY_PATH
+
+    # Make sure you have only images in this directory
+    images = glob.glob(d + '/*.jpg')
+    images.sort()
+
+>>>>>>> dev:matlab_integration/Predictions.py
     labels = []
 
     for image in images:
         # load image
+<<<<<<< HEAD:nn/Predictions.py
 	    path_separated = im.split("/")
         img_name = path_separated[len(path_separated) - 1]
         image = read_image_bgr(d+img_name)
+=======
+        path_separated = image.split("\\")
+        print('path_separated: ' + str(path_separated))
+        img_name = path_separated[len(path_separated) - 1]
+        print('img_name: ' + img_name)
+        image = read_image_bgr(d+img_name)
+        #print(image)
+>>>>>>> dev:matlab_integration/Predictions.py
     
     # preprocess image for network
         image = preprocess_image(image)
@@ -64,10 +91,16 @@ def save_prediction_to_csv():
 
     # process image
         start = time.time()
-        _, _, detections = model.predict_on_batch(np.expand_dims(image, axis=0))
+        print('shape: ' + str(np.expand_dims(image, axis=0).shape))
+        _, _, boxes, classification = model.predict_on_batch(np.expand_dims(image, axis=0))
+
         print("processing time: ", time.time() - start)
+        print('boxes: ' + str(boxes))
+        print('boxes.shape: ' + str(boxes.shape))
+        print('classification: ' + str(classification))
 
     # compute predicted labels and scores
+<<<<<<< HEAD:nn/Predictions.py
         predicted_labels = np.argmax(detections[0, :, 4:], axis=1)
     #print(predicted_labels)
         scores = detections[0, np.arange(detections.shape[1]), 4 + predicted_labels]
@@ -88,6 +121,28 @@ def save_prediction_to_csv():
 
     # name of the file to save the predictions
     df.to_csv("corrected_Acrorad_1704-0601-8.csv")
+=======
+        predicted_labels = np.argmax(classification[0, :, :], axis=1)
+        print(predicted_labels)
+        scores = classification[0, np.arange(classification.shape[1]), predicted_labels]
+    #print(scores)
+
+    # correct for image scale
+        boxes[0, :, :4] /= scale
+    #print(boxes)
+
+    # visualize boxes
+        for idx, (label, score) in enumerate(zip(predicted_labels, scores)):
+            if score < 0.5:
+                continue
+            b = boxes[0, idx, :4].astype(int)
+            labels.append([img_name, b, labels_to_names[label]])
+
+    df = pd.DataFrame(labels, columns=['image', 'defect coordinates', 'label'])
+
+    # name of the file to save the predictions
+    df.to_csv("class_test.csv")
+>>>>>>> dev:matlab_integration/Predictions.py
     print("Done!")
 
 save_prediction_to_csv()
