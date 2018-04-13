@@ -22,4 +22,6 @@ Our approach to detect defects bases currently on [keras-retinanet](https://gith
 
 A detailed tutorial on submitting training to Ukko2 and using the labeling tool can be found [here](https://docs.google.com/document/d/1fL1QfdwUpIr44OGPi-63fFBI14bP9gQthvlQgvv_xEo/edit?usp=sharing).
 
+Tutorials for using Ukko2 and labeling tool https://docs.google.com/document/d/1fL1QfdwUpIr44OGPi-63fFBI14bP9gQthvlQgvv_xEo/edit
+
 [![Build Status](https://travis-ci.org/Ohtu-project/Ohtu-neural-networks.svg?branch=master)](https://travis-ci.org/Ohtu-project/Ohtu-neural-networks)

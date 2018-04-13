@@ -83,7 +83,7 @@ def getDefectLabels(file_name):
 
         return defect_labels
     raise TypeError('Name of the file needs to end with .csv!')
-    #return None
+
     
 
 
@@ -111,12 +111,11 @@ def saveCount(defCount, nameToSave):
 
 # Change the label name, image name and number for different images
 # To implement: give those as arguments to parse
+def main(csvFile='test1.csv', lastNum=1098, toSave='test1-defect_count.csv'):
+	defect_labels = getDefectLabels(csvFile)
+	defect_counts = countDefects(defect_labels, lastNum)
+	saveCount(defect_counts, toSave)
 
-
-def main(csvFile='acro_fake1.csv', lastNum=1793, toSave='acro_fake1-defect_count.csv'):
-    defect_labels = getDefectLabels(csvFile)
-    defect_counts = countDefects(defect_labels, lastNum)
-    saveCount(defect_counts, toSave)
 
 #main()
 

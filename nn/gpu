@@ -5,10 +5,10 @@
 #SBATCH -p gpu
 #SBATCH -t 7-0
 #SBATCH --mem-per-cpu=100G
-#SBATCH --output train_mir2.out
+#SBATCH --output train_class.out
 
 module load CUDA
 # Whatever additional modules you need
  
 #Executable here
-keras_retinanet/bin/train.py --weights /home/barimpac/keras-retinanet/snapshots/resnet50_csv_02.h5 --epochs 68 --steps 1509 csv train_annotations2_mirror.csv class_mapping.csv
+keras_retinanet/bin/train.py --gpu 2 --epochs 50 --weights /home/barimpac/keras-retinanet/snapshots/resubmit/resnet50_csv_34.h5 --snapshot-path /home/barimpac/keras-retinanet/snapshots/squares/ --steps 1473 csv DT_square_train.csv csv/class_mapping_multi.csv
