@@ -63,6 +63,15 @@ class TestBasicFunction(unittest.TestCase):
       test_image_name3 = 'Acrorad_0712-1001-1-07-00999.jpg'
       self.assertEqual(count_defects.next_image_name(test_image_name3), 'Acrorad_0712-1001-1-07-01000.jpg')
 
+    def test_getDefectLabels(self):
+      wrong_file_name = 'file.txt'
+      self.assertEqual(count_defects.getDefectLabels(wrong_file_name), None)
+
+      wrong_file_name2 = 'file'
+      self.assertEqual(count_defects.getDefectLabels(wrong_file_name2), None)
+
+    def test_saveCount(self):
+      file_name = 'file'
 
 if __name__ == '__main__':
     unittest.main()
