@@ -116,8 +116,8 @@ def main(csvFile='test1.csv', lastNum=1098, toSave='test1-defect_count.csv'):
 	defect_counts = countDefects(defect_labels, lastNum)
 	saveCount(defect_counts, toSave)
 
-
-#main()
+if __name__ == "__main__":
+    main()
 
 
 
