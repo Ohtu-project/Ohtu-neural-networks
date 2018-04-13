@@ -70,27 +70,33 @@ def countDefects (defect_labels, last_image_number):
 def getDefectLabels(file_name):
     '''
     Opens .csv file containing the defect coordinates and loads it in a list.
-    To implement: check .csv ending of file_name.
     :param file_name: (str) name of the csv file (or the path to it), must contain .csv ending.
-    :return: (list) defect labels.
+    :return: (list) defect labels. Returns None if file_name not in correct format.
     '''
-    with open(file_name, 'rt') as csvfile:
-        reader = csv.reader(csvfile, delimiter=',')
+    if (file_name.endswith('.csv') | file_name.endswith('.csv/')):
+        with open(file_name, 'rt') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
     
-        defect_labels = []
-        for row in reader:
-            defect_labels.append(row)
+            defect_labels = []
+            for row in reader:
+                defect_labels.append(row)
 
-    return defect_labels
+        return defect_labels
+    print("Name of the file needs to end with .csv!")
+    return None
+    
 
 
 def saveCount(defCount, nameToSave):
     '''
     Saves a .csv file containing the name of the image in the first column, and the number of defects in the second
     column.
-    To implement: add .csv ending to nameToSave if it doesn't contain it.
+    To implement: check that nameToSave not in any other file-format like .txt.
     :param nameToSave: (str) name of the csv file to be saved, containing .csv ending.
     '''
+    if (not nameToSave.endswith('.csv')):
+        nameToSave += '.csv'
+
     with open(nameToSave, 'wt') as csvfile:
         writer = csv.writer(csvfile)
     
@@ -106,12 +112,12 @@ def saveCount(defCount, nameToSave):
 # To implement: give those as arguments to parse
 
 
-def main(csvFile='test1.csv', lastNum=1098, toSave='test1-defect_count.csv'):
+def main(csvFile='test1.csvPP', lastNum=1098, toSave='test1-defect_count.csv'):
 	defect_labels = getDefectLabels(csvFile)
 	defect_counts = countDefects(defect_labels, lastNum)
 	saveCount(defect_counts, toSave)
 
-#main()
+main()
 
 
 
