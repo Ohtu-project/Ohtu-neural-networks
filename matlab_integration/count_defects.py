@@ -118,7 +118,7 @@ def main(csvFile='acro_fake1.csv', lastNum=1793, toSave='acro_fake1-defect_count
     defect_counts = countDefects(defect_labels, lastNum)
     saveCount(defect_counts, toSave)
 
-main()
+#main()
 
 
 
