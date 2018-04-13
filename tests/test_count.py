@@ -64,11 +64,18 @@ class TestBasicFunction(unittest.TestCase):
       self.assertEqual(count_defects.next_image_name(test_image_name3), 'Acrorad_0712-1001-1-07-01000.jpg')
 
     def test_getDefectLabels(self):
+      # test if getDefectLabels raises right exeption with wrong argument
       wrong_file_name = 'file.txt'
-      self.assertEqual(count_defects.getDefectLabels(wrong_file_name), None)
+      with self.assertRaises(Exception) as context:
+        count_defects.getDefectLabels(wrong_file_name)
+
+        self.assertTrue('Name of the file needs to end with .csv!' in context.exception)
 
       wrong_file_name2 = 'file'
-      self.assertEqual(count_defects.getDefectLabels(wrong_file_name2), None)
+      with self.assertRaises(Exception) as context:
+        count_defects.getDefectLabels(wrong_file_name2)
+
+        self.assertTrue('Name of the file needs to end with .csv!' in context.exception)
 
     def test_saveCount(self):
       file_name = 'file'

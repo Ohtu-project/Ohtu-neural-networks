@@ -82,8 +82,8 @@ def getDefectLabels(file_name):
                 defect_labels.append(row)
 
         return defect_labels
-    print("Name of the file needs to end with .csv!")
-    return None
+    raise TypeError('Name of the file needs to end with .csv!')
+
     
 
 
@@ -97,25 +97,25 @@ def saveCount(defCount, nameToSave):
     if (not nameToSave.endswith('.csv')):
         nameToSave += '.csv'
 
-    with open(nameToSave, 'wt') as csvfile:
+    with open(nameToSave, 'wt', newline='') as csvfile:
         writer = csv.writer(csvfile)
     
         #Write headers
         writer.writerow(['image', 'amount of defects'])
-    
+
         #Write content
         for row in defCount:
+           # print(row)
             writer.writerow(row)
 
 
 # Change the label name, image name and number for different images
 # To implement: give those as arguments to parse
-
-
-def main(csvFile='test1.csvPP', lastNum=1098, toSave='test1-defect_count.csv'):
+def main(csvFile='test1.csv', lastNum=1098, toSave='test1-defect_count.csv'):
 	defect_labels = getDefectLabels(csvFile)
 	defect_counts = countDefects(defect_labels, lastNum)
 	saveCount(defect_counts, toSave)
+
 
 #main()
 
