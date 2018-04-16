@@ -115,8 +115,8 @@ def ask_csv_filename(text):
 # set the modified tf session as backend in keras
 keras.backend.tensorflow_backend.set_session(get_session())
 
-trained_model_path = ask_filename("Give the model's path: ")
-image_directory_path = ask_directory("Give the directory containing images: ")
+trained_model_path = ask_existing_file("Give the model's path: ")
+image_directory_path = ask_existing_directory("Give the directory containing images: ")
 predictions_csv = ask_csv_filename("Give name to the csv file where predictions are saved: ")
 
 save_prediction_to_csv(trained_model_path, image_directory_path, predictions_csv)
