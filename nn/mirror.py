@@ -47,7 +47,9 @@ for image in images:
     img_name = path_separated[len(path_separated) - 1]
     fx = img_name.replace(".jpg", "x.jpg")
     fy = img_name.replace(".jpg", "y.jpg")
+    fxy = img_name.replace(".jpg", "xy.jpg")
 
     _flip_x(d+img_name, to_save+fx)
     _flip_y(d+img_name, to_save+fy)
+    _flip_y(to_save+fx, to_save+fxy)
 
