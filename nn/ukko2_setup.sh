@@ -5,20 +5,23 @@
 
 #!/bin/bash 
 
-# Loading necessary modules
+# Load necessary modules
 module load Python/3.6.2-foss-2017b
 module load cuDNN/7.0.5-CUDA-9.1.85
 
-# Creating a virtual environment
-virtualenv myTensorflow
-source myTensorflow/bin/activate
+# Create a virtual environment in your home directory
+virtualenv ~/myTensorflow
 
-# Installing dependencies into the environment
+# Activate the virtual environment
+source ~/myTensorflow/bin/activate
+
+# Install dependencies into the environment
 pip install tensorflow
 pip install tensorflow-gpu
 pip install keras
 
-# Setting-up keras-retinanet
+# Clone keras-retinanet in your home directory
+cd ~/
 git clone https://github.com/fizyr/keras-retinanet.git
 
 pip install 'numpy>=1.14'

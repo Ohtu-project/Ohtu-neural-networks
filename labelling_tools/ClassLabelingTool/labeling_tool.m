@@ -4,6 +4,7 @@ function M = labeling_tool
     
     % Create a map that has chars of all function handles as their key, so
     % that it is easy to call the functions outside of this file
+
     functions_ammount = length_of(functionhandles);
     keys = cell(1, functions_ammount);
     for i = 1:functions_ammount
@@ -252,7 +253,7 @@ end
         if ~is_even(points)
             classes = remove_last_item(classes);
         end
-        show_image();
+            show_image();
     end
 
     % when class button is pressed
@@ -260,8 +261,8 @@ end
         if is_even(points) && ~isempty(points)
             class_name = lower(source.String);
             classes = put_class(class_name, classes);
-            show_image();
         end
+        show_image();
     end
 end
 
