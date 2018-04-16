@@ -25,14 +25,11 @@ def save_prediction_to_csv(model_path, image_path, predictionfile):
     model = keras.models.load_model(model_path, custom_objects=custom_objects)
     #print(model.summary())
 
-    # load label to names mapping for visualization purposes
-    labels_to_names = {0: 'round_single', 1: 'round_double', 2: 'unclear_single', 3: 'unclear_double', 4: 'hexagonal_single', 5: 'square_single', 6: 'trigonal_single'}
-
     # Make sure you have only images in this directory
     images = glob.glob(image_path + '/*.jpg')
     images.sort()
 
-    labels = get_labels_from_model(images, image_path)
+    labels = get_labels_from_model(images, image_path, model)
 
     df = pd.DataFrame(labels, columns=['image', 'defect coordinates', 'label'])
 
@@ -40,8 +37,11 @@ def save_prediction_to_csv(model_path, image_path, predictionfile):
     df.to_csv(predictionfile)
     print("Done!")
 
-def get_labels_from_model(images, image_path):
+def get_labels_from_model(images, image_path, model):
     labels = []
+
+    # load label to names mapping for visualization purposes
+    labels_to_names = {0: 'round_single', 1: 'round_double', 2: 'unclear_single', 3: 'unclear_double', 4: 'hexagonal_single', 5: 'square_single', 6: 'trigonal_single'}
 
     for image in images:
         # change image.split("/") to "\\" if used on windows
