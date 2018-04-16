@@ -84,12 +84,12 @@ def existing_file(filename):
 def right_csv_name(filename):
     return filename.endswith(".csv") and not existing_file(filename)
 
-def check_arguments(arg):
-    if not arg[1] or not arg[2] or not arg[3]:
-        return [False, False, False]
+def right_arguments(arg):
+    if len(arg) < 5:
+        return False
     elif not existing_file(arg[1]) or not existing_directory(arg[2]) or not right_csv_name(arg[3]):
-        return [False, False, False]
-    return [arg[1], arg[2], arg[3]]
+        return False
+    return True
 
 
 
@@ -99,9 +99,10 @@ def check_arguments(arg):
 # set the modified tf session as backend in keras
 keras.backend.tensorflow_backend.set_session(get_session())
 
-[trained_model_path, image_directory_path, predictions_csv] = check_arguments(sys.argv)
+arg = sys.argv
 
-if trained_model_path:
+if right_arguments(arg):
+    [~, trained_model_path, image_directory_path, predictions_csv] = arg
     save_prediction_to_csv(trained_model_path, image_directory_path, predictions_csv)
 else:
     print("Given arguments are wrong.")
