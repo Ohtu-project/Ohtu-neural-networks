@@ -11,6 +11,7 @@ import numpy as np
 import time
 import glob
 import pandas as pd
+import sys
 
 # set tf backend to allow memory to grow, instead of claiming everything
 import tensorflow as tf
@@ -47,6 +48,7 @@ def get_labels_from_model(images, image_path, model):
         # change image.split("/") to "\\" if used on windows
         path_separated = image.split("/")
         img_name = path_separated[len(path_separated) - 1]
+        print(img_name)
         image = read_image_bgr(image_path + img_name)
     
     # preprocess image for network
@@ -54,12 +56,7 @@ def get_labels_from_model(images, image_path, model):
         image, scale = resize_image(image)
 
     # process image
-        print('shape: ' + str(np.expand_dims(image, axis=0).shape))
         _, _, boxes, classification = model.predict_on_batch(np.expand_dims(image, axis=0))
-
-        print('boxes: ' + str(boxes))
-        print('boxes.shape: ' + str(boxes.shape))
-        print('classification: ' + str(classification))
 
     # compute predicted labels and scores
         predicted_labels = np.argmax(classification[0, :, :], axis=1)
@@ -78,35 +75,22 @@ def get_labels_from_model(images, image_path, model):
     
     return labels
 
-def ask_existing_directory(text):
-    message = text
-    directory = ""
-    while not os.path.isdir(directory):
-        directory = input(message)
-        message = "There is no such directory. " + text
-    if not directory.endswith('/'):
-        directory += "/"
-    return directory
+def existing_directory(directory):
+    return os.path.isdir(directory) and directory.endswith("/")
 
-def ask_existing_file(text):
-    message = text
-    filename = ""
-    while not os.path.isfile(filename):
-        filename = input(message)
-        message = "There is no such file. " + text
-    return filename
+def existing_file(filename):
+    return os.path.isfile(filename)
 
-def ask_csv_filename(text):
-    message = text
-    filename = ""
-    while True:
-        filename = input(message)
-        if not filename.endswith(".csv"):
-            message = "File must be a csv file. " + text
-        elif os.path.isfile(filename):
-            message = "A file with given name already exists. " + text
-        else:
-            return filename
+def right_csv_name(filename):
+    return filename.endswith(".csv") and not existing_file(filename)
+
+def check_arguments(arg):
+    if not arg[1] or not arg[2] or not arg[3]:
+        return [False, False, False]
+    elif not existing_file(arg[1]) or not existing_directory(arg[2]) or not right_csv_name(arg[3]):
+        return [False, False, False]
+    return [arg[1], arg[2], arg[3]]
+
 
 
 # use this environment flag to change which GPU to use
@@ -115,8 +99,9 @@ def ask_csv_filename(text):
 # set the modified tf session as backend in keras
 keras.backend.tensorflow_backend.set_session(get_session())
 
-trained_model_path = ask_existing_file("Give the model's path: ")
-image_directory_path = ask_existing_directory("Give the directory containing images: ")
-predictions_csv = ask_csv_filename("Give name to the csv file where predictions are saved: ")
+[trained_model_path, image_directory_path, predictions_csv] = check_arguments(sys.argv)
 
-save_prediction_to_csv(trained_model_path, image_directory_path, predictions_csv)
+if trained_model_path:
+    save_prediction_to_csv(trained_model_path, image_directory_path, predictions_csv)
+else:
+    print("Given arguments are wrong.")
