@@ -5,12 +5,12 @@ from keras_retinanet.models.resnet import custom_objects
 from keras_retinanet.utils.image import read_image_bgr, preprocess_image, resize_image
 
 # import miscellaneous modules
-#import matplotlib.pyplot as plt
 import cv2
 import os
 import numpy as np
 import time
 import glob
+import pandas as pd
 
 # set tf backend to allow memory to grow, instead of claiming everything
 import tensorflow as tf
@@ -20,23 +20,7 @@ def get_session():
     config.gpu_options.allow_growth = True
     return tf.Session(config=config)
 
-# use this environment flag to change which GPU to use
-#os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-
-# set the modified tf session as backend in keras
-keras.backend.tensorflow_backend.set_session(get_session())
-
-
-TRAINED_MODEL_PATH = 'snapshots/'
-TRAINED_MODEL_NAME = 'all_data1_66.h5'
-IMAGE_DIRECTORY_PATH = 'data/imgs/test/subset/'
-
-import pandas as pd
-
-def save_prediction_to_csv():
-    # adjust this to point to your downloaded/trained model
-    model_path = os.path.join(TRAINED_MODEL_PATH, TRAINED_MODEL_NAME)
-
+def save_prediction_to_csv(model_path, image_path, predictionfile):
     # load retinanet model
     model = keras.models.load_model(model_path, custom_objects=custom_objects)
     #print(model.summary())
@@ -44,34 +28,35 @@ def save_prediction_to_csv():
     # load label to names mapping for visualization purposes
     labels_to_names = {0: 'round_single', 1: 'round_double', 2: 'unclear_single', 3: 'unclear_double', 4: 'hexagonal_single', 5: 'square_single', 6: 'trigonal_single'}
 
-    # Path of the directory containing the images that you would like to label.
-    d = IMAGE_DIRECTORY_PATH
-
     # Make sure you have only images in this directory
-    images = glob.glob(d + '/*.jpg')
+    images = glob.glob(image_path + '/*.jpg')
     images.sort()
 
+    labels = get_labels_from_model(images, image_path)
+
+    df = pd.DataFrame(labels, columns=['image', 'defect coordinates', 'label'])
+
+    # name of the file to save the predictions
+    df.to_csv(predictionfile)
+    print("Done!")
+
+def get_labels_from_model(images, image_path):
     labels = []
 
     for image in images:
-        # load image
-        path_separated = image.split("\\")
-        print('path_separated: ' + str(path_separated))
+        # change image.split("/") to "\\" if used on windows
+        path_separated = image.split("/")
         img_name = path_separated[len(path_separated) - 1]
-        print('img_name: ' + img_name)
-        image = read_image_bgr(d+img_name)
-        #print(image)
+        image = read_image_bgr(image_path + img_name)
     
     # preprocess image for network
         image = preprocess_image(image)
         image, scale = resize_image(image)
 
     # process image
-        start = time.time()
         print('shape: ' + str(np.expand_dims(image, axis=0).shape))
         _, _, boxes, classification = model.predict_on_batch(np.expand_dims(image, axis=0))
 
-        print("processing time: ", time.time() - start)
         print('boxes: ' + str(boxes))
         print('boxes.shape: ' + str(boxes.shape))
         print('classification: ' + str(classification))
@@ -80,11 +65,9 @@ def save_prediction_to_csv():
         predicted_labels = np.argmax(classification[0, :, :], axis=1)
         print(predicted_labels)
         scores = classification[0, np.arange(classification.shape[1]), predicted_labels]
-    #print(scores)
 
     # correct for image scale
         boxes[0, :, :4] /= scale
-    #print(boxes)
 
     # visualize boxes
         for idx, (label, score) in enumerate(zip(predicted_labels, scores)):
@@ -92,11 +75,48 @@ def save_prediction_to_csv():
                 continue
             b = boxes[0, idx, :4].astype(int)
             labels.append([img_name, b, labels_to_names[label]])
+    
+    return labels
 
-    df = pd.DataFrame(labels, columns=['image', 'defect coordinates', 'label'])
+def ask_existing_directory(text):
+    message = text
+    directory = ""
+    while not os.path.isdir(directory):
+        directory = input(message)
+        message = "There is no such directory. " + text
+    if not directory.endswith('/'):
+        directory += "/"
+    return directory
 
-    # name of the file to save the predictions
-    df.to_csv("class_test.csv")
-    print("Done!")
+def ask_existing_file(text):
+    message = text
+    filename = ""
+    while not os.path.isfile(filename):
+        filename = input(message)
+        message = "There is no such file. " + text
+    return filename
 
-save_prediction_to_csv()
+def ask_csv_filename(text):
+    message = text
+    filename = ""
+    while True:
+        filename = input(message)
+        if not filename.endswith(".csv"):
+            message = "File must be a csv file. " + text
+        elif os.path.isfile(filename):
+            message = "A file with given name already exists. " + text
+        else:
+            return filename
+
+
+# use this environment flag to change which GPU to use
+#os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+
+# set the modified tf session as backend in keras
+keras.backend.tensorflow_backend.set_session(get_session())
+
+trained_model_path = ask_filename("Give the model's path: ")
+image_directory_path = ask_directory("Give the directory containing images: ")
+predictions_csv = ask_csv_filename("Give name to the csv file where predictions are saved: ")
+
+save_prediction_to_csv(trained_model_path, image_directory_path, predictions_csv)
