@@ -1,3 +1,4 @@
+import setGPU
 import keras
 
 # import keras_retinanet
@@ -60,7 +61,6 @@ def get_labels_from_model(images, image_path, model):
 
     # compute predicted labels and scores
         predicted_labels = np.argmax(classification[0, :, :], axis=1)
-        print(predicted_labels)
         scores = classification[0, np.arange(classification.shape[1]), predicted_labels]
 
     # correct for image scale
