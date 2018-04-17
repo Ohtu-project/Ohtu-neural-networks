@@ -15,5 +15,7 @@ install:
   - pip install 'cython'
   - pip install 'matplotlib'
   - pip install 'h5py'
+  - pip install 'pandas'
+  - pip install 'setGPU'
 script:
   - tox
