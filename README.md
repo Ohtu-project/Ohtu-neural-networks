@@ -16,7 +16,7 @@ The motivation and full description of the project can be found [here](https://s
 
 ### Requirements
 
-Our approach to detect defects bases currently on [keras-retinanet](https://github.com/fizyr/keras-retinanet). It uses Keras (2.1.3) on top of Tensorflow (1.5.0).
+Our approach to detect defects based on [keras-retinanet](https://github.com/fizyr/keras-retinanet). It uses Keras (2.1.3) on top of Tensorflow (1.5.0).
 
 ### Additional information
 

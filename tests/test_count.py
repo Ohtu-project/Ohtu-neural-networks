@@ -20,24 +20,24 @@ class TestBasicFunction(unittest.TestCase):
 
     def test_counting_right_short_list(self):
         defect_labels = [
-          ['', 'image', 'defect coordinates'],
-          ['0', 'Acrorad_0712-1001-1-07-01028.jpg', '[ 970  741 1012  792]']
+          ['', 'image', 'defect coordinates', 'class'],
+          ['0', 'Acrorad_0712-1001-1-07-01028.jpg', '[ 970  741 1012  792]', 'round_single']
         ]
 
         self.assertEqual(count_defects.countDefects(defect_labels, 1028), [['Acrorad_0712-1001-1-07-01028.jpg', 1]])
  
     def test_counting_right_longer_list(self):
         defect_labels = [
-          ['', 'image', 'defect coordinates'],
-          ['0', 'Acrorad_0712-1001-1-07-01028.jpg', '[ 970  741 1012  792]'],
-          ['1', 'Acrorad_0712-1001-1-07-01029.jpg', '[ 53  89 181 204]'],
-          ['2', 'Acrorad_0712-1001-1-07-01030.jpg', '[1022  530 1176  673]'],
-          ['3', 'Acrorad_0712-1001-1-07-01031.jpg', '[1022  517 1085  587]'],
-          ['4', 'Acrorad_0712-1001-1-07-01031.jpg', '[1054  245 1169  368]'],
-          ['5', 'Acrorad_0712-1001-1-07-01033.jpg', '[308 446 388 518]'],
-          ['6', 'Acrorad_0712-1001-1-07-01034.jpg', '[571  65 631 128]'],
-          ['7', 'Acrorad_0712-1001-1-07-01035.jpg', '[ 996  330 1125  448]'],
-          ['8', 'Acrorad_0712-1001-1-07-01035.jpg', '[1169   12 1277  117]']
+          ['', 'image', 'defect coordinates', 'class'],
+          ['0', 'Acrorad_0712-1001-1-07-01028.jpg', '[ 970  741 1012  792]', 'round_single'],
+          ['1', 'Acrorad_0712-1001-1-07-01029.jpg', '[ 53  89 181 204]', 'unclear_single'],
+          ['2', 'Acrorad_0712-1001-1-07-01030.jpg', '[1022  530 1176  673]', 'round_double'],
+          ['3', 'Acrorad_0712-1001-1-07-01031.jpg', '[1022  517 1085  587]', 'round_single'],
+          ['4', 'Acrorad_0712-1001-1-07-01031.jpg', '[1054  245 1169  368]', 'round_single'],
+          ['5', 'Acrorad_0712-1001-1-07-01033.jpg', '[308 446 388 518]', 'unclear_single'],
+          ['6', 'Acrorad_0712-1001-1-07-01034.jpg', '[571  65 631 128]', 'unclear_single'],
+          ['7', 'Acrorad_0712-1001-1-07-01035.jpg', '[ 996  330 1125  448]', 'round_single'],
+          ['8', 'Acrorad_0712-1001-1-07-01035.jpg', '[1169   12 1277  117]', 'round_single']
         ]
 
         expected_ouput = [
@@ -53,6 +53,14 @@ class TestBasicFunction(unittest.TestCase):
 
         self.assertEqual(count_defects.countDefects(defect_labels, 1035), expected_ouput)
 
+    def test_dont_count_square(self):
+        defect_labels = [
+          ['', 'image', 'defect coordinates', 'class'],
+          ['0', 'Acrorad_0712-1001-1-07-01028.jpg', '[ 970  741 1012  792]', 'square_single']
+        ]
+
+        self.assertEqual(count_defects.countDefects(defect_labels, 1028), [['Acrorad_0712-1001-1-07-01028.jpg', 0]])
+    
     def test_next_image_name(self):
       test_image_name1 = 'Acrorad_0712-1001-1-07-00009.jpg'
       self.assertEqual(count_defects.next_image_name(test_image_name1), 'Acrorad_0712-1001-1-07-00010.jpg')

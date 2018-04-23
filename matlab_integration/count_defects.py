@@ -53,7 +53,8 @@ def countDefects (defect_labels, last_image_number):
             defect_counts.append([image_name, 0])
         else:
             while defect_labels[row_number][1] == image_name:
-                count += 1
+                if 'square' not in defect_labels[row_number][-1]:
+                    count += 1
                 row_number += 1
                 ## to avoid IndexError
                 if row_number == len(defect_labels):
