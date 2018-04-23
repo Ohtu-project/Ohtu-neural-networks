@@ -1,4 +1,4 @@
-function defect_detector(path, trained_model_path, trained_model_file, image_directory_path)
+function defect_detector(path, trained_model_path, image_directory_path, csv_file)
 %This function goes through a directory of images and detects the defects
 %in them. The defects are saved in a csv-file in a same directory where Predictions.py is located. The function
 %doesn't return anything so it is a void function.
