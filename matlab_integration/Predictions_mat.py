@@ -1,4 +1,7 @@
-#import setGPU
+'''
+This script is intended to be called from Matlab, it uses the CPU instead of the GPU.
+'''
+
 import keras
 
 # import keras_retinanet
@@ -57,7 +60,9 @@ def get_labels_from_model(images, image_path, model):
         image, scale = resize_image(image)
 
     # process image
+        start = time.time()
         boxes, classification = model.predict_on_batch(np.expand_dims(image, axis=0))
+        start = time.time()
 
     # compute predicted labels and scores
         predicted_labels = np.argmax(classification[0, :, :], axis=1)
@@ -121,13 +126,8 @@ def right_arguments(arg):
 
 
 def main(arg):
-    # use this environment flag to change which GPU to use
-    #os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-
     # set the modified tf session as backend in keras
     keras.backend.tensorflow_backend.set_session(get_session())
-
-    #arg = sys.argv
 
     if right_arguments(arg):
         [a, trained_model_path, image_directory_path, predictions_csv] = arg
@@ -137,7 +137,4 @@ def main(arg):
 
 
 if __name__ == "__main__":
-    print("hello")
-    print(sys.argv)
-    print(type(sys.argv))
-    #main(sys.argv)
+    main(sys.argv)
