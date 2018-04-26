@@ -1,3 +1,5 @@
+% TO RUN TEST
+% results = runtests('generate_mirror_csv_test.m')
 function  tests = generate_mirror_csv_test
 tests = functiontests(localfunctions);
 end
@@ -13,7 +15,8 @@ lines = lines{1};
 
 expected_lines = ["Acrorad_0712-1001-1-07-02201.jpg,749,314,774,343,round_single"
                   "Acrorad_0712-1001-1-07-02201x.jpg,506,314,531,343,round_single"
-                  "Acrorad_0712-1001-1-07-02201y.jpg,749,681,774,710,round_single"];
+                  "Acrorad_0712-1001-1-07-02201y.jpg,749,681,774,710,round_single"
+                  "Acrorad_0712-1001-1-07-02201xy.jpg,506,681,531,710,round_single"];
 for ind=1:length(lines)
     line = lines(ind);
     actual_solution = line{1};
@@ -35,7 +38,8 @@ lines = lines{1};
 
 expected_lines = ["Acrorad_0712-1001-1-07-02200.jpg,,,,,"
                   "Acrorad_0712-1001-1-07-02200x.jpg,,,,,"
-                  "Acrorad_0712-1001-1-07-02200y.jpg,,,,,"];
+                  "Acrorad_0712-1001-1-07-02200y.jpg,,,,,"
+                  "Acrorad_0712-1001-1-07-02200xy.jpg,,,,,"];
 for ind=1:length(lines)
     line = lines(ind);
     actual_solution = line{1};
@@ -54,6 +58,3 @@ file = fopen('mirror_test_id_1hraeuru5eugete.csv', 'w');
 fprintf(file, 'Acrorad_0712-1001-1-07-02200.jpg,,,,,');
 fclose('all');
 end
-
-% TO RUN TEST
-% results = runtests('generate_mirror_csv_test.m')

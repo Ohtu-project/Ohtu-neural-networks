@@ -26,6 +26,8 @@ function generate_mirror_csv(file_to_read, file_to_write, image_path)
     write_lines(file, lines, image_path, '.jpg');
     write_lines(file, lines, image_path, 'x.jpg');
     write_lines(file, lines, image_path, 'y.jpg');
+    write_lines(file, lines, image_path, 'xy.jpg');
+    
 
     fclose(file);
 end
@@ -59,7 +61,8 @@ function write_lines(file, lines, image_path, image_name_ending)
             if contains(image_name_ending, 'x')
                 x1 = 1280 - str2num(content{4}); % im_width - initial_x2
                 x2 = 1280 - str2num(content{2}); % im_width - initial_x1
-            elseif contains(image_name_ending, 'y')
+            end
+            if contains(image_name_ending, 'y')
                 y1 = 1024 - str2num(content{5}); % im_heigth - initial_y2
                 y2 = 1024 - str2num(content{3}); % im_heigth - initial_y1
             end
