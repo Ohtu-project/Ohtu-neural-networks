@@ -106,7 +106,7 @@ def right_csv_name(filename):
         return False
     #return filename.endswith(".csv") and not existing_file(filename)
     if existing_file(filename):
-        print(filename + " this name already exists!")
+        print(filename + " file of this name already exists!")
         return False
 
     return True
@@ -120,17 +120,24 @@ def right_arguments(arg):
     return True
 
 
+def main(arg):
+    # use this environment flag to change which GPU to use
+    #os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
-# use this environment flag to change which GPU to use
-#os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+    # set the modified tf session as backend in keras
+    keras.backend.tensorflow_backend.set_session(get_session())
 
-# set the modified tf session as backend in keras
-keras.backend.tensorflow_backend.set_session(get_session())
+    #arg = sys.argv
 
-arg = sys.argv
+    if right_arguments(arg):
+        [a, trained_model_path, image_directory_path, predictions_csv] = arg
+        save_prediction_to_csv(trained_model_path, image_directory_path, predictions_csv)
+    else:
+        print("Given arguments are wrong.")
 
-if right_arguments(arg):
-    [a, trained_model_path, image_directory_path, predictions_csv] = arg
-    save_prediction_to_csv(trained_model_path, image_directory_path, predictions_csv)
-else:
-    print("Given arguments are wrong.")
+
+if __name__ == "__main__":
+    print("hello")
+    print(sys.argv)
+    print(type(sys.argv))
+    #main(sys.argv)

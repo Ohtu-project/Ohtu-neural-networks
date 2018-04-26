@@ -1,0 +1,851 @@
+,image,defect coordinates,label
+0,Acrorad_0712-1001-1-07-01039.jpg,[ 0  1 -1 -1],unclear_single
+1,Acrorad_0712-1001-1-07-01039.jpg,[ 0  1  0 -3],unclear_single
+2,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -1 -1 -1],unclear_single
+3,Acrorad_0712-1001-1-07-01039.jpg,[ 0  0  0 -3],unclear_single
+4,Acrorad_0712-1001-1-07-01039.jpg,[-2 -1 -1 -1],unclear_single
+5,Acrorad_0712-1001-1-07-01039.jpg,[0 3 0 0],round_single
+6,Acrorad_0712-1001-1-07-01039.jpg,[ 1  2  1 -1],round_single
+7,Acrorad_0712-1001-1-07-01039.jpg,[ 1  2 -2  2],round_single
+8,Acrorad_0712-1001-1-07-01039.jpg,[2 1 0 0],round_single
+9,Acrorad_0712-1001-1-07-01039.jpg,[ 0  2 -2  2],round_single
+10,Acrorad_0712-1001-1-07-01039.jpg,[0 2 1 2],round_single
+11,Acrorad_0712-1001-1-07-01039.jpg,[0 1 0 0],round_single
+12,Acrorad_0712-1001-1-07-01039.jpg,[1 1 3 0],round_single
+13,Acrorad_0712-1001-1-07-01039.jpg,[ 1  1  2 -1],round_single
+14,Acrorad_0712-1001-1-07-01039.jpg,[ 0  2 -2  2],round_single
+15,Acrorad_0712-1001-1-07-01039.jpg,[-1  2  1  2],round_single
+16,Acrorad_0712-1001-1-07-01039.jpg,[-1  1  0  0],round_single
+17,Acrorad_0712-1001-1-07-01039.jpg,[-2  1  3  0],round_single
+18,Acrorad_0712-1001-1-07-01039.jpg,[-1  1  2 -1],round_single
+19,Acrorad_0712-1001-1-07-01039.jpg,[ 1  0 -2  2],round_single
+20,Acrorad_0712-1001-1-07-01039.jpg,[3 0 1 2],round_single
+21,Acrorad_0712-1001-1-07-01039.jpg,[2 0 0 0],round_single
+22,Acrorad_0712-1001-1-07-01039.jpg,[4 0 3 0],round_single
+23,Acrorad_0712-1001-1-07-01039.jpg,[ 3  0  2 -1],round_single
+24,Acrorad_0712-1001-1-07-01039.jpg,[ 0  0 -2  2],round_single
+25,Acrorad_0712-1001-1-07-01039.jpg,[0 0 1 2],round_single
+26,Acrorad_0712-1001-1-07-01039.jpg,[0 0 0 0],round_single
+27,Acrorad_0712-1001-1-07-01039.jpg,[1 0 3 0],round_single
+28,Acrorad_0712-1001-1-07-01039.jpg,[ 1  0  2 -1],round_single
+29,Acrorad_0712-1001-1-07-01039.jpg,[ 0  0 -2  2],round_single
+30,Acrorad_0712-1001-1-07-01039.jpg,[-1  0  1  2],round_single
+31,Acrorad_0712-1001-1-07-01039.jpg,[-1  0  0  0],round_single
+32,Acrorad_0712-1001-1-07-01039.jpg,[-2  0  3  0],round_single
+33,Acrorad_0712-1001-1-07-01039.jpg,[-1  0  2 -1],round_single
+34,Acrorad_0712-1001-1-07-01039.jpg,[-3  0  0  0],round_single
+35,Acrorad_0712-1001-1-07-01039.jpg,[-4  0  2 -1],round_single
+36,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -2 -2  2],round_single
+37,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -2  1  2],round_single
+38,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -2  0  0],round_single
+39,Acrorad_0712-1001-1-07-01039.jpg,[ 1 -1  2 -1],round_single
+40,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -2 -2  2],round_single
+41,Acrorad_0712-1001-1-07-01039.jpg,[-1 -2  1  2],round_single
+42,Acrorad_0712-1001-1-07-01039.jpg,[-1 -2  0  0],round_single
+43,Acrorad_0712-1001-1-07-01039.jpg,[-1 -1  2 -1],round_single
+44,Acrorad_0712-1001-1-07-01039.jpg,[1 2 0 0],unclear_single
+45,Acrorad_0712-1001-1-07-01039.jpg,[ 1  2 -1 -1],unclear_single
+46,Acrorad_0712-1001-1-07-01039.jpg,[ 2  1  2 -2],unclear_single
+47,Acrorad_0712-1001-1-07-01039.jpg,[0 4 0 3],unclear_single
+48,Acrorad_0712-1001-1-07-01039.jpg,[ 0  3 -1  2],unclear_single
+49,Acrorad_0712-1001-1-07-01039.jpg,[-1  3  1  1],unclear_single
+50,Acrorad_0712-1001-1-07-01039.jpg,[0 2 0 0],unclear_single
+51,Acrorad_0712-1001-1-07-01039.jpg,[ 0  2 -1 -1],unclear_single
+52,Acrorad_0712-1001-1-07-01039.jpg,[-1  1  2 -2],unclear_single
+53,Acrorad_0712-1001-1-07-01039.jpg,[ 0  1  1 -3],unclear_single
+54,Acrorad_0712-1001-1-07-01039.jpg,[ 2  0 -3  0],unclear_single
+55,Acrorad_0712-1001-1-07-01039.jpg,[ 1  0 -1  2],unclear_single
+56,Acrorad_0712-1001-1-07-01039.jpg,[ 0  0 -3  0],unclear_single
+57,Acrorad_0712-1001-1-07-01039.jpg,[2 0 1 1],unclear_single
+58,Acrorad_0712-1001-1-07-01039.jpg,[1 0 0 0],unclear_single
+59,Acrorad_0712-1001-1-07-01039.jpg,[ 1  0 -1 -1],unclear_single
+60,Acrorad_0712-1001-1-07-01039.jpg,[3 0 3 0],unclear_single
+61,Acrorad_0712-1001-1-07-01039.jpg,[ 2  0  2 -2],unclear_single
+62,Acrorad_0712-1001-1-07-01039.jpg,[0 0 0 3],unclear_single
+63,Acrorad_0712-1001-1-07-01039.jpg,[ 0  0 -1  2],unclear_single
+64,Acrorad_0712-1001-1-07-01039.jpg,[ 0  0 -3  0],unclear_single
+65,Acrorad_0712-1001-1-07-01039.jpg,[-1  0  1  1],unclear_single
+66,Acrorad_0712-1001-1-07-01039.jpg,[0 0 0 0],unclear_single
+67,Acrorad_0712-1001-1-07-01039.jpg,[ 0  0 -1 -1],unclear_single
+68,Acrorad_0712-1001-1-07-01039.jpg,[-1  0  3  0],unclear_single
+69,Acrorad_0712-1001-1-07-01039.jpg,[-1  0  2 -2],unclear_single
+70,Acrorad_0712-1001-1-07-01039.jpg,[ 0  0  1 -3],unclear_single
+71,Acrorad_0712-1001-1-07-01039.jpg,[-2  0 -1  2],unclear_single
+72,Acrorad_0712-1001-1-07-01039.jpg,[-1  0 -3  0],unclear_single
+73,Acrorad_0712-1001-1-07-01039.jpg,[-3  0  1  1],unclear_single
+74,Acrorad_0712-1001-1-07-01039.jpg,[-3  0  0  0],unclear_single
+75,Acrorad_0712-1001-1-07-01039.jpg,[-2  0 -1 -1],unclear_single
+76,Acrorad_0712-1001-1-07-01039.jpg,[-5  0  3  0],unclear_single
+77,Acrorad_0712-1001-1-07-01039.jpg,[-3  0 -3  0],unclear_single
+78,Acrorad_0712-1001-1-07-01039.jpg,[ 1 -3  0  3],unclear_single
+79,Acrorad_0712-1001-1-07-01039.jpg,[ 1 -3 -1  2],unclear_single
+80,Acrorad_0712-1001-1-07-01039.jpg,[ 2 -2  1  1],unclear_single
+81,Acrorad_0712-1001-1-07-01039.jpg,[ 1 -2  0  0],unclear_single
+82,Acrorad_0712-1001-1-07-01039.jpg,[ 1 -1 -1 -1],unclear_single
+83,Acrorad_0712-1001-1-07-01039.jpg,[ 2 -1  2 -2],unclear_single
+84,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -3  0  3],unclear_single
+85,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -3 -1  2],unclear_single
+86,Acrorad_0712-1001-1-07-01039.jpg,[-1 -2  1  1],unclear_single
+87,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -2  0  0],unclear_single
+88,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -1 -1 -1],unclear_single
+89,Acrorad_0712-1001-1-07-01039.jpg,[-1 -1  2 -2],unclear_single
+90,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -1  1 -3],unclear_single
+91,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -2  1 -3],unclear_single
+92,Acrorad_0712-1001-1-07-01039.jpg,[ 0  2  1 -2],round_single
+93,Acrorad_0712-1001-1-07-01039.jpg,[-1  2  1 -2],round_single
+94,Acrorad_0712-1001-1-07-01039.jpg,[ 1  2 -2  1],round_single
+95,Acrorad_0712-1001-1-07-01039.jpg,[3 2 1 0],round_single
+96,Acrorad_0712-1001-1-07-01039.jpg,[2 1 0 0],round_single
+97,Acrorad_0712-1001-1-07-01039.jpg,[0 3 0 4],round_single
+98,Acrorad_0712-1001-1-07-01039.jpg,[0 3 0 2],round_single
+99,Acrorad_0712-1001-1-07-01039.jpg,[ 0  2 -2  1],round_single
+100,Acrorad_0712-1001-1-07-01039.jpg,[0 2 2 2],round_single
+101,Acrorad_0712-1001-1-07-01039.jpg,[0 2 1 0],round_single
+102,Acrorad_0712-1001-1-07-01039.jpg,[0 1 0 0],round_single
+103,Acrorad_0712-1001-1-07-01039.jpg,[ 1  1  3 -1],round_single
+104,Acrorad_0712-1001-1-07-01039.jpg,[ 0  1  1 -2],round_single
+105,Acrorad_0712-1001-1-07-01039.jpg,[-1  3  0  3],round_single
+106,Acrorad_0712-1001-1-07-01039.jpg,[ 0  2 -2  1],round_single
+107,Acrorad_0712-1001-1-07-01039.jpg,[-1  2  1  0],round_single
+108,Acrorad_0712-1001-1-07-01039.jpg,[-1  1  0  0],round_single
+109,Acrorad_0712-1001-1-07-01039.jpg,[-2  1  3 -1],round_single
+110,Acrorad_0712-1001-1-07-01039.jpg,[-1  1  1 -2],round_single
+111,Acrorad_0712-1001-1-07-01039.jpg,[-2  2 -2  1],round_single
+112,Acrorad_0712-1001-1-07-01039.jpg,[ 3  0 -2  1],round_single
+113,Acrorad_0712-1001-1-07-01039.jpg,[ 2  0 -1  2],round_single
+114,Acrorad_0712-1001-1-07-01039.jpg,[ 1  0 -2  1],round_single
+115,Acrorad_0712-1001-1-07-01039.jpg,[3 0 1 0],round_single
+116,Acrorad_0712-1001-1-07-01039.jpg,[2 0 0 0],round_single
+117,Acrorad_0712-1001-1-07-01039.jpg,[5 0 4 0],round_single
+118,Acrorad_0712-1001-1-07-01039.jpg,[ 4  0  3 -1],round_single
+119,Acrorad_0712-1001-1-07-01039.jpg,[0 0 0 2],round_single
+120,Acrorad_0712-1001-1-07-01039.jpg,[ 0  0 -2  1],round_single
+121,Acrorad_0712-1001-1-07-01039.jpg,[0 0 2 2],round_single
+122,Acrorad_0712-1001-1-07-01039.jpg,[0 0 1 0],round_single
+123,Acrorad_0712-1001-1-07-01039.jpg,[0 0 0 0],round_single
+124,Acrorad_0712-1001-1-07-01039.jpg,[1 0 4 0],round_single
+125,Acrorad_0712-1001-1-07-01039.jpg,[ 1  0  3 -1],round_single
+126,Acrorad_0712-1001-1-07-01039.jpg,[ 0  0  1 -2],round_single
+127,Acrorad_0712-1001-1-07-01039.jpg,[-1  0  0  3],round_single
+128,Acrorad_0712-1001-1-07-01039.jpg,[ 0  0 -2  1],round_single
+129,Acrorad_0712-1001-1-07-01039.jpg,[-2  0  2  2],round_single
+130,Acrorad_0712-1001-1-07-01039.jpg,[-1  0  1  0],round_single
+131,Acrorad_0712-1001-1-07-01039.jpg,[-1  0  0  0],round_single
+132,Acrorad_0712-1001-1-07-01039.jpg,[-2  0  4  0],round_single
+133,Acrorad_0712-1001-1-07-01039.jpg,[-2  0  3 -1],round_single
+134,Acrorad_0712-1001-1-07-01039.jpg,[-1  0  1 -2],round_single
+135,Acrorad_0712-1001-1-07-01039.jpg,[-2  0 -2  1],round_single
+136,Acrorad_0712-1001-1-07-01039.jpg,[-4  0  1  0],round_single
+137,Acrorad_0712-1001-1-07-01039.jpg,[-3  0  0  0],round_single
+138,Acrorad_0712-1001-1-07-01039.jpg,[ 1 -3 -2  1],round_single
+139,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -4  0  4],round_single
+140,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -3  0  2],round_single
+141,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -2 -2  1],round_single
+142,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -2  1  0],round_single
+143,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -2  0  0],round_single
+144,Acrorad_0712-1001-1-07-01039.jpg,[ 1 -1  3 -1],round_single
+145,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -1  1 -2],round_single
+146,Acrorad_0712-1001-1-07-01039.jpg,[-1 -3  0  2],round_single
+147,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -3 -2  1],round_single
+148,Acrorad_0712-1001-1-07-01039.jpg,[-1 -2  1  0],round_single
+149,Acrorad_0712-1001-1-07-01039.jpg,[-1 -2  0  0],round_single
+150,Acrorad_0712-1001-1-07-01039.jpg,[-2 -1  3 -1],round_single
+151,Acrorad_0712-1001-1-07-01039.jpg,[-1 -1  1 -2],round_single
+152,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -2  1 -2],round_single
+153,Acrorad_0712-1001-1-07-01039.jpg,[ 1  2 -1 -1],round_single
+154,Acrorad_0712-1001-1-07-01039.jpg,[ 1  1  0 -3],round_single
+155,Acrorad_0712-1001-1-07-01039.jpg,[-1  2 -1 -1],round_single
+156,Acrorad_0712-1001-1-07-01039.jpg,[-1  1  0 -3],round_single
+157,Acrorad_0712-1001-1-07-01039.jpg,[ 1 -1 -3  1],round_single
+158,Acrorad_0712-1001-1-07-01039.jpg,[ 1  0 -1 -1],round_single
+159,Acrorad_0712-1001-1-07-01039.jpg,[ 1  0  0 -3],round_single
+160,Acrorad_0712-1001-1-07-01039.jpg,[-1 -1 -3  1],round_single
+161,Acrorad_0712-1001-1-07-01039.jpg,[-1  0 -1 -1],round_single
+162,Acrorad_0712-1001-1-07-01039.jpg,[-1  0  0 -3],round_single
+163,Acrorad_0712-1001-1-07-01039.jpg,[-1  0 -1 -2],unclear_single
+164,Acrorad_0712-1001-1-07-01039.jpg,[ 0  2 -1 -1],round_single
+165,Acrorad_0712-1001-1-07-01039.jpg,[ 0  1  0 -3],round_single
+166,Acrorad_0712-1001-1-07-01039.jpg,[ 2 -1 -3  0],round_single
+167,Acrorad_0712-1001-1-07-01039.jpg,[ 0 -1 -3  0],round_single
+168,Acrorad_0712-1001-1-07-01039.jpg,[ 0  0 -1 -1],round_single
+169,Acrorad_0712-1001-1-07-01039.jpg,[-2 -1 -3  0],round_single
+170,Acrorad_0712-1001-1-07-01041.jpg,[ 0  2  0 -3],round_single
+171,Acrorad_0712-1001-1-07-01041.jpg,[ 1  0 -3  0],round_single
+172,Acrorad_0712-1001-1-07-01041.jpg,[ 2  0 -1 -1],round_single
+173,Acrorad_0712-1001-1-07-01041.jpg,[ 0  0 -3  1],round_single
+174,Acrorad_0712-1001-1-07-01041.jpg,[ 0  0 -1 -1],round_single
+175,Acrorad_0712-1001-1-07-01041.jpg,[ 0  0  0 -3],round_single
+176,Acrorad_0712-1001-1-07-01041.jpg,[-2  0 -3  0],round_single
+177,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -3 -1 -1],round_single
+178,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -2  0 -3],round_single
+179,Acrorad_0712-1001-1-07-01041.jpg,[ 0  1 -1 -1],unclear_single
+180,Acrorad_0712-1001-1-07-01041.jpg,[ 0  2  1 -2],round_single
+181,Acrorad_0712-1001-1-07-01041.jpg,[2 2 0 0],round_single
+182,Acrorad_0712-1001-1-07-01041.jpg,[ 0  3 -1  3],round_single
+183,Acrorad_0712-1001-1-07-01041.jpg,[0 3 1 2],round_single
+184,Acrorad_0712-1001-1-07-01041.jpg,[0 2 0 1],round_single
+185,Acrorad_0712-1001-1-07-01041.jpg,[0 2 0 0],round_single
+186,Acrorad_0712-1001-1-07-01041.jpg,[0 1 2 0],round_single
+187,Acrorad_0712-1001-1-07-01041.jpg,[ 0  1  1 -2],round_single
+188,Acrorad_0712-1001-1-07-01041.jpg,[-1  3 -1  3],round_single
+189,Acrorad_0712-1001-1-07-01041.jpg,[-1  2  0  1],round_single
+190,Acrorad_0712-1001-1-07-01041.jpg,[-1  2  0  0],round_single
+191,Acrorad_0712-1001-1-07-01041.jpg,[-2  1  2  0],round_single
+192,Acrorad_0712-1001-1-07-01041.jpg,[-2  1  1 -2],round_single
+193,Acrorad_0712-1001-1-07-01041.jpg,[ 1  0 -3  2],round_single
+194,Acrorad_0712-1001-1-07-01041.jpg,[3 0 0 1],round_single
+195,Acrorad_0712-1001-1-07-01041.jpg,[2 0 0 0],round_single
+196,Acrorad_0712-1001-1-07-01041.jpg,[5 0 3 0],round_single
+197,Acrorad_0712-1001-1-07-01041.jpg,[4 0 2 0],round_single
+198,Acrorad_0712-1001-1-07-01041.jpg,[ 0  0 -2  2],round_single
+199,Acrorad_0712-1001-1-07-01041.jpg,[0 0 0 1],round_single
+200,Acrorad_0712-1001-1-07-01041.jpg,[0 0 0 0],round_single
+201,Acrorad_0712-1001-1-07-01041.jpg,[0 0 2 0],round_single
+202,Acrorad_0712-1001-1-07-01041.jpg,[ 0  0  1 -2],round_single
+203,Acrorad_0712-1001-1-07-01041.jpg,[-1  0 -2  2],round_single
+204,Acrorad_0712-1001-1-07-01041.jpg,[-1  0  0  1],round_single
+205,Acrorad_0712-1001-1-07-01041.jpg,[-1  0  0  0],round_single
+206,Acrorad_0712-1001-1-07-01041.jpg,[-2  0  2  0],round_single
+207,Acrorad_0712-1001-1-07-01041.jpg,[-2  0  1 -2],round_single
+208,Acrorad_0712-1001-1-07-01041.jpg,[-2  0 -2  2],round_single
+209,Acrorad_0712-1001-1-07-01041.jpg,[-3  0  0  0],round_single
+210,Acrorad_0712-1001-1-07-01041.jpg,[ 1 -2 -3  2],round_single
+211,Acrorad_0712-1001-1-07-01041.jpg,[ 2 -2  0  1],round_single
+212,Acrorad_0712-1001-1-07-01041.jpg,[ 2 -1  0  0],round_single
+213,Acrorad_0712-1001-1-07-01041.jpg,[ 4 -1  2  0],round_single
+214,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -3 -1  3],round_single
+215,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -2 -2  2],round_single
+216,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -2  0  1],round_single
+217,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -1  0  0],round_single
+218,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -1  2  0],round_single
+219,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -1  1 -2],round_single
+220,Acrorad_0712-1001-1-07-01041.jpg,[-1 -3 -1  3],round_single
+221,Acrorad_0712-1001-1-07-01041.jpg,[-1 -2 -2  2],round_single
+222,Acrorad_0712-1001-1-07-01041.jpg,[-1 -2  0  1],round_single
+223,Acrorad_0712-1001-1-07-01041.jpg,[-1 -1  0  0],round_single
+224,Acrorad_0712-1001-1-07-01041.jpg,[-2 -1  2  0],round_single
+225,Acrorad_0712-1001-1-07-01041.jpg,[-2 -1  1 -2],round_single
+226,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -3  0  0],round_single
+227,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -2  1 -2],round_single
+228,Acrorad_0712-1001-1-07-01041.jpg,[-2 -2  1 -2],round_single
+229,Acrorad_0712-1001-1-07-01041.jpg,[ 1  2  0 -3],round_single
+230,Acrorad_0712-1001-1-07-01041.jpg,[-1  2  0 -3],round_single
+231,Acrorad_0712-1001-1-07-01041.jpg,[ 1  3 -1  3],round_single
+232,Acrorad_0712-1001-1-07-01041.jpg,[ 1  3 -2  1],round_single
+233,Acrorad_0712-1001-1-07-01041.jpg,[1 2 1 1],round_single
+234,Acrorad_0712-1001-1-07-01041.jpg,[1 2 0 0],round_single
+235,Acrorad_0712-1001-1-07-01041.jpg,[ 1  1 -1 -1],round_single
+236,Acrorad_0712-1001-1-07-01041.jpg,[ 2  1  3 -1],round_single
+237,Acrorad_0712-1001-1-07-01041.jpg,[ 2  1  1 -2],round_single
+238,Acrorad_0712-1001-1-07-01041.jpg,[ 1  1  0 -3],round_single
+239,Acrorad_0712-1001-1-07-01041.jpg,[0 3 0 3],round_single
+240,Acrorad_0712-1001-1-07-01041.jpg,[ 0  3 -2  1],round_single
+241,Acrorad_0712-1001-1-07-01041.jpg,[-1  2  1  1],round_single
+242,Acrorad_0712-1001-1-07-01041.jpg,[-1  2  0  0],round_single
+243,Acrorad_0712-1001-1-07-01041.jpg,[ 0  1 -1 -1],round_single
+244,Acrorad_0712-1001-1-07-01041.jpg,[-1  1  3 -1],round_single
+245,Acrorad_0712-1001-1-07-01041.jpg,[-1  1  1 -2],round_single
+246,Acrorad_0712-1001-1-07-01041.jpg,[-1  1  0 -3],round_single
+247,Acrorad_0712-1001-1-07-01041.jpg,[ 2  0 -2  1],round_single
+248,Acrorad_0712-1001-1-07-01041.jpg,[ 2  0 -3  0],round_single
+249,Acrorad_0712-1001-1-07-01041.jpg,[3 0 0 0],round_single
+250,Acrorad_0712-1001-1-07-01041.jpg,[ 1  0 -1  3],round_single
+251,Acrorad_0712-1001-1-07-01041.jpg,[ 1  0 -2  1],round_single
+252,Acrorad_0712-1001-1-07-01041.jpg,[ 0  0 -3  0],round_single
+253,Acrorad_0712-1001-1-07-01041.jpg,[1 0 1 1],round_single
+254,Acrorad_0712-1001-1-07-01041.jpg,[1 0 0 0],round_single
+255,Acrorad_0712-1001-1-07-01041.jpg,[ 1  0 -1 -1],round_single
+256,Acrorad_0712-1001-1-07-01041.jpg,[ 2  0  3 -1],round_single
+257,Acrorad_0712-1001-1-07-01041.jpg,[ 2  0  1 -2],round_single
+258,Acrorad_0712-1001-1-07-01041.jpg,[ 1  0  0 -3],round_single
+259,Acrorad_0712-1001-1-07-01041.jpg,[ 0  0 -1  3],round_single
+260,Acrorad_0712-1001-1-07-01041.jpg,[ 0  0 -2  1],round_single
+261,Acrorad_0712-1001-1-07-01041.jpg,[ 0  0 -3  0],round_single
+262,Acrorad_0712-1001-1-07-01041.jpg,[-1  0  1  1],round_single
+263,Acrorad_0712-1001-1-07-01041.jpg,[-1  0  0  0],round_single
+264,Acrorad_0712-1001-1-07-01041.jpg,[ 0  0 -1 -1],round_single
+265,Acrorad_0712-1001-1-07-01041.jpg,[-1  0  3 -1],round_single
+266,Acrorad_0712-1001-1-07-01041.jpg,[-1  0  1 -2],round_single
+267,Acrorad_0712-1001-1-07-01041.jpg,[-1  0  0 -3],round_single
+268,Acrorad_0712-1001-1-07-01041.jpg,[-2  0 -2  1],round_single
+269,Acrorad_0712-1001-1-07-01041.jpg,[-2  0 -3  0],round_single
+270,Acrorad_0712-1001-1-07-01041.jpg,[-3  0  0  0],round_single
+271,Acrorad_0712-1001-1-07-01041.jpg,[-2  0 -1 -1],round_single
+272,Acrorad_0712-1001-1-07-01041.jpg,[ 1 -4 -1  3],round_single
+273,Acrorad_0712-1001-1-07-01041.jpg,[ 1 -3 -2  1],round_single
+274,Acrorad_0712-1001-1-07-01041.jpg,[ 1 -3  1  1],round_single
+275,Acrorad_0712-1001-1-07-01041.jpg,[ 1 -2  0  0],round_single
+276,Acrorad_0712-1001-1-07-01041.jpg,[ 1 -2 -1 -1],round_single
+277,Acrorad_0712-1001-1-07-01041.jpg,[ 2 -1  1 -2],round_single
+278,Acrorad_0712-1001-1-07-01041.jpg,[ 1 -1  0 -3],round_single
+279,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -4 -1  3],round_single
+280,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -3 -2  1],round_single
+281,Acrorad_0712-1001-1-07-01041.jpg,[-1 -3  1  1],round_single
+282,Acrorad_0712-1001-1-07-01041.jpg,[-1 -2  0  0],round_single
+283,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -2 -1 -1],round_single
+284,Acrorad_0712-1001-1-07-01041.jpg,[-1 -2  1 -2],round_single
+285,Acrorad_0712-1001-1-07-01041.jpg,[-1 -1  0 -3],round_single
+286,Acrorad_0712-1001-1-07-01041.jpg,[-1 -2  0 -3],round_single
+287,Acrorad_0712-1001-1-07-01041.jpg,[ 1  2 -1  3],unclear_single
+288,Acrorad_0712-1001-1-07-01041.jpg,[ 0  2 -2  1],unclear_single
+289,Acrorad_0712-1001-1-07-01041.jpg,[1 2 0 1],unclear_single
+290,Acrorad_0712-1001-1-07-01041.jpg,[1 1 0 0],unclear_single
+291,Acrorad_0712-1001-1-07-01041.jpg,[ 0  1 -1 -1],unclear_single
+292,Acrorad_0712-1001-1-07-01041.jpg,[ 2  1  3 -1],unclear_single
+293,Acrorad_0712-1001-1-07-01041.jpg,[ 1  1  1 -2],unclear_single
+294,Acrorad_0712-1001-1-07-01041.jpg,[-1  2 -1  3],unclear_single
+295,Acrorad_0712-1001-1-07-01041.jpg,[ 0  2 -2  1],unclear_single
+296,Acrorad_0712-1001-1-07-01041.jpg,[-1  2  0  1],unclear_single
+297,Acrorad_0712-1001-1-07-01041.jpg,[-1  1  0  0],unclear_single
+298,Acrorad_0712-1001-1-07-01041.jpg,[ 0  1 -1 -1],unclear_single
+299,Acrorad_0712-1001-1-07-01041.jpg,[-2  1  3 -1],unclear_single
+300,Acrorad_0712-1001-1-07-01041.jpg,[-1  1  1 -2],unclear_single
+301,Acrorad_0712-1001-1-07-01041.jpg,[ 1  0 -3  0],unclear_single
+302,Acrorad_0712-1001-1-07-01041.jpg,[ 1 -1 -1  3],unclear_single
+303,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -1 -2  1],unclear_single
+304,Acrorad_0712-1001-1-07-01041.jpg,[1 0 0 1],unclear_single
+305,Acrorad_0712-1001-1-07-01041.jpg,[1 0 0 0],unclear_single
+306,Acrorad_0712-1001-1-07-01041.jpg,[ 0  0 -1 -1],unclear_single
+307,Acrorad_0712-1001-1-07-01041.jpg,[ 2  0  3 -1],unclear_single
+308,Acrorad_0712-1001-1-07-01041.jpg,[ 1  0  1 -2],unclear_single
+309,Acrorad_0712-1001-1-07-01041.jpg,[-1 -1 -1  3],unclear_single
+310,Acrorad_0712-1001-1-07-01041.jpg,[ 0 -1 -2  1],unclear_single
+311,Acrorad_0712-1001-1-07-01041.jpg,[-1 -1  0  1],unclear_single
+312,Acrorad_0712-1001-1-07-01041.jpg,[-1  0  0  0],unclear_single
+313,Acrorad_0712-1001-1-07-01041.jpg,[ 0  0 -1 -1],unclear_single
+314,Acrorad_0712-1001-1-07-01041.jpg,[-2  0  3 -1],unclear_single
+315,Acrorad_0712-1001-1-07-01041.jpg,[-1  0  1 -2],unclear_single
+316,Acrorad_0712-1001-1-07-01041.jpg,[-1  0 -3  0],unclear_single
+317,Acrorad_0712-1001-1-07-01041.jpg,[-3  0  0  0],unclear_single
+318,Acrorad_0712-1001-1-07-01041.jpg,[ 1 -3  0  0],unclear_single
+319,Acrorad_0712-1001-1-07-01041.jpg,[ 1 -2  1 -2],unclear_single
+320,Acrorad_0712-1001-1-07-01041.jpg,[ 1 -1  0 -3],unclear_single
+321,Acrorad_0712-1001-1-07-01041.jpg,[-1 -3  0  0],unclear_single
+322,Acrorad_0712-1001-1-07-01041.jpg,[-1 -2  1 -2],unclear_single
+323,Acrorad_0712-1001-1-07-01041.jpg,[-1 -1  0 -3],unclear_single
+324,Acrorad_0712-1001-1-07-01041.jpg,[ 1  2 -2 -1],round_single
+325,Acrorad_0712-1001-1-07-01041.jpg,[ 1  1  0 -3],round_single
+326,Acrorad_0712-1001-1-07-01041.jpg,[ 0  0 -4  0],round_single
+327,Acrorad_0712-1001-1-07-01041.jpg,[ 1  0 -2 -1],round_single
+328,Acrorad_0712-1001-1-07-01041.jpg,[-1  0 -4  0],round_single
+329,Acrorad_0712-1001-1-07-01041.jpg,[-2  0 -2 -1],round_single
+330,Acrorad_0712-1001-1-07-01044.jpg,[1 2 0 1],round_single
+331,Acrorad_0712-1001-1-07-01044.jpg,[1 1 2 0],round_single
+332,Acrorad_0712-1001-1-07-01044.jpg,[0 2 0 1],round_single
+333,Acrorad_0712-1001-1-07-01044.jpg,[0 1 2 0],round_single
+334,Acrorad_0712-1001-1-07-01044.jpg,[3 0 0 1],round_single
+335,Acrorad_0712-1001-1-07-01044.jpg,[4 0 2 0],round_single
+336,Acrorad_0712-1001-1-07-01044.jpg,[ 0  1 -1  3],round_single
+337,Acrorad_0712-1001-1-07-01044.jpg,[1 0 0 1],round_single
+338,Acrorad_0712-1001-1-07-01044.jpg,[1 0 2 0],round_single
+339,Acrorad_0712-1001-1-07-01044.jpg,[ 0  1 -1  3],round_single
+340,Acrorad_0712-1001-1-07-01044.jpg,[0 0 0 1],round_single
+341,Acrorad_0712-1001-1-07-01044.jpg,[0 0 2 0],round_single
+342,Acrorad_0712-1001-1-07-01044.jpg,[-2  0  0  1],round_single
+343,Acrorad_0712-1001-1-07-01044.jpg,[-3  0  2  0],round_single
+344,Acrorad_0712-1001-1-07-01044.jpg,[ 3 -1  0  1],round_single
+345,Acrorad_0712-1001-1-07-01044.jpg,[4 0 2 0],round_single
+346,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -1 -1  3],round_single
+347,Acrorad_0712-1001-1-07-01044.jpg,[ 1 -1  0  1],round_single
+348,Acrorad_0712-1001-1-07-01044.jpg,[1 0 2 0],round_single
+349,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -1 -1  3],round_single
+350,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -1  0  1],round_single
+351,Acrorad_0712-1001-1-07-01044.jpg,[0 0 2 0],round_single
+352,Acrorad_0712-1001-1-07-01044.jpg,[-2 -1  0  1],round_single
+353,Acrorad_0712-1001-1-07-01044.jpg,[-3  0  2  0],round_single
+354,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -3 -1  3],round_single
+355,Acrorad_0712-1001-1-07-01044.jpg,[ 1 -2  0  1],round_single
+356,Acrorad_0712-1001-1-07-01044.jpg,[ 1 -2  2  0],round_single
+357,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -4 -1  3],round_single
+358,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -2  0  1],round_single
+359,Acrorad_0712-1001-1-07-01044.jpg,[-1 -2  2  0],round_single
+360,Acrorad_0712-1001-1-07-01044.jpg,[ 0  3 -1  2],round_single
+361,Acrorad_0712-1001-1-07-01044.jpg,[0 3 1 1],round_single
+362,Acrorad_0712-1001-1-07-01044.jpg,[0 2 0 0],round_single
+363,Acrorad_0712-1001-1-07-01044.jpg,[ 0  2  2 -1],round_single
+364,Acrorad_0712-1001-1-07-01044.jpg,[-1  3  1  1],round_single
+365,Acrorad_0712-1001-1-07-01044.jpg,[-1  2  0  0],round_single
+366,Acrorad_0712-1001-1-07-01044.jpg,[-2  2  2 -1],round_single
+367,Acrorad_0712-1001-1-07-01044.jpg,[ 1  1 -2  2],round_single
+368,Acrorad_0712-1001-1-07-01044.jpg,[2 1 1 1],round_single
+369,Acrorad_0712-1001-1-07-01044.jpg,[2 0 0 0],round_single
+370,Acrorad_0712-1001-1-07-01044.jpg,[4 0 3 0],round_single
+371,Acrorad_0712-1001-1-07-01044.jpg,[ 3  0  2 -1],round_single
+372,Acrorad_0712-1001-1-07-01044.jpg,[0 1 0 3],round_single
+373,Acrorad_0712-1001-1-07-01044.jpg,[ 0  1 -2  2],round_single
+374,Acrorad_0712-1001-1-07-01044.jpg,[0 1 1 1],round_single
+375,Acrorad_0712-1001-1-07-01044.jpg,[0 0 0 0],round_single
+376,Acrorad_0712-1001-1-07-01044.jpg,[0 0 3 0],round_single
+377,Acrorad_0712-1001-1-07-01044.jpg,[ 0  0  2 -1],round_single
+378,Acrorad_0712-1001-1-07-01044.jpg,[-1  1  0  3],round_single
+379,Acrorad_0712-1001-1-07-01044.jpg,[-1  1 -2  2],round_single
+380,Acrorad_0712-1001-1-07-01044.jpg,[-1  1  1  1],round_single
+381,Acrorad_0712-1001-1-07-01044.jpg,[-1  0  0  0],round_single
+382,Acrorad_0712-1001-1-07-01044.jpg,[-2  0  3  0],round_single
+383,Acrorad_0712-1001-1-07-01044.jpg,[-2  0  2 -1],round_single
+384,Acrorad_0712-1001-1-07-01044.jpg,[-2  1 -2  2],round_single
+385,Acrorad_0712-1001-1-07-01044.jpg,[-3  0  0  0],round_single
+386,Acrorad_0712-1001-1-07-01044.jpg,[ 1  2  0 -3],unclear_single
+387,Acrorad_0712-1001-1-07-01044.jpg,[-1  2  0 -4],unclear_single
+388,Acrorad_0712-1001-1-07-01044.jpg,[ 1 -1 -2  2],round_single
+389,Acrorad_0712-1001-1-07-01044.jpg,[ 2 -1  1  1],round_single
+390,Acrorad_0712-1001-1-07-01044.jpg,[2 0 0 0],round_single
+391,Acrorad_0712-1001-1-07-01044.jpg,[4 0 3 0],round_single
+392,Acrorad_0712-1001-1-07-01044.jpg,[ 3  0  2 -1],round_single
+393,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -1  0  3],round_single
+394,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -1 -2  2],round_single
+395,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -1  1  1],round_single
+396,Acrorad_0712-1001-1-07-01044.jpg,[0 0 0 0],round_single
+397,Acrorad_0712-1001-1-07-01044.jpg,[0 0 3 0],round_single
+398,Acrorad_0712-1001-1-07-01044.jpg,[ 0  0  2 -1],round_single
+399,Acrorad_0712-1001-1-07-01044.jpg,[-1 -1  0  3],round_single
+400,Acrorad_0712-1001-1-07-01044.jpg,[-1 -1 -2  2],round_single
+401,Acrorad_0712-1001-1-07-01044.jpg,[-1 -1  1  1],round_single
+402,Acrorad_0712-1001-1-07-01044.jpg,[-1  0  0  0],round_single
+403,Acrorad_0712-1001-1-07-01044.jpg,[-2  0  3  0],round_single
+404,Acrorad_0712-1001-1-07-01044.jpg,[-2  0  2 -1],round_single
+405,Acrorad_0712-1001-1-07-01044.jpg,[-2 -1 -2  2],round_single
+406,Acrorad_0712-1001-1-07-01044.jpg,[-3  0  0  0],round_single
+407,Acrorad_0712-1001-1-07-01044.jpg,[1 4 0 3],unclear_single
+408,Acrorad_0712-1001-1-07-01044.jpg,[ 0  3 -2  1],unclear_single
+409,Acrorad_0712-1001-1-07-01044.jpg,[1 2 1 0],unclear_single
+410,Acrorad_0712-1001-1-07-01044.jpg,[1 2 0 0],unclear_single
+411,Acrorad_0712-1001-1-07-01044.jpg,[ 1  1 -1 -1],unclear_single
+412,Acrorad_0712-1001-1-07-01044.jpg,[ 2  2  3 -1],unclear_single
+413,Acrorad_0712-1001-1-07-01044.jpg,[ 1  1  2 -2],unclear_single
+414,Acrorad_0712-1001-1-07-01044.jpg,[ 1  1  0 -4],unclear_single
+415,Acrorad_0712-1001-1-07-01044.jpg,[-1  4  0  3],unclear_single
+416,Acrorad_0712-1001-1-07-01044.jpg,[ 0  3 -2  1],unclear_single
+417,Acrorad_0712-1001-1-07-01044.jpg,[-1  3  1  0],unclear_single
+418,Acrorad_0712-1001-1-07-01044.jpg,[-1  2  0  0],unclear_single
+419,Acrorad_0712-1001-1-07-01044.jpg,[ 0  1 -1 -1],unclear_single
+420,Acrorad_0712-1001-1-07-01044.jpg,[-1  1  2 -2],unclear_single
+421,Acrorad_0712-1001-1-07-01044.jpg,[-1  1  0 -4],unclear_single
+422,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -3 -1  2],round_single
+423,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -3  1  1],round_single
+424,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -2  0  0],round_single
+425,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -2  2 -1],round_single
+426,Acrorad_0712-1001-1-07-01044.jpg,[-1 -3 -1  2],round_single
+427,Acrorad_0712-1001-1-07-01044.jpg,[-1 -3  1  1],round_single
+428,Acrorad_0712-1001-1-07-01044.jpg,[-1 -2  0  0],round_single
+429,Acrorad_0712-1001-1-07-01044.jpg,[-2 -2  2 -1],round_single
+430,Acrorad_0712-1001-1-07-01044.jpg,[ 2  0 -2  1],unclear_single
+431,Acrorad_0712-1001-1-07-01044.jpg,[ 2  0 -3  0],unclear_single
+432,Acrorad_0712-1001-1-07-01044.jpg,[3 0 0 0],unclear_single
+433,Acrorad_0712-1001-1-07-01044.jpg,[1 0 0 3],unclear_single
+434,Acrorad_0712-1001-1-07-01044.jpg,[ 0  0 -2  1],unclear_single
+435,Acrorad_0712-1001-1-07-01044.jpg,[ 0  0 -3  0],unclear_single
+436,Acrorad_0712-1001-1-07-01044.jpg,[1 0 1 0],unclear_single
+437,Acrorad_0712-1001-1-07-01044.jpg,[1 0 0 0],unclear_single
+438,Acrorad_0712-1001-1-07-01044.jpg,[ 1  0 -1 -1],unclear_single
+439,Acrorad_0712-1001-1-07-01044.jpg,[ 2  0  3 -1],unclear_single
+440,Acrorad_0712-1001-1-07-01044.jpg,[ 1  0  2 -2],unclear_single
+441,Acrorad_0712-1001-1-07-01044.jpg,[0 0 0 3],unclear_single
+442,Acrorad_0712-1001-1-07-01044.jpg,[ 0  0 -2  1],unclear_single
+443,Acrorad_0712-1001-1-07-01044.jpg,[ 0  0 -3  0],unclear_single
+444,Acrorad_0712-1001-1-07-01044.jpg,[-1  0  1  0],unclear_single
+445,Acrorad_0712-1001-1-07-01044.jpg,[-1  0  0  0],unclear_single
+446,Acrorad_0712-1001-1-07-01044.jpg,[ 0  0 -1 -2],unclear_single
+447,Acrorad_0712-1001-1-07-01044.jpg,[-2  0  3 -1],unclear_single
+448,Acrorad_0712-1001-1-07-01044.jpg,[-1  0  2 -2],unclear_single
+449,Acrorad_0712-1001-1-07-01044.jpg,[-1  0  0 -4],unclear_single
+450,Acrorad_0712-1001-1-07-01044.jpg,[-2  0 -2  1],unclear_single
+451,Acrorad_0712-1001-1-07-01044.jpg,[-2  0 -3  0],unclear_single
+452,Acrorad_0712-1001-1-07-01044.jpg,[-3  0  0  0],unclear_single
+453,Acrorad_0712-1001-1-07-01044.jpg,[-2  0 -1 -1],unclear_single
+454,Acrorad_0712-1001-1-07-01044.jpg,[ 1 -4  0  3],unclear_single
+455,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -3 -2  1],unclear_single
+456,Acrorad_0712-1001-1-07-01044.jpg,[ 1 -3  1  0],unclear_single
+457,Acrorad_0712-1001-1-07-01044.jpg,[ 1 -2  0  0],unclear_single
+458,Acrorad_0712-1001-1-07-01044.jpg,[ 1 -2 -1 -1],unclear_single
+459,Acrorad_0712-1001-1-07-01044.jpg,[ 1 -1  2 -2],unclear_single
+460,Acrorad_0712-1001-1-07-01044.jpg,[ 1 -1  0 -4],unclear_single
+461,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -4  0  3],unclear_single
+462,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -3 -2  1],unclear_single
+463,Acrorad_0712-1001-1-07-01044.jpg,[-1 -3  1  0],unclear_single
+464,Acrorad_0712-1001-1-07-01044.jpg,[-1 -2  0  0],unclear_single
+465,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -2 -1 -1],unclear_single
+466,Acrorad_0712-1001-1-07-01044.jpg,[-1 -1  2 -2],unclear_single
+467,Acrorad_0712-1001-1-07-01044.jpg,[-1 -1  0 -4],unclear_single
+468,Acrorad_0712-1001-1-07-01044.jpg,[-1 -2  0 -3],unclear_single
+469,Acrorad_0712-1001-1-07-01044.jpg,[ 0  3  0 -1],unclear_single
+470,Acrorad_0712-1001-1-07-01044.jpg,[1 1 0 2],unclear_single
+471,Acrorad_0712-1001-1-07-01044.jpg,[ 1  1 -2  0],unclear_single
+472,Acrorad_0712-1001-1-07-01044.jpg,[2 1 1 0],unclear_single
+473,Acrorad_0712-1001-1-07-01044.jpg,[ 2  0  0 -1],unclear_single
+474,Acrorad_0712-1001-1-07-01044.jpg,[0 1 0 2],unclear_single
+475,Acrorad_0712-1001-1-07-01044.jpg,[ 0  1 -2  0],unclear_single
+476,Acrorad_0712-1001-1-07-01044.jpg,[0 1 1 0],unclear_single
+477,Acrorad_0712-1001-1-07-01044.jpg,[ 0  0  0 -1],unclear_single
+478,Acrorad_0712-1001-1-07-01044.jpg,[-1  1 -2  0],unclear_single
+479,Acrorad_0712-1001-1-07-01044.jpg,[-2  0  0 -1],unclear_single
+480,Acrorad_0712-1001-1-07-01044.jpg,[ 1 -2  0  2],unclear_single
+481,Acrorad_0712-1001-1-07-01044.jpg,[ 2 -1  1  0],unclear_single
+482,Acrorad_0712-1001-1-07-01044.jpg,[ 2 -1  0 -1],unclear_single
+483,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -2  0  2],unclear_single
+484,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -1  1  0],unclear_single
+485,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -1  0 -1],unclear_single
+486,Acrorad_0712-1001-1-07-01044.jpg,[-1  3  0 -2],round_single
+487,Acrorad_0712-1001-1-07-01044.jpg,[1 2 0 0],round_single
+488,Acrorad_0712-1001-1-07-01044.jpg,[ 1  2 -2  0],round_single
+489,Acrorad_0712-1001-1-07-01044.jpg,[ 2  1  1 -1],round_single
+490,Acrorad_0712-1001-1-07-01044.jpg,[ 2  1  0 -3],round_single
+491,Acrorad_0712-1001-1-07-01044.jpg,[-1  2  0  0],round_single
+492,Acrorad_0712-1001-1-07-01044.jpg,[ 0  2 -2  0],round_single
+493,Acrorad_0712-1001-1-07-01044.jpg,[-1  1  1 -1],round_single
+494,Acrorad_0712-1001-1-07-01044.jpg,[-1  1  0 -3],round_single
+495,Acrorad_0712-1001-1-07-01044.jpg,[ 1  0 -2  2],round_single
+496,Acrorad_0712-1001-1-07-01044.jpg,[2 0 0 0],round_single
+497,Acrorad_0712-1001-1-07-01044.jpg,[ 1  0 -2  0],round_single
+498,Acrorad_0712-1001-1-07-01044.jpg,[ 2  0  1 -1],round_single
+499,Acrorad_0712-1001-1-07-01044.jpg,[ 2  0  0 -3],round_single
+500,Acrorad_0712-1001-1-07-01044.jpg,[ 0  0 -2  2],round_single
+501,Acrorad_0712-1001-1-07-01044.jpg,[-1  0  0  0],round_single
+502,Acrorad_0712-1001-1-07-01044.jpg,[ 0  0 -2  0],round_single
+503,Acrorad_0712-1001-1-07-01044.jpg,[-1  0  1 -1],round_single
+504,Acrorad_0712-1001-1-07-01044.jpg,[-1  0  0 -3],round_single
+505,Acrorad_0712-1001-1-07-01044.jpg,[-2  0 -4  1],round_single
+506,Acrorad_0712-1001-1-07-01044.jpg,[ 2 -2  1 -1],round_single
+507,Acrorad_0712-1001-1-07-01044.jpg,[-1 -3  0  0],round_single
+508,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -2 -2  0],round_single
+509,Acrorad_0712-1001-1-07-01044.jpg,[-1 -2  1 -1],round_single
+510,Acrorad_0712-1001-1-07-01044.jpg,[-1 -2  0 -3],round_single
+511,Acrorad_0712-1001-1-07-01044.jpg,[ 0  2  0 -3],round_single
+512,Acrorad_0712-1001-1-07-01044.jpg,[ 1  0 -3  0],round_single
+513,Acrorad_0712-1001-1-07-01044.jpg,[ 2  0 -1 -1],round_single
+514,Acrorad_0712-1001-1-07-01044.jpg,[ 0  0 -3  0],round_single
+515,Acrorad_0712-1001-1-07-01044.jpg,[ 0  0 -1 -1],round_single
+516,Acrorad_0712-1001-1-07-01044.jpg,[ 0  0  0 -3],round_single
+517,Acrorad_0712-1001-1-07-01044.jpg,[-2  0 -3  0],round_single
+518,Acrorad_0712-1001-1-07-01044.jpg,[ 0 -2  0 -3],round_single
+519,Acrorad_0712-1001-1-07-01078.jpg,[ 0  2  0 -2],round_single
+520,Acrorad_0712-1001-1-07-01078.jpg,[ 1  1 -2 -1],round_single
+521,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0  0 -2],round_single
+522,Acrorad_0712-1001-1-07-01078.jpg,[-2  0 -2  0],unclear_single
+523,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -1 -2 -1],round_single
+524,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -2  0 -2],round_single
+525,Acrorad_0712-1001-1-07-01078.jpg,[0 3 0 0],round_single
+526,Acrorad_0712-1001-1-07-01078.jpg,[ 1  2 -2  2],round_single
+527,Acrorad_0712-1001-1-07-01078.jpg,[2 1 0 0],round_single
+528,Acrorad_0712-1001-1-07-01078.jpg,[ 3  1  1 -1],round_single
+529,Acrorad_0712-1001-1-07-01078.jpg,[ 0  2 -2  2],round_single
+530,Acrorad_0712-1001-1-07-01078.jpg,[0 2 1 2],round_single
+531,Acrorad_0712-1001-1-07-01078.jpg,[0 1 0 0],round_single
+532,Acrorad_0712-1001-1-07-01078.jpg,[ 0  1  1 -1],round_single
+533,Acrorad_0712-1001-1-07-01078.jpg,[ 0  2 -2  2],round_single
+534,Acrorad_0712-1001-1-07-01078.jpg,[-1  2  1  2],round_single
+535,Acrorad_0712-1001-1-07-01078.jpg,[-1  1  0  0],round_single
+536,Acrorad_0712-1001-1-07-01078.jpg,[-1  1  1 -1],round_single
+537,Acrorad_0712-1001-1-07-01078.jpg,[ 1  0 -2  2],round_single
+538,Acrorad_0712-1001-1-07-01078.jpg,[3 0 1 1],round_single
+539,Acrorad_0712-1001-1-07-01078.jpg,[2 0 0 0],round_single
+540,Acrorad_0712-1001-1-07-01078.jpg,[4 0 3 0],round_single
+541,Acrorad_0712-1001-1-07-01078.jpg,[ 3  0  1 -1],round_single
+542,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0 -2  2],round_single
+543,Acrorad_0712-1001-1-07-01078.jpg,[0 0 1 2],round_single
+544,Acrorad_0712-1001-1-07-01078.jpg,[0 0 0 0],round_single
+545,Acrorad_0712-1001-1-07-01078.jpg,[1 0 3 0],round_single
+546,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0  1 -1],round_single
+547,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0 -2  2],round_single
+548,Acrorad_0712-1001-1-07-01078.jpg,[-1  0  1  2],round_single
+549,Acrorad_0712-1001-1-07-01078.jpg,[-1  0  0  0],round_single
+550,Acrorad_0712-1001-1-07-01078.jpg,[-2  0  3  0],round_single
+551,Acrorad_0712-1001-1-07-01078.jpg,[-1  0  1 -1],round_single
+552,Acrorad_0712-1001-1-07-01078.jpg,[-3  0  0  0],round_single
+553,Acrorad_0712-1001-1-07-01078.jpg,[ 2 -1  0  0],round_single
+554,Acrorad_0712-1001-1-07-01078.jpg,[ 3 -1  2 -1],round_single
+555,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -2 -2  2],round_single
+556,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -2  1  2],round_single
+557,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -2  0  0],round_single
+558,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -1  1 -1],round_single
+559,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -2 -2  2],round_single
+560,Acrorad_0712-1001-1-07-01078.jpg,[-1 -2  1  2],round_single
+561,Acrorad_0712-1001-1-07-01078.jpg,[-1 -1  0  0],round_single
+562,Acrorad_0712-1001-1-07-01078.jpg,[-1 -1  1 -1],round_single
+563,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -3  0  0],round_single
+564,Acrorad_0712-1001-1-07-01078.jpg,[ 0  2  1 -1],round_single
+565,Acrorad_0712-1001-1-07-01078.jpg,[ 0  2  0 -3],round_single
+566,Acrorad_0712-1001-1-07-01078.jpg,[2 1 0 0],round_single
+567,Acrorad_0712-1001-1-07-01078.jpg,[ 2  1 -1 -1],round_single
+568,Acrorad_0712-1001-1-07-01078.jpg,[ 0  2 -1  3],round_single
+569,Acrorad_0712-1001-1-07-01078.jpg,[ 0  2 -2  2],round_single
+570,Acrorad_0712-1001-1-07-01078.jpg,[0 1 1 1],round_single
+571,Acrorad_0712-1001-1-07-01078.jpg,[0 1 0 0],round_single
+572,Acrorad_0712-1001-1-07-01078.jpg,[ 0  1 -1 -1],round_single
+573,Acrorad_0712-1001-1-07-01078.jpg,[0 1 3 0],round_single
+574,Acrorad_0712-1001-1-07-01078.jpg,[ 0  1  1 -1],round_single
+575,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0  0 -3],round_single
+576,Acrorad_0712-1001-1-07-01078.jpg,[-1  2 -2  2],round_single
+577,Acrorad_0712-1001-1-07-01078.jpg,[-2  1  1  1],round_single
+578,Acrorad_0712-1001-1-07-01078.jpg,[-1  1  0  0],round_single
+579,Acrorad_0712-1001-1-07-01078.jpg,[-1  1 -1 -1],round_single
+580,Acrorad_0712-1001-1-07-01078.jpg,[-3  1  3  0],round_single
+581,Acrorad_0712-1001-1-07-01078.jpg,[-2  1  1 -1],round_single
+582,Acrorad_0712-1001-1-07-01078.jpg,[ 2 -1 -2  2],round_single
+583,Acrorad_0712-1001-1-07-01078.jpg,[ 1  0 -3  0],round_single
+584,Acrorad_0712-1001-1-07-01078.jpg,[ 3 -1  1  1],round_single
+585,Acrorad_0712-1001-1-07-01078.jpg,[2 0 0 0],round_single
+586,Acrorad_0712-1001-1-07-01078.jpg,[ 2  0 -1 -1],round_single
+587,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -1 -1  3],round_single
+588,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -1 -2  2],round_single
+589,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0 -3  0],round_single
+590,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -1  1  1],round_single
+591,Acrorad_0712-1001-1-07-01078.jpg,[0 0 0 0],round_single
+592,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0 -1 -1],round_single
+593,Acrorad_0712-1001-1-07-01078.jpg,[0 0 3 0],round_single
+594,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0  1 -1],round_single
+595,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0  0 -3],round_single
+596,Acrorad_0712-1001-1-07-01078.jpg,[-1 -1 -1  3],round_single
+597,Acrorad_0712-1001-1-07-01078.jpg,[-1 -1 -2  2],round_single
+598,Acrorad_0712-1001-1-07-01078.jpg,[-1  0 -3  0],round_single
+599,Acrorad_0712-1001-1-07-01078.jpg,[-2 -1  1  1],round_single
+600,Acrorad_0712-1001-1-07-01078.jpg,[-1  0  0  0],round_single
+601,Acrorad_0712-1001-1-07-01078.jpg,[-1  0 -1 -1],round_single
+602,Acrorad_0712-1001-1-07-01078.jpg,[-3  0  3  0],round_single
+603,Acrorad_0712-1001-1-07-01078.jpg,[-2  0  1 -1],round_single
+604,Acrorad_0712-1001-1-07-01078.jpg,[-2  0 -3  0],round_single
+605,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -3  0  1],round_single
+606,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -3  0  0],round_single
+607,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -2 -1 -1],round_single
+608,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -2  1 -1],round_single
+609,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -1  0 -3],round_single
+610,Acrorad_0712-1001-1-07-01078.jpg,[0 3 0 1],unclear_single
+611,Acrorad_0712-1001-1-07-01078.jpg,[ 0  2 -1  0],unclear_single
+612,Acrorad_0712-1001-1-07-01078.jpg,[ 0  2  2 -1],unclear_single
+613,Acrorad_0712-1001-1-07-01078.jpg,[ 0  1  0 -2],unclear_single
+614,Acrorad_0712-1001-1-07-01078.jpg,[3 0 0 1],unclear_single
+615,Acrorad_0712-1001-1-07-01078.jpg,[ 2  0 -1  0],unclear_single
+616,Acrorad_0712-1001-1-07-01078.jpg,[ 4  0  2 -1],unclear_single
+617,Acrorad_0712-1001-1-07-01078.jpg,[0 0 0 1],unclear_single
+618,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0 -1  0],unclear_single
+619,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0  2 -1],unclear_single
+620,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0  0 -2],unclear_single
+621,Acrorad_0712-1001-1-07-01078.jpg,[-3  0  0  1],unclear_single
+622,Acrorad_0712-1001-1-07-01078.jpg,[-2  0 -1  0],unclear_single
+623,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -3  0  1],unclear_single
+624,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -2 -1  0],unclear_single
+625,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -1  0 -2],unclear_single
+626,Acrorad_0712-1001-1-07-01078.jpg,[1 3 0 1],round_single
+627,Acrorad_0712-1001-1-07-01078.jpg,[1 3 0 0],round_single
+628,Acrorad_0712-1001-1-07-01078.jpg,[ 1  2  1 -1],round_single
+629,Acrorad_0712-1001-1-07-01078.jpg,[0 4 0 1],round_single
+630,Acrorad_0712-1001-1-07-01078.jpg,[0 3 0 0],round_single
+631,Acrorad_0712-1001-1-07-01078.jpg,[ 0  2  1 -1],round_single
+632,Acrorad_0712-1001-1-07-01078.jpg,[ 2  1 -2  2],round_single
+633,Acrorad_0712-1001-1-07-01078.jpg,[3 1 0 0],round_single
+634,Acrorad_0712-1001-1-07-01078.jpg,[ 1  2 -1  3],round_single
+635,Acrorad_0712-1001-1-07-01078.jpg,[ 0  1 -2  2],round_single
+636,Acrorad_0712-1001-1-07-01078.jpg,[1 1 0 1],round_single
+637,Acrorad_0712-1001-1-07-01078.jpg,[1 1 0 0],round_single
+638,Acrorad_0712-1001-1-07-01078.jpg,[2 1 3 0],round_single
+639,Acrorad_0712-1001-1-07-01078.jpg,[ 1  0  1 -1],round_single
+640,Acrorad_0712-1001-1-07-01078.jpg,[ 0  2 -1  3],round_single
+641,Acrorad_0712-1001-1-07-01078.jpg,[ 0  1 -2  2],round_single
+642,Acrorad_0712-1001-1-07-01078.jpg,[0 1 0 1],round_single
+643,Acrorad_0712-1001-1-07-01078.jpg,[0 1 0 0],round_single
+644,Acrorad_0712-1001-1-07-01078.jpg,[-1  1  3  0],round_single
+645,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0  1 -1],round_single
+646,Acrorad_0712-1001-1-07-01078.jpg,[-1  1 -2  2],round_single
+647,Acrorad_0712-1001-1-07-01078.jpg,[-3  1  0  1],round_single
+648,Acrorad_0712-1001-1-07-01078.jpg,[-2  1  0  0],round_single
+649,Acrorad_0712-1001-1-07-01078.jpg,[-4  1  2  0],round_single
+650,Acrorad_0712-1001-1-07-01078.jpg,[-3  0  1 -1],round_single
+651,Acrorad_0712-1001-1-07-01078.jpg,[ 2  0 -2  2],round_single
+652,Acrorad_0712-1001-1-07-01078.jpg,[3 0 0 0],round_single
+653,Acrorad_0712-1001-1-07-01078.jpg,[ 1 -1 -1  3],round_single
+654,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0 -2  2],round_single
+655,Acrorad_0712-1001-1-07-01078.jpg,[1 0 1 1],round_single
+656,Acrorad_0712-1001-1-07-01078.jpg,[1 0 0 0],round_single
+657,Acrorad_0712-1001-1-07-01078.jpg,[2 0 3 0],round_single
+658,Acrorad_0712-1001-1-07-01078.jpg,[ 1  0  1 -1],round_single
+659,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -1 -1  3],round_single
+660,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0 -2  2],round_single
+661,Acrorad_0712-1001-1-07-01078.jpg,[0 0 0 1],round_single
+662,Acrorad_0712-1001-1-07-01078.jpg,[0 0 0 0],round_single
+663,Acrorad_0712-1001-1-07-01078.jpg,[-1  0  3  0],round_single
+664,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0  1 -1],round_single
+665,Acrorad_0712-1001-1-07-01078.jpg,[-1  0 -2  2],round_single
+666,Acrorad_0712-1001-1-07-01078.jpg,[-3  0  0  1],round_single
+667,Acrorad_0712-1001-1-07-01078.jpg,[-2  0  0  0],round_single
+668,Acrorad_0712-1001-1-07-01078.jpg,[-4  0  3  0],round_single
+669,Acrorad_0712-1001-1-07-01078.jpg,[-3  0  1 -1],round_single
+670,Acrorad_0712-1001-1-07-01078.jpg,[ 1 -3  0  1],round_single
+671,Acrorad_0712-1001-1-07-01078.jpg,[ 1 -2  0  0],round_single
+672,Acrorad_0712-1001-1-07-01078.jpg,[ 1 -1  1 -1],round_single
+673,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -4 -1  3],round_single
+674,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -3  0  1],round_single
+675,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -2  0  0],round_single
+676,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -1  1 -1],round_single
+677,Acrorad_0712-1001-1-07-01078.jpg,[ 2  1  0 -2],round_single
+678,Acrorad_0712-1001-1-07-01078.jpg,[-2  1  0 -2],round_single
+679,Acrorad_0712-1001-1-07-01078.jpg,[ 1  0 -3  1],round_single
+680,Acrorad_0712-1001-1-07-01078.jpg,[ 1  0 -1  0],round_single
+681,Acrorad_0712-1001-1-07-01078.jpg,[ 1  0 -2 -1],round_single
+682,Acrorad_0712-1001-1-07-01078.jpg,[ 2  0  0 -2],round_single
+683,Acrorad_0712-1001-1-07-01078.jpg,[-1  0 -3  1],round_single
+684,Acrorad_0712-1001-1-07-01078.jpg,[-1  0 -1  0],round_single
+685,Acrorad_0712-1001-1-07-01078.jpg,[-1  0 -2 -1],round_single
+686,Acrorad_0712-1001-1-07-01078.jpg,[-2  0  0 -2],round_single
+687,Acrorad_0712-1001-1-07-01078.jpg,[ 1 -3 -1  0],round_single
+688,Acrorad_0712-1001-1-07-01078.jpg,[ 1 -2 -2 -1],round_single
+689,Acrorad_0712-1001-1-07-01078.jpg,[ 2 -2  0 -2],round_single
+690,Acrorad_0712-1001-1-07-01078.jpg,[-1 -2 -1  0],round_single
+691,Acrorad_0712-1001-1-07-01078.jpg,[-1 -2 -2 -1],round_single
+692,Acrorad_0712-1001-1-07-01078.jpg,[-2 -2  0 -2],round_single
+693,Acrorad_0712-1001-1-07-01078.jpg,[0 3 0 2],unclear_single
+694,Acrorad_0712-1001-1-07-01078.jpg,[ 0  2 -1  1],unclear_single
+695,Acrorad_0712-1001-1-07-01078.jpg,[0 2 1 0],unclear_single
+696,Acrorad_0712-1001-1-07-01078.jpg,[0 1 0 0],unclear_single
+697,Acrorad_0712-1001-1-07-01078.jpg,[ 0  1 -1 -2],unclear_single
+698,Acrorad_0712-1001-1-07-01078.jpg,[-1  2 -1  1],unclear_single
+699,Acrorad_0712-1001-1-07-01078.jpg,[-2  1  0  0],unclear_single
+700,Acrorad_0712-1001-1-07-01078.jpg,[-1  1 -1 -2],unclear_single
+701,Acrorad_0712-1001-1-07-01078.jpg,[2 0 0 2],unclear_single
+702,Acrorad_0712-1001-1-07-01078.jpg,[ 1  0 -1  1],unclear_single
+703,Acrorad_0712-1001-1-07-01078.jpg,[ 1  0 -2  0],unclear_single
+704,Acrorad_0712-1001-1-07-01078.jpg,[3 0 1 0],unclear_single
+705,Acrorad_0712-1001-1-07-01078.jpg,[2 0 0 0],unclear_single
+706,Acrorad_0712-1001-1-07-01078.jpg,[ 2  0  0 -2],unclear_single
+707,Acrorad_0712-1001-1-07-01078.jpg,[0 0 0 2],unclear_single
+708,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0 -1  1],unclear_single
+709,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0 -3  0],unclear_single
+710,Acrorad_0712-1001-1-07-01078.jpg,[0 0 1 0],unclear_single
+711,Acrorad_0712-1001-1-07-01078.jpg,[0 0 0 0],unclear_single
+712,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0 -1 -2],unclear_single
+713,Acrorad_0712-1001-1-07-01078.jpg,[-1  0 -1  1],unclear_single
+714,Acrorad_0712-1001-1-07-01078.jpg,[-1  0 -3  0],unclear_single
+715,Acrorad_0712-1001-1-07-01078.jpg,[-2  0  1  0],unclear_single
+716,Acrorad_0712-1001-1-07-01078.jpg,[-2  0  0  0],unclear_single
+717,Acrorad_0712-1001-1-07-01078.jpg,[-1  0 -1 -2],unclear_single
+718,Acrorad_0712-1001-1-07-01078.jpg,[-2  0 -3  0],unclear_single
+719,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -2  0  0],unclear_single
+720,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -2 -1 -2],unclear_single
+721,Acrorad_0712-1001-1-07-01078.jpg,[ 0  2  0 -3],round_single
+722,Acrorad_0712-1001-1-07-01078.jpg,[ 2  0 -3  1],round_single
+723,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0 -1  0],round_single
+724,Acrorad_0712-1001-1-07-01078.jpg,[ 0  0  0 -3],round_single
+725,Acrorad_0712-1001-1-07-01078.jpg,[-1  0 -3  1],round_single
+726,Acrorad_0712-1001-1-07-01078.jpg,[ 0 -1  0 -3],round_single
+727,Acrorad_0712-1001-1-07-01097.jpg,[1 2 1 2],round_single
+728,Acrorad_0712-1001-1-07-01097.jpg,[0 3 0 4],round_single
+729,Acrorad_0712-1001-1-07-01097.jpg,[0 2 1 2],round_single
+730,Acrorad_0712-1001-1-07-01097.jpg,[-1  2  1  2],round_single
+731,Acrorad_0712-1001-1-07-01097.jpg,[1 0 1 2],round_single
+732,Acrorad_0712-1001-1-07-01097.jpg,[2 0 3 0],round_single
+733,Acrorad_0712-1001-1-07-01097.jpg,[0 0 1 2],round_single
+734,Acrorad_0712-1001-1-07-01097.jpg,[0 0 3 0],round_single
+735,Acrorad_0712-1001-1-07-01097.jpg,[-1  0  1  2],round_single
+736,Acrorad_0712-1001-1-07-01097.jpg,[-2  0  3  0],round_single
+737,Acrorad_0712-1001-1-07-01097.jpg,[-5  0  3  0],round_single
+738,Acrorad_0712-1001-1-07-01097.jpg,[1 0 1 2],round_single
+739,Acrorad_0712-1001-1-07-01097.jpg,[2 0 3 0],round_single
+740,Acrorad_0712-1001-1-07-01097.jpg,[0 0 1 2],round_single
+741,Acrorad_0712-1001-1-07-01097.jpg,[0 0 3 0],round_single
+742,Acrorad_0712-1001-1-07-01097.jpg,[-1 -1  1  2],round_single
+743,Acrorad_0712-1001-1-07-01097.jpg,[-2  0  3  0],round_single
+744,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -2  1  2],round_single
+745,Acrorad_0712-1001-1-07-01097.jpg,[-1 -2  1  2],round_single
+746,Acrorad_0712-1001-1-07-01097.jpg,[0 0 0 0],round_single
+747,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -1  0  0],round_single
+748,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -1  1 -1],round_single
+749,Acrorad_0712-1001-1-07-01097.jpg,[0 4 1 1],round_single
+750,Acrorad_0712-1001-1-07-01097.jpg,[0 3 0 0],round_single
+751,Acrorad_0712-1001-1-07-01097.jpg,[ 0  2 -1 -1],round_single
+752,Acrorad_0712-1001-1-07-01097.jpg,[ 0  2  1 -2],round_single
+753,Acrorad_0712-1001-1-07-01097.jpg,[ 0  2  0 -3],round_single
+754,Acrorad_0712-1001-1-07-01097.jpg,[-2  3  0  0],round_single
+755,Acrorad_0712-1001-1-07-01097.jpg,[-1  2 -1 -1],round_single
+756,Acrorad_0712-1001-1-07-01097.jpg,[-2  2  1 -2],round_single
+757,Acrorad_0712-1001-1-07-01097.jpg,[ 2  1 -2  2],round_single
+758,Acrorad_0712-1001-1-07-01097.jpg,[ 1  1 -4  0],round_single
+759,Acrorad_0712-1001-1-07-01097.jpg,[3 1 1 1],round_single
+760,Acrorad_0712-1001-1-07-01097.jpg,[2 0 0 0],round_single
+761,Acrorad_0712-1001-1-07-01097.jpg,[ 2  0 -1 -1],round_single
+762,Acrorad_0712-1001-1-07-01097.jpg,[ 0  1 -1  3],round_single
+763,Acrorad_0712-1001-1-07-01097.jpg,[ 0  1 -2  2],round_single
+764,Acrorad_0712-1001-1-07-01097.jpg,[ 0  0 -4  0],round_single
+765,Acrorad_0712-1001-1-07-01097.jpg,[0 1 1 1],round_single
+766,Acrorad_0712-1001-1-07-01097.jpg,[0 0 0 0],round_single
+767,Acrorad_0712-1001-1-07-01097.jpg,[ 0  0 -1 -1],round_single
+768,Acrorad_0712-1001-1-07-01097.jpg,[0 0 3 0],round_single
+769,Acrorad_0712-1001-1-07-01097.jpg,[ 0  0  1 -2],round_single
+770,Acrorad_0712-1001-1-07-01097.jpg,[ 0  0  0 -3],round_single
+771,Acrorad_0712-1001-1-07-01097.jpg,[-1  1 -1  3],round_single
+772,Acrorad_0712-1001-1-07-01097.jpg,[-1  1 -2  2],round_single
+773,Acrorad_0712-1001-1-07-01097.jpg,[-1  0 -4  0],round_single
+774,Acrorad_0712-1001-1-07-01097.jpg,[-2  1  1  1],round_single
+775,Acrorad_0712-1001-1-07-01097.jpg,[-2  0  0  0],round_single
+776,Acrorad_0712-1001-1-07-01097.jpg,[-1  0 -1 -1],round_single
+777,Acrorad_0712-1001-1-07-01097.jpg,[-3  0  3  0],round_single
+778,Acrorad_0712-1001-1-07-01097.jpg,[-3  0  1 -1],round_single
+779,Acrorad_0712-1001-1-07-01097.jpg,[-2  0 -3  0],round_single
+780,Acrorad_0712-1001-1-07-01097.jpg,[ 2 -2 -2  2],round_single
+781,Acrorad_0712-1001-1-07-01097.jpg,[ 2 -1  0  0],round_single
+782,Acrorad_0712-1001-1-07-01097.jpg,[ 2 -1 -1 -1],round_single
+783,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -2 -1  3],round_single
+784,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -2 -2  2],round_single
+785,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -2  1  1],round_single
+786,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -1  0  0],round_single
+787,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -1 -1 -1],round_single
+788,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -1  3  0],round_single
+789,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -1  1 -2],round_single
+790,Acrorad_0712-1001-1-07-01097.jpg,[ 0  0  0 -3],round_single
+791,Acrorad_0712-1001-1-07-01097.jpg,[-1 -2 -1  3],round_single
+792,Acrorad_0712-1001-1-07-01097.jpg,[-1 -2 -2  2],round_single
+793,Acrorad_0712-1001-1-07-01097.jpg,[-2 -2  1  1],round_single
+794,Acrorad_0712-1001-1-07-01097.jpg,[-2 -1  0  0],round_single
+795,Acrorad_0712-1001-1-07-01097.jpg,[-1 -1 -1 -1],round_single
+796,Acrorad_0712-1001-1-07-01097.jpg,[-3 -1  3  0],round_single
+797,Acrorad_0712-1001-1-07-01097.jpg,[-3 -1  1 -1],round_single
+798,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -4  0  0],round_single
+799,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -2  1 -1],round_single
+800,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -2  0 -3],round_single
+801,Acrorad_0712-1001-1-07-01097.jpg,[ 0  2  0 -3],round_single
+802,Acrorad_0712-1001-1-07-01097.jpg,[1 3 0 1],round_single
+803,Acrorad_0712-1001-1-07-01097.jpg,[1 2 0 0],round_single
+804,Acrorad_0712-1001-1-07-01097.jpg,[ 1  1 -2 -1],round_single
+805,Acrorad_0712-1001-1-07-01097.jpg,[2 2 2 0],round_single
+806,Acrorad_0712-1001-1-07-01097.jpg,[ 2  1  1 -2],round_single
+807,Acrorad_0712-1001-1-07-01097.jpg,[ 0  4 -1  3],round_single
+808,Acrorad_0712-1001-1-07-01097.jpg,[-1  3  0  1],round_single
+809,Acrorad_0712-1001-1-07-01097.jpg,[0 2 0 0],round_single
+810,Acrorad_0712-1001-1-07-01097.jpg,[ 0  1 -2 -1],round_single
+811,Acrorad_0712-1001-1-07-01097.jpg,[-1  2  2  0],round_single
+812,Acrorad_0712-1001-1-07-01097.jpg,[-1  1  1 -2],round_single
+813,Acrorad_0712-1001-1-07-01097.jpg,[ 0  1  0 -3],round_single
+814,Acrorad_0712-1001-1-07-01097.jpg,[ 2  0 -4  0],round_single
+815,Acrorad_0712-1001-1-07-01097.jpg,[ 1  0 -1  3],round_single
+816,Acrorad_0712-1001-1-07-01097.jpg,[ 1  0 -2  2],round_single
+817,Acrorad_0712-1001-1-07-01097.jpg,[ 0  0 -4  0],round_single
+818,Acrorad_0712-1001-1-07-01097.jpg,[1 0 0 1],round_single
+819,Acrorad_0712-1001-1-07-01097.jpg,[1 0 0 0],round_single
+820,Acrorad_0712-1001-1-07-01097.jpg,[ 1  0 -2 -1],round_single
+821,Acrorad_0712-1001-1-07-01097.jpg,[2 0 2 0],round_single
+822,Acrorad_0712-1001-1-07-01097.jpg,[ 2  0  1 -2],round_single
+823,Acrorad_0712-1001-1-07-01097.jpg,[ 0  0 -1  3],round_single
+824,Acrorad_0712-1001-1-07-01097.jpg,[ 0  0 -3  1],round_single
+825,Acrorad_0712-1001-1-07-01097.jpg,[ 0  0 -4  0],round_single
+826,Acrorad_0712-1001-1-07-01097.jpg,[-1  0  0  1],round_single
+827,Acrorad_0712-1001-1-07-01097.jpg,[0 0 0 0],round_single
+828,Acrorad_0712-1001-1-07-01097.jpg,[ 0  0 -2 -1],round_single
+829,Acrorad_0712-1001-1-07-01097.jpg,[-1  0  2  0],round_single
+830,Acrorad_0712-1001-1-07-01097.jpg,[-1  0  1 -2],round_single
+831,Acrorad_0712-1001-1-07-01097.jpg,[ 0  0  0 -3],round_single
+832,Acrorad_0712-1001-1-07-01097.jpg,[-2  0 -3  1],round_single
+833,Acrorad_0712-1001-1-07-01097.jpg,[-1  0 -4  0],round_single
+834,Acrorad_0712-1001-1-07-01097.jpg,[-3  0  0  0],round_single
+835,Acrorad_0712-1001-1-07-01097.jpg,[-2  0 -2 -1],round_single
+836,Acrorad_0712-1001-1-07-01097.jpg,[ 1 -4 -1  3],round_single
+837,Acrorad_0712-1001-1-07-01097.jpg,[ 1 -2  0  1],round_single
+838,Acrorad_0712-1001-1-07-01097.jpg,[ 1 -2  0  0],round_single
+839,Acrorad_0712-1001-1-07-01097.jpg,[ 1 -1 -2 -1],round_single
+840,Acrorad_0712-1001-1-07-01097.jpg,[ 2 -2  2  0],round_single
+841,Acrorad_0712-1001-1-07-01097.jpg,[ 2 -1  1 -2],round_single
+842,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -4 -1  3],round_single
+843,Acrorad_0712-1001-1-07-01097.jpg,[-1 -2  0  1],round_single
+844,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -2  0  0],round_single
+845,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -1 -2 -1],round_single
+846,Acrorad_0712-1001-1-07-01097.jpg,[-1 -2  2  0],round_single
+847,Acrorad_0712-1001-1-07-01097.jpg,[-1 -1  1 -2],round_single
+848,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -1  0 -3],round_single
+849,Acrorad_0712-1001-1-07-01097.jpg,[ 0 -2  0 -3],round_single
