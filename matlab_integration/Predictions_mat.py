@@ -62,7 +62,7 @@ def get_labels_from_model(images, image_path, model):
     # process image
         start = time.time()
         boxes, classification = model.predict_on_batch(np.expand_dims(image, axis=0))
-        start = time.time()
+        print("processing time: ", time.time() - start)
 
     # compute predicted labels and scores
         predicted_labels = np.argmax(classification[0, :, :], axis=1)
