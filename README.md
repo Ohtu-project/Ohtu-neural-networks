@@ -21,6 +21,6 @@ Other requirements: tox (2.9.1), numpy (>= 1.14), OpenCV (3.3.0), Pillow, keras-
 
 ### Additional information
 
-A detailed tutorial on submitting training to Ukko2 and using the labeling tool can be found [here](https://docs.google.com/document/d/1fL1QfdwUpIr44OGPi-63fFBI14bP9gQthvlQgvv_xEo/edit?usp=sharing).
+A detailed tutorial on submitting training to Ukko2 and using the labeling tool can be found in `docs/tutorials.md`.
 
 [![Build Status](https://travis-ci.org/Ohtu-project/Ohtu-neural-networks.svg?branch=master)](https://travis-ci.org/Ohtu-project/Ohtu-neural-networks)

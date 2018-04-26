@@ -1,7 +1,7 @@
 # Tutorials
 
 ## How to set up Ukko2 for the first use
-If you are not familiar with Ukko2, please read the [user guide] (https://wiki.helsinki.fi/display/it4sci/Ukko2+User+Guide)
+If you are not familiar with Ukko2, please read the [user guide](https://wiki.helsinki.fi/display/it4sci/Ukko2+User+Guide)
 
 To access it, use `ssh ukko2.cs.helsinki.fi`
 You have to be in the university network (aka use some school computer). If you want to use it from your laptop with all the functionalities, a lot of additional steps are needed, please contact Vitória.
@@ -178,9 +178,9 @@ You cannot go back to a previous image by using ‘undo’, you can only remove 
 
 
 ## How to use the Matlab integration
-Make sure you have Python 3.6 installed. You also need to install [TensorFlow] (https://www.tensorflow.org/install/) on your computer beforehand. Then you need to follow instructions below to install [Keras RetinaNet] (https://github.com/fizyr/keras-retinanet), which is the open source neural network that we are using for this project. Tensorflow is the backend that Keras uses.
+Make sure you have Python 3.6 installed. You also need to install [TensorFlow](https://www.tensorflow.org/install/) on your computer beforehand. Then you need to follow instructions below to install [Keras RetinaNet](https://github.com/fizyr/keras-retinanet), which is the open source neural network that we are using for this project. Tensorflow is the backend that Keras uses.
 
-You should install RetinaNet in the same `matlab_integration` folder where `defect_detector.m` and `Predictions_mat.py` files are. Use the command line to get in the matlab_integration-folder and then you can install RetinaNet through [git] (https://git-scm.com/downloads) with the following commands:
+You should install RetinaNet in the same `matlab_integration` folder where `defect_detector.m` and `Predictions_mat.py` files are. Use the command line to get in the matlab_integration folder and then you can install RetinaNet through git with the following commands:
 
 `git clone https://github.com/fizyr/keras-retinanet.git`
 `cd keras-retinanet`
