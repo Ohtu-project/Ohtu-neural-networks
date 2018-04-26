@@ -46,7 +46,7 @@ def get_labels_from_model(images, image_path, model):
     labels = []
 
     # load label to names mapping for visualization purposes
-    labels_to_names = {0: 'round_single', 1: 'round_double', 2: 'unclear_single', 3: 'unclear_double', 4: 'hexagonal_single', 5: 'square_single', 6: 'trigonal_single'}
+    labels_to_names = {0: 'round_single', 1: 'round_double', 2: 'unclear_single', 3: 'unclear_double', 4: 'hexagonal_single', 5: 'square_single', 6: 'trigonal_single', 7: 'void_single', 8: 'bubbles_single'}
 
     for image in images:
         # change image.split("/") to "\\" if used on windows
