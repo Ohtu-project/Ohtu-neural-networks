@@ -2,10 +2,10 @@ from __future__ import absolute_import
 
 import unittest
 import os, sys
-from unittest import mock
+#from unittest import mock
 
 # If you are using Python 2.7 you might need this import instead:
-#import mock
+import mock
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
