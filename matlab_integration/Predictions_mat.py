@@ -20,6 +20,8 @@ import sys
 # set tf backend to allow memory to grow, instead of claiming everything
 import tensorflow as tf
 
+errors = []
+
 def get_session():
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
@@ -46,7 +48,7 @@ def get_labels_from_model(images, image_path, model):
     labels = []
 
     # load label to names mapping for visualization purposes
-    labels_to_names = {0: 'round_single', 1: 'round_double', 2: 'unclear_single', 3: 'unclear_double', 4: 'hexagonal_single', 5: 'square_single', 6: 'trigonal_single', 7: 'void_single', 8: 'bubbles_single'}
+    labels_to_names = {0: 'round_single', 1: 'round_double', 2: 'unclear_single', 3: 'unclear_double', 4: 'hexagonal_single', 5: 'square_single', 6: 'trigonal_single'}
 
     for image in images:
         # change image.split("/") to "\\" if used on windows
@@ -62,7 +64,7 @@ def get_labels_from_model(images, image_path, model):
     # process image
         start = time.time()
         boxes, classification = model.predict_on_batch(np.expand_dims(image, axis=0))
-        print("processing time: ", time.time() - start)
+        start = time.time()
 
     # compute predicted labels and scores
         predicted_labels = np.argmax(classification[0, :, :], axis=1)
@@ -80,11 +82,12 @@ def get_labels_from_model(images, image_path, model):
     
     return labels
 
-def existing_directory(directory):
+def correct_image_directory(directory):
     if not directory.endswith("/"):
         directory += "/"
     if not os.path.isdir(directory):
-        print(directory + "\n not a correct directory!")
+        #print(directory + "\n not a correct directory!")
+        errors.append(directory + " not a correct directory!")
         return False
 
     return os.path.isdir(directory)
@@ -92,11 +95,13 @@ def existing_directory(directory):
 
 def correct_model_file(filename):
     if not os.path.isfile(filename):
-        print(filename + "\n not a correct path!")
+        #print(filename + "\n not a correct path!")
+        errors.append(filename + " not a correct path!")
         return False
 
     if not filename.endswith(".h5"):
-        print("File should be a .h5 file!")
+        #print("File should be a .h5 file!")
+        errors.append("File should be a .h5 file!")
         return False
 
     return True
@@ -107,11 +112,13 @@ def existing_file(filename):
 
 def right_csv_name(filename):
     if not filename.endswith(".csv"):
-        print("Name of the file needs to end with .csv!")
+        #print("Name of the file needs to end with .csv!")
+        errors.append("Name of the file needs to end with .csv!")
         return False
     #return filename.endswith(".csv") and not existing_file(filename)
     if existing_file(filename):
-        print(filename + " file of this name already exists!")
+        #print(filename + " file of this name already exists!")
+        errors.append(filename + " file of this name already exists!")
         return False
 
     return True
@@ -120,21 +127,32 @@ def right_arguments(arg):
     if len(arg) < 4:
         return False
     #elif not existing_file(arg[1]) or not existing_directory(arg[2]) or not right_csv_name(arg[3]):
-    elif not correct_model_file(arg[1]) or not existing_directory(arg[2]) or not right_csv_name(arg[3]):
+    elif not correct_model_file(arg[1]) or not correct_image_directory(arg[2]) or not right_csv_name(arg[3]):
         return False
     return True
+
+def get_errors(arg):
+    correct_model_file(arg[1])
+    correct_image_directory(arg[2])
+    right_csv_name(arg[3])
+    return errors
+
+def hello():
+    print("Hello world")
 
 
 def main(arg):
     # set the modified tf session as backend in keras
     keras.backend.tensorflow_backend.set_session(get_session())
 
-    if right_arguments(arg):
+    #if right_arguments(arg):
+    # check that there are no errors in the given arguments
+    if not get_errors(arg):
         [a, trained_model_path, image_directory_path, predictions_csv] = arg
         save_prediction_to_csv(trained_model_path, image_directory_path, predictions_csv)
     else:
-        print("Given arguments are wrong.")
-
+        print("Given arguments are wrong:")
+        for error in errors: print(error)
 
 if __name__ == "__main__":
     main(sys.argv)
