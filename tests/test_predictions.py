@@ -9,7 +9,7 @@ from unittest import mock
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from matlab_integration import validation_util
+from utils import validation_util
 
 class TestBasicFunction(unittest.TestCase):
 
