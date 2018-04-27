@@ -3,6 +3,7 @@ from __future__ import absolute_import
 import unittest
 import os, sys
 from unittest import mock
+
 # If you are using Python 2.7 you might need this import instead:
 #import mock
 
@@ -41,6 +42,14 @@ class TestBasicFunction(unittest.TestCase):
         mock_isfile.return_value = True
         params = ['Predictions.py', '/path/to/resnet50.h5', '/path/to/dir/images/', 'results.csv']
         self.assertTrue(params[3] + " file of this name already exists!" in validation_util.get_errors(params))
+
+    def test_cant_have_too_many_arguments(self):
+        params = ['param1', 'param2', 'param3', 'param4', 'param5']
+        self.assertTrue("Too many arguments!" in validation_util.get_errors(params))
+    
+    def test_cant_have_too_few_arguments(self):
+        params = ['param1', 'param2', 'param3']
+        self.assertTrue("Too few arguments!" in validation_util.get_errors(params))
 
 
 if __name__ == '__main__':

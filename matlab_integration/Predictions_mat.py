@@ -83,26 +83,14 @@ def get_labels_from_model(images, image_path, model):
     
     return labels
 
-def existing_file(filename):
-    return os.path.isfile(filename)
-
-"""
-def right_arguments(arg):
-    if len(arg) < 4:
-        return False
-    #elif not existing_file(arg[1]) or not existing_directory(arg[2]) or not right_csv_name(arg[3]):
-    elif not correct_model_file(arg[1]) or not correct_image_directory(arg[2]) or not right_csv_name(arg[3]):
-        return False
-    return True
-"""
 
 def main(arg):
     # set the modified tf session as backend in keras
     keras.backend.tensorflow_backend.set_session(get_session())
 
     #if right_arguments(arg):
-    # check that there are no errors in the given arguments
     errors = validation_util.get_errors(arg)
+    # check that there are no errors in the given arguments
     if not errors:
         [a, trained_model_path, image_directory_path, predictions_csv] = arg
         save_prediction_to_csv(trained_model_path, image_directory_path, predictions_csv)
