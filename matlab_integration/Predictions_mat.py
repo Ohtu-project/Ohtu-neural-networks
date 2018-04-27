@@ -3,6 +3,7 @@ This script is intended to be called from Matlab, it uses the CPU instead of the
 '''
 
 import keras
+import validation_util
 
 # import keras_retinanet
 from keras_retinanet.models.resnet import custom_objects
@@ -82,47 +83,10 @@ def get_labels_from_model(images, image_path, model):
     
     return labels
 
-def correct_image_directory(directory):
-    if not directory.endswith("/"):
-        directory += "/"
-    if not os.path.isdir(directory):
-        #print(directory + "\n not a correct directory!")
-        errors.append(directory + " not a correct directory!")
-        return False
-
-    return os.path.isdir(directory)
-    #return os.path.isdir(directory) and directory.endswith("/")
-
-def correct_model_file(filename):
-    if not os.path.isfile(filename):
-        #print(filename + "\n not a correct path!")
-        errors.append(filename + " not a correct path!")
-        return False
-
-    if not filename.endswith(".h5"):
-        #print("File should be a .h5 file!")
-        errors.append("File should be a .h5 file!")
-        return False
-
-    return True
-
-
 def existing_file(filename):
     return os.path.isfile(filename)
 
-def right_csv_name(filename):
-    if not filename.endswith(".csv"):
-        #print("Name of the file needs to end with .csv!")
-        errors.append("Name of the file needs to end with .csv!")
-        return False
-    #return filename.endswith(".csv") and not existing_file(filename)
-    if existing_file(filename):
-        #print(filename + " file of this name already exists!")
-        errors.append(filename + " file of this name already exists!")
-        return False
-
-    return True
-
+"""
 def right_arguments(arg):
     if len(arg) < 4:
         return False
@@ -130,16 +94,7 @@ def right_arguments(arg):
     elif not correct_model_file(arg[1]) or not correct_image_directory(arg[2]) or not right_csv_name(arg[3]):
         return False
     return True
-
-def get_errors(arg):
-    correct_model_file(arg[1])
-    correct_image_directory(arg[2])
-    right_csv_name(arg[3])
-    return errors
-
-def hello():
-    print("Hello world")
-
+"""
 
 def main(arg):
     # set the modified tf session as backend in keras
@@ -147,7 +102,8 @@ def main(arg):
 
     #if right_arguments(arg):
     # check that there are no errors in the given arguments
-    if not get_errors(arg):
+    errors = validation_util.get_errors(arg)
+    if not errors:
         [a, trained_model_path, image_directory_path, predictions_csv] = arg
         save_prediction_to_csv(trained_model_path, image_directory_path, predictions_csv)
     else:
