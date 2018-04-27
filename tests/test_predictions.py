@@ -2,7 +2,11 @@ from __future__ import absolute_import
 
 import unittest
 import os, sys
-from unittest import mock
+
+if sys.version_info.major == 2:
+    import mock
+else:
+    from unittest import mock
 
 # If you are using Python 2.7 you might need this import instead:
 #import mock
