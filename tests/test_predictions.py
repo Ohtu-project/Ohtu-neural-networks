@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 import unittest
 import os, sys
-import mock
+from unittest import mock
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
