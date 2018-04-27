@@ -16,5 +16,6 @@ install:
   - pip install 'h5py'
   - pip install 'pandas'
   - pip install 'setGPU'
+  - pip install 'mock'
 script:
   - tox
