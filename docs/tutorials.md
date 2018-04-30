@@ -198,10 +198,10 @@ It currently takes about 7 seconds to find the defects in a single picture on a 
 
 Lastly, here is an example of parameters to use in the `defect_detector` function:
 
-`path = '/home/matleino/Ohtu-neural-networks/matlab_integration/'`
-`Trained_model_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/trained-model/resnet50_csv_68.h5'`
-`image_directory_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/images/'`
-`csv_file = 'results.csv'`
+path = '/home/matleino/Ohtu-neural-networks/matlab_integration/'
+trained_model_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/trained-model/resnet50_csv_68.h5'
+image_directory_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/images/'
+csv_file = 'results.csv'
 
-`defect_detector(path, trained_model_path, trained_model_file, image_directory_path)`
+`defect_detector(path, trained_model_path, image_directory_path, csv_file)`
 
