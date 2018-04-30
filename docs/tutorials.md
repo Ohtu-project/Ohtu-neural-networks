@@ -32,18 +32,15 @@ You should do the following steps inside a tensorflow environment:
 
 You should install Keras RetinaNet in the same `matlab_integration` folder where `defect_detector.m` and `Predictions_mat.py` files are. Use the command line to get in the matlab_integration folder and then you can install RetinaNet through git with the following commands:
 
-`git clone https://github.com/fizyr/keras-retinanet.git`
-`cd keras-retinanet`
-`pip install . --user`
-`pip install --user --upgrade git+https://github.com/broadinstitute/keras-resnet`
+`git clone https://github.com/fizyr/keras-retinanet.git`  
+`cd keras-retinanet`  
+`pip install . --user`  
+`pip install --user --upgrade git+https://github.com/broadinstitute/keras-resnet`  
 Then keras-retinanet should be ready for use.
 
 * Follow screen instructions and add new paths to $PATH variables to get rid of path warnings
 
-* You might need to install following packages if they are missing:
-opencv
-Pillow
-pandas
+* You might need to install following packages if they are missing: opencv, Pillow, pandas
 
 Now you can use the defect_detector function inside defect_detector.m to evaluate images.
 
@@ -59,10 +56,10 @@ It currently takes about 7 seconds to find the defects in a single picture on a 
 
 Lastly, here is an example of parameters to use in the `defect_detector` function:
 
-path = '/home/matleino/Ohtu-neural-networks/matlab_integration/'
-trained_model_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/trained-model/resnet50_csv_68.h5'
-image_directory_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/images/'
-csv_file = 'results.csv'
+`path = '/home/matleino/Ohtu-neural-networks/matlab_integration/'`  
+`trained_model_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/trained-model/resnet50_csv_68.h5'`  
+`image_directory_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/images/'`  
+`csv_file = 'results.csv'`  
 
 `defect_detector(path, trained_model_path, image_directory_path, csv_file)`
 
