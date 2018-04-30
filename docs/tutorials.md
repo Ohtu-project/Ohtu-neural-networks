@@ -178,7 +178,14 @@ You cannot go back to a previous image by using ‘undo’, you can only remove 
 
 
 ## How to use the Matlab integration
-Make sure you have Python 3.6 installed. You also need to install [TensorFlow](https://www.tensorflow.org/install/) on your computer beforehand. Then you need to follow instructions below to install [Keras RetinaNet](https://github.com/fizyr/keras-retinanet), which is the open source neural network that we are using for this project. Tensorflow is the backend that Keras uses.
+Below are instructions on how you can use a pretrained neural network model to evaluate a set of images on your personal computer.
+
+Install [Miniconda](https://conda.io/miniconda.html). Conda is a package manager and a minimal version of Anaconda that contains Python 3.6. You also need to install [TensorFlow](https://www.tensorflow.org/install/) on your computer. Use [the instructions for installing with Anaconda](https://www.tensorflow.org/install/install_linux#InstallingAnaconda) to create a tensorflow environment.
+
+You should do the following steps inside a tensorflow environment:
+* Install [Git](https://git-scm.com/) inside the environment.
+
+* Follow instructions below to install [Keras RetinaNet](https://github.com/fizyr/keras-retinanet), which is the open source neural network that we are using for this project. Tensorflow is the backend that Keras uses.
 
 You should install RetinaNet in the same `matlab_integration` folder where `defect_detector.m` and `Predictions_mat.py` files are. Use the command line to get in the matlab_integration folder and then you can install RetinaNet through git with the following commands:
 
@@ -187,6 +194,16 @@ You should install RetinaNet in the same `matlab_integration` folder where `defe
 `pip install . --user`
 `pip install --user --upgrade git+https://github.com/broadinstitute/keras-resnet`
 Then keras-retinanet should be ready for use.
+
+* Follow screen instructions and add new paths to $PATH variables to get rid of path warnings
+
+* You might need to install following packages if they are missing:
+opencv
+pillow
+pandas
+
+
+Now you can use the defect_detector function inside defect_detector.m to evaluate images.
 
 `defect_detector.m` has only one function, called `defect_detector`, with four parameters. More documentation on the function can be found in the `defect_detector.m` file itself.
 
