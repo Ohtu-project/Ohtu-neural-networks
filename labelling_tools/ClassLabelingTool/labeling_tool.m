@@ -16,11 +16,12 @@ end
 function run()
 
 % window, button and image size initialization
+global image_width image_heigth
 window_width = 1500;
 window_heigth = 1200;
 image_width = 1280;
 image_heigth = 1024;
-button_width = 100;
+button_width = 125;
 button_heigth = 25;
 margin = 20;
 button_width_start = image_width;
@@ -101,46 +102,48 @@ end
 %  Create and then hide the UI as it is being constructed.
 global f
 f = figure('Visible','off','Position',[margin, margin,window_width,window_heigth]);
+set(f, 'WindowKeyPressFcn',@keyPressCallback);
+set (f, 'WindowButtonMotionFcn', @mouseMove);
 
 % Construct the components.
 global round hexagonal trigonal square unclear void bubbles single double warning
 
 next_image   = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-             'String','Done','Position',[button_width_start,button_heigth_start - button_heigth,button_width * 0.7,button_heigth],...
+             'String','Done (Enter)','Position',[button_width_start,button_heigth_start - button_heigth,button_width * 0.7,button_heigth],...
              'Callback',@nextimage_callback);
 undo         = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-             'String','Undo','Position',[button_width_start + button_width,button_heigth_start - button_heigth,button_width * 0.5,button_heigth],...
+             'String','Undo (ctrl)','Position',[button_width_start + button_width * 0.7 + margin,button_heigth_start - button_heigth,button_width * 0.7,button_heigth],...
              'Callback',@undo_callback);
 text_shape   = uicontrol('Style','text','String','Select shape','HorizontalAlignment','left',...
              'Position',[button_width_start,button_heigth_start - margin - button_heigth * 2,button_width * 2,button_heigth]);
 round        = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-             'String','Round','Position',[button_width_start,button_heigth_start - margin * 2 - button_heigth * 3,button_width,button_heigth],...
+             'String','Round (r)','Position',[button_width_start,button_heigth_start - margin * 2 - button_heigth * 3,button_width,button_heigth],...
              'Callback',@class_button_callback);
 hexagonal    = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-             'String','Hexagonal','Position',[button_width_start,button_heigth_start - margin * 3 - button_heigth * 4,button_width,button_heigth],...
+             'String','Hexagonal (h)','Position',[button_width_start,button_heigth_start - margin * 3 - button_heigth * 4,button_width,button_heigth],...
              'Callback',@class_button_callback);
 trigonal     = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-             'String','Trigonal','Position',[button_width_start,button_heigth_start - margin * 4 - button_heigth * 5,button_width,button_heigth],...
+             'String','Trigonal (t)','Position',[button_width_start,button_heigth_start - margin * 4 - button_heigth * 5,button_width,button_heigth],...
              'Callback',@class_button_callback);
 square       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-             'String','Square','Position',[button_width_start,button_heigth_start - margin * 5 - button_heigth * 6,button_width,button_heigth],...
+             'String','Square (q)','Position',[button_width_start,button_heigth_start - margin * 5 - button_heigth * 6,button_width,button_heigth],...
              'Callback',@class_button_callback);
 unclear      = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-             'String','Unclear','Position',[button_width_start,button_heigth_start - margin * 6 - button_heigth * 7,button_width,button_heigth],...
+             'String','Unclear (u)','Position',[button_width_start,button_heigth_start - margin * 6 - button_heigth * 7,button_width,button_heigth],...
              'Callback',@class_button_callback);
 void         = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-             'String','Void','Position',[button_width_start,button_heigth_start - margin * 7 - button_heigth * 8,button_width,button_heigth],...
+             'String','Void (v)','Position',[button_width_start,button_heigth_start - margin * 7 - button_heigth * 8,button_width,button_heigth],...
              'Callback',@class_button_callback);
 bubbles      = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-             'String','Bubbles','Position',[button_width_start,button_heigth_start - margin * 8 - button_heigth * 9,button_width,button_heigth],...
+             'String','Bubbles (b)','Position',[button_width_start,button_heigth_start - margin * 8 - button_heigth * 9,button_width,button_heigth],...
              'Callback',@class_button_callback);
 text_double  = uicontrol('Style','text','String','Select single or double','HorizontalAlignment','left',...
              'Position',[button_width_start,button_heigth_start - margin * 9 - button_heigth * 10,button_width * 2,button_heigth]);
 single       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-             'String','Single','Position',[button_width_start,button_heigth_start - margin * 10 - button_heigth * 11,button_width,button_heigth],...
+             'String','Single (s)','Position',[button_width_start,button_heigth_start - margin * 10 - button_heigth * 11,button_width,button_heigth],...
              'Callback',@class_button_callback);
 double       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-             'String','Double','Position',[button_width_start,button_heigth_start - margin * 11 - button_heigth * 12,button_width,button_heigth],...
+             'String','Double (d)','Position',[button_width_start,button_heigth_start - margin * 11 - button_heigth * 12,button_width,button_heigth],...
              'Callback',@class_button_callback);
 warning      = uicontrol('Style','text','String','','HorizontalAlignment','left',...
              'FontSize',15,'ForegroundColor','red','Visible','off','Position',[button_width_start,button_heigth_start - margin * 12 - button_heigth * 30,button_width * 2,button_heigth * 20]);
@@ -177,7 +180,7 @@ movegui(f,'center')
 f.Visible = 'on';
 
 % initialize points and classes to be empty
-global points classes
+global points classes x y
 default_class = ["round" "single"];
 points = [];
 classes = [];
@@ -187,21 +190,22 @@ show_image();
 % ask points and add them to the array repeatedly
 while true
     hold on
-    % ask inputs
     try
-        [x,y] = ginput(1);
+        if waitforbuttonpress
+            continue
+        end 
     catch
-        % end program if window has been closed
         break
     end
     
+    % hide previous warnings
+    set(warning, 'Visible', 'off');
+        
     if isempty(x)
         nextimage_callback()
         continue
     end
     
-    % hide previous warnings
-    set(warning, 'Visible', 'off');
     % only accept inputs inside the image
     if x > image_width || x < 0 || y > image_heigth || y < 0
        continue
@@ -225,9 +229,48 @@ while true
         classes = [classes; default_class];
     end
 
-     show_image();
+    show_image();
 end
 
+  % tracking the mouse position
+
+    function mouseMove(object, eventdata)
+        % track the mouse position
+        p = get(gca, 'CurrentPoint');
+        x = p(1,1);
+        y = p(1,2);
+        
+        show_image()
+    end
+
+  % Keyboard shortcuts
+  
+    function keyPressCallback(source, eventdata)
+       switch eventdata.Key
+           case 'return'
+               nextimage_callback(next_image, []);
+           case 'control'
+               undo_callback(undo, []);
+           case 'r'
+               class_button_callback(round, []);
+           case 'h'
+               class_button_callback(hexagonal, []);
+           case 't'
+               class_button_callback(trigonal, []);
+           case 'q'
+               class_button_callback(square, []); 
+           case 'u'
+               class_button_callback(unclear, []);
+           case 'v'
+               class_button_callback(void, []);
+           case 'b'
+               class_button_callback(bubbles, []);
+           case 's'
+               class_button_callback(single, []);
+           case 'd'
+               class_button_callback(double, []);
+       end
+    end
     
   % Push button callbacks.
 
@@ -253,7 +296,7 @@ end
         if ~is_even(points)
             classes = remove_last_item(classes);
         end
-            show_image();
+        show_image();
     end
 
     % when class button is pressed
@@ -302,7 +345,7 @@ end
 
 % show current image, points and rectangles
 function show_image()
-    global index f ha images points folder
+    global index f ha images points folder x y image_width image_heigth
     cla(ha) % clear previous image
     f.Name = images(index).name;
     file_name = images(index).name;
@@ -310,11 +353,18 @@ function show_image()
     img = imread(file_name);
     imshow(img);
 
+    % draw points
     for i=1:length_of(points)
         plot(points(i,1),points(i,2), 'r*', 'LineWidth', 2)
     end
     draw_rectangles(points);
     set_button_colors();
+    
+    % draw horizontal and vertical lines from the mouse position
+    if x <= image_width && x >= 0 && y <= image_heigth && y >= 0
+       plot([0 image_width], [y y], 'Color', 'black')
+       plot([x x], [0 image_heigth], 'Color', 'black')
+    end
 end
 
 % draw all rectangles
