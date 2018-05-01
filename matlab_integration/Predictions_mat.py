@@ -2,8 +2,13 @@
 This script is intended to be called from Matlab, it uses the CPU instead of the GPU.
 '''
 
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import keras
-import validation_util
+import utils.validation_util
+from utils.validation_util import get_errors
 
 # import keras_retinanet
 from keras_retinanet.models.resnet import custom_objects
@@ -11,12 +16,10 @@ from keras_retinanet.utils.image import read_image_bgr, preprocess_image, resize
 
 # import miscellaneous modules
 import cv2
-import os
 import numpy as np
 import time
 import glob
 import pandas as pd
-import sys
 
 # set tf backend to allow memory to grow, instead of claiming everything
 import tensorflow as tf
@@ -89,7 +92,7 @@ def main(arg):
     keras.backend.tensorflow_backend.set_session(get_session())
 
     #if right_arguments(arg):
-    errors = validation_util.get_errors(arg)
+    errors = get_errors(arg)
     # check that there are no errors in the given arguments
     if not errors:
         [a, trained_model_path, image_directory_path, predictions_csv] = arg
