@@ -1,4 +1,5 @@
 from PIL import Image
+import sys
 import os
 import glob
 
@@ -28,28 +29,35 @@ def ask_directory(text):
     message = text
     directory = ""
     while not os.path.isdir(directory):
-        directory = input(message)
+        if sys.version_info.major == 2:
+            directory = raw_input(message)
+        else:
+            directory = input(message)
         message = "There is no such directory. " + text
     if not directory.endswith('/'):
         directory += "/"
     return directory
 
-d = ask_directory("Give the directory containing images you want to mirror: ")
 
-files = os.listdir(d)
-images = glob.glob(d + '/*.jpg')
+def main(arg):
+    d = ask_directory("Give the directory containing images you want to mirror: ")
 
-to_save = ask_directory("Give the directory where you want the mirrored images to be saved: ")
+    files = os.listdir(d)
+    images = glob.glob(d + '/*.jpg')
+
+    to_save = ask_directory("Give the directory where you want the mirrored images to be saved: ")
 
 
-for image in images:
-    path_separated = image.split("/")
-    img_name = path_separated[len(path_separated) - 1]
-    fx = img_name.replace(".jpg", "x.jpg")
-    fy = img_name.replace(".jpg", "y.jpg")
-    fxy = img_name.replace(".jpg", "xy.jpg")
+    for image in images:
+        path_separated = image.split("/")
+        img_name = path_separated[len(path_separated) - 1]
+        fx = img_name.replace(".jpg", "x.jpg")
+        fy = img_name.replace(".jpg", "y.jpg")
+        fxy = img_name.replace(".jpg", "xy.jpg")
 
-    _flip_x(d+img_name, to_save+fx)
-    _flip_y(d+img_name, to_save+fy)
-    _flip_y(to_save+fx, to_save+fxy)
+        _flip_x(d+img_name, to_save+fx)
+        _flip_y(d+img_name, to_save+fy)
+        _flip_y(to_save+fx, to_save+fxy)
 
+if __name__ == "__main__":
+    main(sys.argv)

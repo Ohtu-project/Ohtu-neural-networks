@@ -14,13 +14,15 @@ The motivation and full description of the project can be found [here](https://s
 
 `matlab_integration` contains python scripts to get predictions over a set of images, and also matlab scripts that run the python scripts.
 
+`utils` contains utility tools for other classes to use.
+
 ### Requirements
 
-Our approach to detect defects based on [keras-retinanet 0.2](https://github.com/fizyr/keras-retinanet). It uses Keras (2.1.3) on top of Tensorflow (1.5.0).
+Our approach to detect defects is based on [keras-retinanet 0.2](https://github.com/fizyr/keras-retinanet). It uses Keras (2.1.3) on top of Tensorflow (1.5.0).
 Other requirements: tox (2.9.1), numpy (>= 1.14), OpenCV (3.3.0), Pillow, keras-resnet, cython, matplotlib, h5py, pandas, setGPU.
 
 ### Additional information
 
-A detailed tutorial on submitting training to Ukko2 and using the labeling tool can be found [here](https://docs.google.com/document/d/1fL1QfdwUpIr44OGPi-63fFBI14bP9gQthvlQgvv_xEo/edit?usp=sharing).
+A detailed tutorial on submitting training to Ukko2 and using the labeling tool can be found in `docs/tutorials.md`.
 
 [![Build Status](https://travis-ci.org/Ohtu-project/Ohtu-neural-networks.svg?branch=master)](https://travis-ci.org/Ohtu-project/Ohtu-neural-networks)
