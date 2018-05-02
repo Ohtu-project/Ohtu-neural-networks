@@ -5,7 +5,9 @@ This script is intended to be called from Matlab, it uses the CPU instead of the
 import keras
 
 # import keras_retinanet
-from keras_retinanet.models.resnet import custom_objects
+#from keras_retinanet.models.resnet import custom_objects
+from keras_retinanet import models
+#from keras_retinanet.layers.filter_detections import FilterDetections
 from keras_retinanet.utils.image import read_image_bgr, preprocess_image, resize_image
 
 # import miscellaneous modules
@@ -27,8 +29,11 @@ def get_session():
 
 def save_prediction_to_csv(model_path, image_path, predictionfile):
     # load retinanet model
-    model = keras.models.load_model(model_path, custom_objects=custom_objects)
-    #print(model.summary())
+   # custom_objects = ResNetBackbone('resnet50').custom_objects
+
+   # custom_objects['FilterDetections'] = FilterDetections
+    model = models.load_model(model_path, backbone_name='resnet50')
+    print(model.summary())
 
     # Make sure you have only images in this directory
     images = glob.glob(image_path + '/*.jpg')
@@ -43,42 +48,39 @@ def save_prediction_to_csv(model_path, image_path, predictionfile):
     print("Done!")
 
 def get_labels_from_model(images, image_path, model):
-    labels = []
+    Labels = []
 
     # load label to names mapping for visualization purposes
     labels_to_names = {0: 'round_single', 1: 'round_double', 2: 'unclear_single', 3: 'unclear_double', 4: 'hexagonal_single', 5: 'square_single', 6: 'trigonal_single', 7: 'void_single', 8: 'bubbles_single'}
 
     for image in images:
         # change image.split("/") to "\\" if used on windows
-        path_separated = image.split("/")
+        path_separated = image.split("\\")
         img_name = path_separated[len(path_separated) - 1]
         print(img_name)
         image = read_image_bgr(image_path + img_name)
     
     # preprocess image for network
         image = preprocess_image(image)
+        print('image preprocessed')
         image, scale = resize_image(image)
 
     # process image
         start = time.time()
-        boxes, classification = model.predict_on_batch(np.expand_dims(image, axis=0))
+        boxes, scores, labels = model.predict_on_batch(np.expand_dims(image, axis=0))
         print("processing time: ", time.time() - start)
 
-    # compute predicted labels and scores
-        predicted_labels = np.argmax(classification[0, :, :], axis=1)
-        scores = classification[0, np.arange(classification.shape[1]), predicted_labels]
-
     # correct for image scale
-        boxes[0, :, :4] /= scale
+        boxes /= scale
 
     # visualize boxes
-        for idx, (label, score) in enumerate(zip(predicted_labels, scores)):
+        for idx, (box, score, label) in enumerate(zip(boxes[0], scores[0], labels[0])):
             if score < 0.5:
                 continue
             b = boxes[0, idx, :4].astype(int)
-            labels.append([img_name, b, labels_to_names[label]])
+            Labels.append([img_name, b, labels_to_names[label]])
     
-    return labels
+    return Labels
 
 def existing_directory(directory):
     if not directory.endswith("/"):
