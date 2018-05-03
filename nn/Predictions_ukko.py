@@ -6,7 +6,7 @@ import setGPU
 import keras
 
 # import keras_retinanet
-from keras_retinanet.models.resnet import custom_objects
+from keras_retinanet import models
 from keras_retinanet.utils.image import read_image_bgr, preprocess_image, resize_image
 
 # import miscellaneous modules
@@ -28,8 +28,8 @@ def get_session():
 
 def save_prediction_to_csv(model_path, image_path, predictionfile):
     # load retinanet model
-    model = keras.models.load_model(model_path, custom_objects=custom_objects)
-    #print(model.summary())
+    model = models.load_model(model_path, backbone_name='resnet50')
+    print(model.summary())
 
     # Make sure you have only images in this directory
     images = glob.glob(image_path + '/*.jpg')
@@ -61,23 +61,20 @@ def get_labels_from_model(images, image_path, model):
 
     # process image
         start = time.time()
-        boxes, classification = model.predict_on_batch(np.expand_dims(image, axis=0))
+        boxes, scores, labels = model.predict_on_batch(np.expand_dims(image, axis=0))
         print("processing time: ", time.time() - start)
 
-    # compute predicted labels and scores
-        predicted_labels = np.argmax(classification[0, :, :], axis=1)
-        scores = classification[0, np.arange(classification.shape[1]), predicted_labels]
-
     # correct for image scale
-        boxes[0, :, :4] /= scale
+        boxes /= scale
 
     # visualize boxes
-        for idx, (label, score) in enumerate(zip(predicted_labels, scores)):
+        for idx, (box, score, label) in enumerate(zip(boxes[0], scores[0], labels[0])):
             if score < 0.5:
                 continue
             b = boxes[0, idx, :4].astype(int)
-            labels.append([img_name, b, labels_to_names[label]])
-    return labels
+            Labels.append([img_name, b, labels_to_names[label]])
+    
+    return Labels
 
 def existing_directory(directory):
     if not directory.endswith("/"):
