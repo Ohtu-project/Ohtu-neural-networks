@@ -2,6 +2,10 @@
 This script is intended to be called from Matlab, it uses the CPU instead of the GPU.
 '''
 
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import keras
 
 # import keras_retinanet
@@ -10,12 +14,11 @@ from keras_retinanet.utils.image import read_image_bgr, preprocess_image, resize
 
 # import miscellaneous modules
 import cv2
-import os
 import numpy as np
 import time
 import glob
 import pandas as pd
-import sys
+from utils.validation_util import get_errors
 
 # set tf backend to allow memory to grow, instead of claiming everything
 import tensorflow as tf
@@ -77,61 +80,19 @@ def get_labels_from_model(images, image_path, model):
     
     return Labels
 
-def existing_directory(directory):
-    if not directory.endswith("/"):
-        directory += "/"
-    if not os.path.isdir(directory):
-        print(directory + "\n not a correct directory!")
-        return False
-
-    return os.path.isdir(directory)
-    #return os.path.isdir(directory) and directory.endswith("/")
-
-def correct_model_file(filename):
-    if not os.path.isfile(filename):
-        print(filename + "\n not a correct path!")
-        return False
-
-    if not filename.endswith(".h5"):
-        print("File should be a .h5 file!")
-        return False
-
-    return True
-
-
-def existing_file(filename):
-    return os.path.isfile(filename)
-
-def right_csv_name(filename):
-    if not filename.endswith(".csv"):
-        print("Name of the file needs to end with .csv!")
-        return False
-    #return filename.endswith(".csv") and not existing_file(filename)
-    if existing_file(filename):
-        print(filename + " file of this name already exists!")
-        return False
-
-    return True
-
-def right_arguments(arg):
-    if len(arg) < 4:
-        return False
-    #elif not existing_file(arg[1]) or not existing_directory(arg[2]) or not right_csv_name(arg[3]):
-    elif not correct_model_file(arg[1]) or not existing_directory(arg[2]) or not right_csv_name(arg[3]):
-        return False
-    return True
-
 
 def main(arg):
     # set the modified tf session as backend in keras
     keras.backend.tensorflow_backend.set_session(get_session())
 
-    if right_arguments(arg):
+    errors = get_errors(arg)
+    # check that there are no errors in the given arguments
+    if not errors:
         [a, trained_model_path, image_directory_path, predictions_csv] = arg
         save_prediction_to_csv(trained_model_path, image_directory_path, predictions_csv)
     else:
-        print("Given arguments are wrong.")
-
+        print("Given arguments are wrong:")
+    for error in errors: print(error)
 
 if __name__ == "__main__":
     main(sys.argv)
