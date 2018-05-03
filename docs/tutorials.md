@@ -27,15 +27,18 @@ You should do the following steps inside a tensorflow environment:
 * Install [Git](https://git-scm.com/) inside the environment.
 
 * Clone this repository with `git clone https://github.com/Ohtu-project/Ohtu-neural-networks.git`
+Execute the following commands to install the requirements:
+`cd Ohtu-neural-networks`
+`pip install . --user`
 
 * Follow the instructions below to install [Keras RetinaNet](https://github.com/fizyr/keras-retinanet), which is the open source neural network that we are using for this project. Tensorflow is the backend that Keras uses.
 
 You should install Keras RetinaNet in the same `matlab_integration` folder where `defect_detector.m` and `Predictions_mat.py` files are. Use the command line to get in the matlab_integration folder and then you can install RetinaNet through git with the following commands:
 
-`git clone https://github.com/fizyr/keras-retinanet.git`  
-`cd keras-retinanet`  
-`pip install . --user`  
-`pip install --user --upgrade git+https://github.com/broadinstitute/keras-resnet`  
+`git clone https://github.com/fizyr/keras-retinanet.git`
+`cd keras-retinanet`
+`pip install . --user`
+`pip install --user --upgrade git+https://github.com/broadinstitute/keras-resnet`
 
 The keras-retinanet version that is guarateed to work with our software can be retrieved by:
 `git reset --hard 84c6dcf8c243f0baaf03bd4dfdf8c824edfd3730`
