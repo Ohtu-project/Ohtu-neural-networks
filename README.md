@@ -16,6 +16,8 @@ The motivation and full description of the project can be found [here](https://s
 
 `utils` contains utility tools for other classes to use.
 
+`csv` contains csv files used in training and testing.
+
 ### Requirements
 
 Our approach to detect defects is based on [keras-retinanet 0.2](https://github.com/fizyr/keras-retinanet). It uses Keras (2.1.3) on top of Tensorflow (1.5.0).

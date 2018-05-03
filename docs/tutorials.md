@@ -36,6 +36,11 @@ You should install Keras RetinaNet in the same `matlab_integration` folder where
 `cd keras-retinanet`  
 `pip install . --user`  
 `pip install --user --upgrade git+https://github.com/broadinstitute/keras-resnet`  
+
+The keras-retinanet version that is guarateed to work with our software can be retrieved by:
+`git reset --hard 84c6dcf8c243f0baaf03bd4dfdf8c824edfd3730`
+(commit from May 1 2018)
+
 Then keras-retinanet should be ready for use.
 
 * Follow screen instructions and add new paths to $PATH variables to get rid of path warnings
@@ -71,7 +76,7 @@ We assume that you have already gone through the basic installation steps descri
 
 ### How to evaluate a model from your local computer
 To get the defect predictions over a set of pictures, run, from the keras-retinanet directory:
-`keras_retinanet/bin/evaluate.py --save-path <path> csv test_annotations.csv class_mapping.csv <model weights file>`
+`keras_retinanet/bin/evaluate.py --save-path <path> csv test_annotation_multi.csv class_mapping_multi.csv <model weights file>`
 In which <path> is the path where you want to save your images, for example ~/mirrored_more/
 And `<model weights file>` is, for example, snapshots/resnet50_csv_68.h5
 
@@ -104,7 +109,7 @@ Clone our Ohtu repository in your home directory with `git clone https://github.
 At `Ohtu-neural-networks/nn/` you can find `train`, `test`, `pred`, `Predictions_ukko.py`, and `ukko2_setup.sh` scripts.
 
 Grant executing rights
-`chmod + x ./ukko2_setup.sh`
+`chmod +x ./ukko2_setup.sh`
 
 Run:
 `./ukko2_setup.sh`
@@ -113,9 +118,12 @@ It will clone the retinanet repository, create a virtual environment called `myT
 
 
 ### Necessary files
-From Google Drive’s ohtu-project: Neural Networks/Labels/, transfer the following files into keras-retinanet: `class_mapping_multi.csv`, `test_annotation_multi.csv`, and the file containing the labels you wish to train on.
+Copy the file containing the labels you wish to train on in keras-retinanet/.
 
 From Ohtu-neural-networks/nn/, copy `train`, `test`, and `pred` into keras-retinanet/.
+
+Modify `pred` so that it finds the csv files. Alternatively, from Ohtu-neural-networks/csv/, copy `class_mapping_multi.csv` and `test_annotation_multi.csv` into keras-retinanet/.
+
 
 ### Training for the first time
 Still inside keras-retinanet, create a directory containing the images for training. The directory structure must be the same as in the labels.csv file. In my case, I have: 
