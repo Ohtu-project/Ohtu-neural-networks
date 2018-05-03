@@ -3,20 +3,11 @@ from __future__ import absolute_import
 import unittest
 import os, sys
 
-#if __package__ is None:
-#	sys.path.append(os.path.realpath("../"))
-
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from matlab_integration import count_defects
 
-#def test_main():
-#	count_defects.main(csvFile='test-data/test1.csv')
-
 class TestBasicFunction(unittest.TestCase):
-
-#    def test_main():
-#        count_defects.main(csvFile='test-data/test1.csv')
 
     def test_counting_right_short_list(self):
         defect_labels = [

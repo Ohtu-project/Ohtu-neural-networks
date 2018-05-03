@@ -8,9 +8,6 @@ if sys.version_info.major == 2:
 else:
     from unittest import mock
 
-# If you are using Python 2.7 you might need this import instead:
-#import mock
-
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from utils import validation_util
