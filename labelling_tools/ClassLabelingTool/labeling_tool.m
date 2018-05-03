@@ -300,13 +300,19 @@ end
 function close_program()
     global f warning
     set(warning, 'String', 'All images have been labeled', 'Visible', 'on');
-    pause(1)
-    close(f)
+    try
+        pause(1)
+        close(f)
+    catch
+    end
 end
 
 % show current image, points and rectangles
 function show_image()
     global index f ha images points folder
+    if index > length_of(images)
+        return
+    end
     cla(ha) % clear previous image
     f.Name = images(index).name;
     file_name = images(index).name;
@@ -535,6 +541,7 @@ function nextimage_callback(source,eventdata)
     global images index points classes warning
     if index > length_of(images)
         close_program();
+        return
     end
     if (is_even(points) && class_given(classes)) || isempty(points)
         save_points();
