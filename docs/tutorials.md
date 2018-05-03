@@ -3,11 +3,11 @@
 ## How to use the labeling tool
 
 Run the file `labeling_tool_main.m`.
-When the program asks a folder, give a path to a folder, which contains the images you want to label.
+First the program asks a folder. Give a path to a folder, which contains the images you want to label.
 
 ### Output: 
 The program creates a file `LABELS.csv` inside the folder containing the images.
-If some of the images in the folder have already been labeled (and labels are in a file ‘LABELS.csv’), the program will ask if you want to label all the images again, or continue from the first non-labeled image. If first the option if chosen (enter ‘L’), all previously labeled data is deleted. If the second option is chosen (press Enter), previously labeled data is saved and new data is added to the file ‘LABELS.csv’.
+If some of the images in the folder have already been labeled when running the program (and labels are in a file ‘LABELS.csv’), the program will ask if you want to label all the images again, or continue from the first non-labeled image. If first the option if chosen, all previously labeled data is deleted. If the second option is chosen, previously labeled data is saved in file 'LABELS.csv' and new data is added to this file.
 
 ### How to label: 
 When an image is shown, you can mark a defect by clicking on any two opposite corners of the defect. A box is drawn  around the defect.

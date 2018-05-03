@@ -118,7 +118,11 @@ function run()
     class_names = {'round', 'hexagonal', 'trigonal', 'square', 'unclear', 'void', 'bubbles', 'single', 'double'};
     class_name_mapping = containers.Map(button_texts, class_names);
 
+    help = 'Mark a defect by clicking any two opposite corners of the defect. When a red box is drawn around the defect, select classes shown on the right side. Selected classes are shown in yellow colour. Multiple defects can be seleted. Click ''Done'' when you have marked all defects in one image. Clicked points can be reversed with ''Undo'', but you cannot go back to a previous image.';
+    
     % Construct the components.
+    text_help    = uicontrol('Style','text','String',help,'HorizontalAlignment','left',...
+                 'Position',[margin,button_heigth + 100,image_width,100]);
     next_image   = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
                  'String','Done (Enter)','Position',[button_width_start,button_heigth_start - button_heigth,button_width * 0.7,button_heigth],...
                  'Callback',@nextimage_callback);
@@ -165,6 +169,7 @@ function run()
     % Change units to normalized so components resize automatically.
     f.Units = 'normalized';
     ha.Units = 'normalized';
+    text_help.Units = 'normalized';
     next_image.Units = 'normalized';
     undo.Units = 'normalized';
     text_shape.Units = 'normalized';
@@ -538,13 +543,7 @@ function classes = put_class(class, classes)
     len = length_of(classes);
 
     if class == "single" || class == "double"
-       if classes(len, 2) == class
-           classes(len, 2) = "";
-       else
-           classes(len, 2) = class;
-       end
-    elseif classes(len, 1) == class
-       classes(len, 1) = "";
+       classes(len, 2) = class;
     else
        classes(len, 1) = class;
     end
