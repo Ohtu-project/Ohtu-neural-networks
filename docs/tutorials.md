@@ -123,6 +123,7 @@ Copy the file containing the labels you wish to train on in keras-retinanet/.
 From Ohtu-neural-networks/nn/, copy `train`, `test`, and `pred` into keras-retinanet/.
 
 Modify `pred` so that it finds the csv files. Alternatively, from Ohtu-neural-networks/csv/, copy `class_mapping_multi.csv` and `test_annotation_multi.csv` into keras-retinanet/.
+You should also modify those three scripts with your own paths to files according to your ukko2 acount.
 
 
 ### Training for the first time
