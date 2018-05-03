@@ -5,9 +5,7 @@ This script is intended to be called from Matlab, it uses the CPU instead of the
 import keras
 
 # import keras_retinanet
-#from keras_retinanet.models.resnet import custom_objects
 from keras_retinanet import models
-#from keras_retinanet.layers.filter_detections import FilterDetections
 from keras_retinanet.utils.image import read_image_bgr, preprocess_image, resize_image
 
 # import miscellaneous modules
@@ -29,9 +27,6 @@ def get_session():
 
 def save_prediction_to_csv(model_path, image_path, predictionfile):
     # load retinanet model
-   # custom_objects = ResNetBackbone('resnet50').custom_objects
-
-   # custom_objects['FilterDetections'] = FilterDetections
     model = models.load_model(model_path, backbone_name='resnet50')
     print(model.summary())
 
@@ -55,7 +50,7 @@ def get_labels_from_model(images, image_path, model):
 
     for image in images:
         # change image.split("/") to "\\" if used on windows
-        path_separated = image.split("\\")
+        path_separated = image.split("/")
         img_name = path_separated[len(path_separated) - 1]
         print(img_name)
         image = read_image_bgr(image_path + img_name)
