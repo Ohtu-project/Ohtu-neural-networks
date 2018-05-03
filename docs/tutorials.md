@@ -104,7 +104,7 @@ Clone our Ohtu repository in your home directory with `git clone https://github.
 At `Ohtu-neural-networks/nn/` you can find `train`, `test`, `pred`, `Predictions_ukko.py`, and `ukko2_setup.sh` scripts.
 
 Grant executing rights
-`chmod + x ./ukko2_setup.sh`
+`chmod +x ./ukko2_setup.sh`
 
 Run:
 `./ukko2_setup.sh`
