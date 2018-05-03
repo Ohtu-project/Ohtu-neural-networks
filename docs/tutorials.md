@@ -40,8 +40,8 @@ You should install Keras RetinaNet in the same `matlab_integration` folder where
 `pip install . --user`
 `pip install --user --upgrade git+https://github.com/broadinstitute/keras-resnet`
 
-The keras-retinanet version that is guarateed to work with our software can be retrieved by:
-`git reset --hard 84c6dcf8c243f0baaf03bd4dfdf8c824edfd3730`
+The keras-retinanet version that is guarateed to work with our software can be retrieved by:  
+`git reset --hard 84c6dcf8c243f0baaf03bd4dfdf8c824edfd3730`  
 (commit from May 1 2018)
 
 Then keras-retinanet should be ready for use.
@@ -60,7 +60,7 @@ Put the images that you want to use inside matlab_integration/images. It shouldn
 
 If you are using Windows instead of Unix, modify the `Predictions_mat.py` script so that the paths contain "\\" instead of "/".
 
-It currently takes about 7 seconds to find the defects in a single picture on a laptop.
+It currently takes about 10 seconds to find the defects in a single picture on a laptop.
 
 Lastly, here is an example of parameters to use in the `defect_detector` function:
 
