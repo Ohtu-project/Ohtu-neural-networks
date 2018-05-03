@@ -12,4 +12,4 @@ module load Python cuDNN
 # Whatever additional modules you need
 source ~/myTensorflow/bin/activate
 
-keras_retinanet/bin/evaluate.py --save-path ~/results/squares csv test_class_annotation.csv csv/class_mapping_multi.csv snapshots/squares/resnet50_csv_50.h5
+keras_retinanet/bin/evaluate.py --save-path ~/results/squares csv test_annotation_multi.csv csv/class_mapping_multi.csv snapshots/squares/resnet50_csv_50.h5
