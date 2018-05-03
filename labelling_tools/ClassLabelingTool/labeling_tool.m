@@ -14,95 +14,30 @@ function M = labeling_tool
 end
 
 function run()
-    global round hexagonal trigonal square unclear void bubbles single double warning
-    global f ha
-
-    % window, button and image size initialization
-    global image_width image_heigth
-    window_width = 1500;
-    window_heigth = 1200;
-    image_width = 1280;
-    image_heigth = 1024;
-    button_width = 125;
-    button_heigth = 25;
-    margin = 20;
-    button_width_start = image_width;
-    button_heigth_start = window_heigth - button_heigth - margin;
-
-    % button colors
-    global color_on color_off
-    color_on = 'yellow';
-    color_off = [0.95 0.95 0.95];
-
-    global folder
+    global f warning
+    global window_width window_heigth image_width image_heigth margin
+    global folder images index
+    
+    initialize_variables();
+    
     folder = uigetdir('', 'Select a folder containing .jpg images');
 
     if ~folder
         return
     end
-
-    % determine the name of the csv file, where labels are saved
-    global csv_file_name
-    csv_file_name = fullfile(folder, 'LABELS.csv');
-
+    
     % get all jpg files from the folder
-    global images
     images = dir(fullfile(folder, '*.jpg'));
     if isempty(images)
         disp('No jpg images to label in that folder!');
         return
     end
 
-    % open csv file if it already exists or create a new file
-    csv_file = fopen(csv_file_name, 'r');
-    csv_data = [];
-    if csv_file ~= -1
-        csv_data = fscanf(csv_file, '%s \n');
-        fclose(csv_file);
-    end
-
-    % check which images have been labeled. 'index' is the index of the first
-    % image, that has not been labeled
-    global index
-    index = 1;
-    while true
-       k = strfind(csv_data, images(index).name);
-       if isempty(k)
-          break
-       end
-       index = index + 1;
-       if index > length_of(images)
-           break
-       end
-    end
+    csv_data = initialize_csv_file();
+    index = find_first_nonlabeled_image(csv_data);
     
-    % if some images have been labeled, ask user if they want to label only 
-    % unlabelled images
     if index > 1
-        if index > length_of(images)
-            message_relabel = "All images have already been labeled. Do you want to label everything again or quit the program?";
-            no_label_message = "Quit";
-        else
-            message_relabel = "Images from " + images(1).name + " to " + images(index - 1).name + " have already been labeled. Do you want to label everything again or continue labeling from image " + images(index).name + "?";
-            no_label_message = "Continue labeling";
-        end
-
-        fmessage = figure('Visible','off','Position',[margin, margin,900,250]);
-        text_relabel = uicontrol('Style','text','String',message_relabel,'HorizontalAlignment','center',...
-                 'Position',[margin, 150, 850, 50]);
-        relabel = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-                 'String','Relabel everything','Position',[2 * margin, margin,400,100],...
-                 'Callback',@relabel_callback);
-        no_relabel = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-                 'String',no_label_message,'Position',[450, margin,400,100],...
-                 'Callback',@no_relabel_callback);
-
-        text_relabel.Units = 'normalized';
-        relabel.Units = 'normalized';
-        no_relabel.Units = 'normalized';
-        
-        fmessage.Visible = 'on';
-        uiwait(gcf);
+        ask_about_relabeling();
     end
     
     if index > length_of(images)
@@ -114,85 +49,16 @@ function run()
     set(f, 'WindowKeyPressFcn',@keyPressCallback);
     set (f, 'WindowButtonMotionFcn', @mouseMove);
     
-    button_texts = {'Round (r)', 'Hexagonal (h)', 'Trigonal (t)', 'Square (q)', 'Unclear (u)', 'Void (v)', 'Bubbles (b)', 'Single (s)', 'Double (d)'};
-    class_names = {'round', 'hexagonal', 'trigonal', 'square', 'unclear', 'void', 'bubbles', 'single', 'double'};
-    class_name_mapping = containers.Map(button_texts, class_names);
-
-    help = 'Mark a defect by clicking any two opposite corners of the defect. When a red box is drawn around the defect, select classes shown on the right side. Selected classes are shown in yellow colour. Multiple defects can be seleted. Click ''Done'' when you have marked all defects in one image. Clicked points can be reversed with ''Undo'', but you cannot go back to a previous image.';
+    initialize_window_elements();
+    map_class_names();
     
-    % Construct the components.
-    text_help    = uicontrol('Style','text','String',help,'HorizontalAlignment','left',...
-                 'Position',[margin,button_heigth + 100,image_width,100]);
-    next_image   = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-                 'String','Done (Enter)','Position',[button_width_start,button_heigth_start - button_heigth,button_width * 0.7,button_heigth],...
-                 'Callback',@nextimage_callback);
-    undo         = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-                 'String','Undo (ctrl)','Position',[button_width_start + button_width * 0.7 + margin,button_heigth_start - button_heigth,button_width * 0.7,button_heigth],...
-                 'Callback',@undo_callback);
-    text_shape   = uicontrol('Style','text','String','Select shape','HorizontalAlignment','left',...
-                 'Position',[button_width_start,button_heigth_start - margin - button_heigth * 2,button_width * 2,button_heigth]);
-    round        = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-                 'String',"Round (r)",'Position',[button_width_start,button_heigth_start - margin * 2 - button_heigth * 3,button_width,button_heigth],...
-                 'Callback',@class_button_callback);
-    hexagonal    = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-                 'String',"Hexagonal (h)",'Position',[button_width_start,button_heigth_start - margin * 3 - button_heigth * 4,button_width,button_heigth],...
-                 'Callback',@class_button_callback);
-    trigonal     = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-                 'String',"Trigonal (t)",'Position',[button_width_start,button_heigth_start - margin * 4 - button_heigth * 5,button_width,button_heigth],...
-                 'Callback',@class_button_callback);
-    square       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-                 'String',"Square (q)",'Position',[button_width_start,button_heigth_start - margin * 5 - button_heigth * 6,button_width,button_heigth],...
-                 'Callback',@class_button_callback);
-    unclear      = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-                 'String',"Unclear (u)",'Position',[button_width_start,button_heigth_start - margin * 6 - button_heigth * 7,button_width,button_heigth],...
-                 'Callback',@class_button_callback);
-    void         = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-                 'String',"Void (v)",'Position',[button_width_start,button_heigth_start - margin * 7 - button_heigth * 8,button_width,button_heigth],...
-                 'Callback',@class_button_callback);
-    bubbles      = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-                 'String',"Bubbles (b)",'Position',[button_width_start,button_heigth_start - margin * 8 - button_heigth * 9,button_width,button_heigth],...
-                 'Callback',@class_button_callback);
-    text_double  = uicontrol('Style','text','String','Select single or double','HorizontalAlignment','left',...
-                 'Position',[button_width_start,button_heigth_start - margin * 9 - button_heigth * 10,button_width * 2,button_heigth]);
-    single       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-                 'String',"Single (s)",'Position',[button_width_start,button_heigth_start - margin * 10 - button_heigth * 11,button_width,button_heigth],...
-                 'Callback',@class_button_callback);
-    double       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
-                 'String',"Double (d)",'Position',[button_width_start,button_heigth_start - margin * 11 - button_heigth * 12,button_width,button_heigth],...
-                 'Callback',@class_button_callback);
-    warning      = uicontrol('Style','text','String','','HorizontalAlignment','left',...
-                 'FontSize',15,'ForegroundColor','red','Visible','off','Position',[button_width_start,button_heigth_start - margin * 12 - button_heigth * 12 - 500,200,button_heigth * 20]);
-
-    ha = axes('Units','pixels','Position',[0,window_heigth - image_heigth - margin,image_width,image_heigth],'Box','on');
-    
-    % Initialize the UI.
-    % Change units to normalized so components resize automatically.
-    f.Units = 'normalized';
-    ha.Units = 'normalized';
-    text_help.Units = 'normalized';
-    next_image.Units = 'normalized';
-    undo.Units = 'normalized';
-    text_shape.Units = 'normalized';
-    round.Units = 'normalized';
-    hexagonal.Units = 'normalized';
-    trigonal.Units = 'normalized';
-    square.Units = 'normalized';
-    unclear.Units = 'normalized';
-    void.Units = 'normalized';
-    bubbles.Units = 'normalized';
-    text_double.Units = 'normalized';
-    single.Units = 'normalized';
-    double.Units = 'normalized';
-    warning.Units = 'normalized';
-
     % Move the window to the center of the screen.
     movegui(f,'center')
 
-    % Make the window visible.
     f.Visible = 'on';
 
     % initialize points and classes to be empty
-    global points classes x y
+    global points classes x y csv_file_name
     x = 0;
     y = 0;
     default_class = ["round" "single"];
@@ -239,93 +105,162 @@ function run()
         end
     end
 
-  % tracking the mouse position
+end
 
-    function mouseMove(object, eventdata)
-        % track the mouse position
-        p = get(gca, 'CurrentPoint');
-        x = p(1,1);
-        y = p(1,2);
+function initialize_variables()
+    global color_on color_off window_width window_heigth image_width image_heigth button_width button_heigth margin button_width_start button_heigth_start
+    % button, image and window sizes
+    window_width = 1500;
+    window_heigth = 1200;
+    image_width = 1280;
+    image_heigth = 1024;
+    button_width = 125;
+    button_heigth = 25;
+    margin = 20;
+    button_width_start = image_width;
+    button_heigth_start = window_heigth - button_heigth - margin;
 
-        if index <= length_of(images)
-            show_image();
-        end
+    % button colors
+    color_on = 'yellow';
+    color_off = [0.95 0.95 0.95];
+end
+
+function initialize_window_elements()
+    global margin window_heigth button_heigth button_width image_heigth image_width button_heigth_start button_width_start color_off
+    global f ha next_image undo round hexagonal trigonal square unclear void bubbles single double warning
+    
+    helptext = 'Mark a defect by clicking any two opposite corners of the defect. When a red box is drawn around the defect, select classes shown on the right side. Selected classes are shown in yellow colour. Multiple defects can be seleted. Click ''Done'' when you have marked all defects in one image. Clicked points can be reversed with ''Undo'', but you cannot go back to a previous image.';
+    
+    % Construct the components.
+    text_help    = uicontrol('Style','text','String',helptext,'HorizontalAlignment','left',...
+                 'Position',[margin,button_heigth + 100,image_width,100]);
+    next_image   = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+                 'String','Done (Enter)','Position',[button_width_start,button_heigth_start - button_heigth,button_width * 0.7,button_heigth],...
+                 'Callback',@nextimage_callback);
+    undo         = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+                 'String','Undo (ctrl)','Position',[button_width_start + button_width * 0.7 + margin,button_heigth_start - button_heigth,button_width * 0.7,button_heigth],...
+                 'Callback',@undo_callback);
+    text_shape   = uicontrol('Style','text','String','Select shape','HorizontalAlignment','left',...
+                 'Position',[button_width_start,button_heigth_start - margin - button_heigth * 2,button_width * 2,button_heigth]);
+    round        = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+                 'String',"Round (r)",'Position',[button_width_start,button_heigth_start - margin * 2 - button_heigth * 3,button_width,button_heigth],...
+                 'Callback',@class_button_callback);
+    hexagonal    = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+                 'String',"Hexagonal (h)",'Position',[button_width_start,button_heigth_start - margin * 3 - button_heigth * 4,button_width,button_heigth],...
+                 'Callback',@class_button_callback);
+    trigonal     = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+                 'String',"Trigonal (t)",'Position',[button_width_start,button_heigth_start - margin * 4 - button_heigth * 5,button_width,button_heigth],...
+                 'Callback',@class_button_callback);
+    square       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+                 'String',"Square (q)",'Position',[button_width_start,button_heigth_start - margin * 5 - button_heigth * 6,button_width,button_heigth],...
+                 'Callback',@class_button_callback);
+    unclear      = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+                 'String',"Unclear (u)",'Position',[button_width_start,button_heigth_start - margin * 6 - button_heigth * 7,button_width,button_heigth],...
+                 'Callback',@class_button_callback);
+    void         = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+                 'String',"Void (v)",'Position',[button_width_start,button_heigth_start - margin * 7 - button_heigth * 8,button_width,button_heigth],...
+                 'Callback',@class_button_callback);
+    bubbles      = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+                 'String',"Bubbles (b)",'Position',[button_width_start,button_heigth_start - margin * 8 - button_heigth * 9,button_width,button_heigth],...
+                 'Callback',@class_button_callback);
+    text_double  = uicontrol('Style','text','String','Select single or double','HorizontalAlignment','left',...
+                 'Position',[button_width_start,button_heigth_start - margin * 9 - button_heigth * 10,button_width * 2,button_heigth]);
+    single       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+                 'String',"Single (s)",'Position',[button_width_start,button_heigth_start - margin * 10 - button_heigth * 11,button_width,button_heigth],...
+                 'Callback',@class_button_callback);
+    double       = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+                 'String',"Double (d)",'Position',[button_width_start,button_heigth_start - margin * 11 - button_heigth * 12,button_width,button_heigth],...
+                 'Callback',@class_button_callback);
+    warning      = uicontrol('Style','text','String','','HorizontalAlignment','left',...
+                 'FontSize',15,'ForegroundColor','red','Visible','off','Position',[button_width_start,button_heigth_start - margin * 12 - button_heigth * 12 - 500,200,button_heigth * 20]);
+
+    ha = axes('Units','pixels','Position',[margin,window_heigth - image_heigth - margin,image_width,image_heigth]);
+    
+    % Initialize the UI.
+    % Change units to normalized so components resize automatically.
+    f.Units = 'normalized';
+    ha.Units = 'normalized';
+    text_help.Units = 'normalized';
+    next_image.Units = 'normalized';
+    undo.Units = 'normalized';
+    text_shape.Units = 'normalized';
+    round.Units = 'normalized';
+    hexagonal.Units = 'normalized';
+    trigonal.Units = 'normalized';
+    square.Units = 'normalized';
+    unclear.Units = 'normalized';
+    void.Units = 'normalized';
+    bubbles.Units = 'normalized';
+    text_double.Units = 'normalized';
+    single.Units = 'normalized';
+    double.Units = 'normalized';
+    warning.Units = 'normalized';
+end
+
+function map_class_names()
+    global class_name_mapping
+    button_texts = {'Round (r)', 'Hexagonal (h)', 'Trigonal (t)', 'Square (q)', 'Unclear (u)', 'Void (v)', 'Bubbles (b)', 'Single (s)', 'Double (d)'};
+    class_names = {'round', 'hexagonal', 'trigonal', 'square', 'unclear', 'void', 'bubbles', 'single', 'double'};
+    class_name_mapping = containers.Map(button_texts, class_names);
+end
+
+function csv_data = initialize_csv_file()
+    global csv_file_name folder
+    % determine the name of the csv file, where labels are saved
+    csv_file_name = fullfile(folder, 'LABELS.csv');
+
+    % open csv file if it already exists or create a new file
+    csv_file = fopen(csv_file_name, 'r');
+    csv_data = [];
+    if csv_file ~= -1
+        csv_data = fscanf(csv_file, '%s \n');
+        fclose(csv_file);
     end
+end
 
-  % Keyboard shortcuts
-
-    function keyPressCallback(source, eventdata)
-       switch eventdata.Key
-           case 'return'
-               nextimage_callback(next_image, []);
-           case 'control'
-               undo_callback(undo, []);
-           case 'r'
-               class_button_callback(round, []);
-           case 'h'
-               class_button_callback(hexagonal, []);
-           case 't'
-               class_button_callback(trigonal, []);
-           case 'q'
-               class_button_callback(square, []); 
-           case 'u'
-               class_button_callback(unclear, []);
-           case 'v'
-               class_button_callback(void, []);
-           case 'b'
-               class_button_callback(bubbles, []);
-           case 's'
-               class_button_callback(single, []);
-           case 'd'
-               class_button_callback(double, []);
+function index = find_first_nonlabeled_image(csv_data)
+    global images
+    % check which images have been labeled. 'index' is the index of the first
+    % image, that has not been labeled
+    index = 1;
+    while true
+       k = strfind(csv_data, images(index).name);
+       if isempty(k)
+          break
+       end
+       index = index + 1;
+       if index > length_of(images)
+           break
        end
     end
+end
 
-  % Push button callbacks.
-
-    % save points of the current image and show next image
-    function nextimage_callback(source,eventdata)
-        if index > length_of(images)
-            close_program();
-        end
-        if (is_even(points) && class_given(classes)) || isempty(points)
-            save_points();
-            show_new_image();
-        elseif ~is_even(points)
-            set(warning, 'String', 'Wrong ammount of points. Add or remove points before moving to next image.', 'Visible', 'on')
-        else
-            set(warning, 'String', 'One of following classes needs to be selected: round, hexagonal, trigonal, square or unclear', 'Visible', 'on')
-        end
+function ask_about_relabeling()
+    global index images fmessage margin color_off
+    if index > length_of(images)
+        message_relabel = "All images have already been labeled. Do you want to label everything again or quit the program?";
+        no_label_message = "Quit";
+    else
+        message_relabel = "Images from " + images(1).name + " to " + images(index - 1).name + " have already been labeled. Do you want to label everything again or continue labeling from image " + images(index).name + "?";
+        no_label_message = "Continue labeling";
     end
 
-    % clear last given point and show image
-    function undo_callback(source,eventdata)
-        points = remove_last_item(points);
-        if ~is_even(points)
-            classes = remove_last_item(classes);
-        end
-        show_image();
-    end
+    fmessage = figure('Visible','off','Position',[margin, margin,900,250]);
+    text_relabel = uicontrol('Style','text','String',message_relabel,'HorizontalAlignment','center',...
+             'Position',[margin, 150, 850, 50]);
+    relabel = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+             'String','Relabel everything','Position',[2 * margin, margin,400,100],...
+             'Callback',@relabel_callback);
+    no_relabel = uicontrol('Style','pushbutton','BackgroundColor',color_off,...
+             'String',no_label_message,'Position',[450, margin,400,100],...
+             'Callback',@no_relabel_callback);
 
-    % when class button is pressed
-    function class_button_callback(source, eventdata)
-        if is_even(points) && ~isempty(points)
-            class_name = class_name_mapping(source.String);
-            classes = put_class(class_name, classes);
-        end
-        show_image();
-    end
+    text_relabel.Units = 'normalized';
+    relabel.Units = 'normalized';
+    no_relabel.Units = 'normalized';
 
-    function relabel_callback(source, eventdata)
-        csv_file = fopen(csv_file_name, 'w');
-        fclose(csv_file);
-        index = 1;
-        close(fmessage);
-    end
-
-    function no_relabel_callback(source, eventdata)
-        close(fmessage);
-    end
+    fmessage.Visible = 'on';
+    uiwait(gcf);
 end
 
 % check if the ammount of items in a matrix is even
@@ -365,13 +300,19 @@ end
 function close_program()
     global f warning
     set(warning, 'String', 'All images have been labeled', 'Visible', 'on');
-    pause(1)
-    close(f)
+    try
+        pause(1)
+        close(f)
+    catch
+    end
 end
 
 % show current image, points and rectangles
 function show_image()
     global index f ha images points folder
+    if index > length_of(images)
+        return
+    end
     cla(ha) % clear previous image
     f.Name = images(index).name;
     file_name = images(index).name;
@@ -547,4 +488,99 @@ function classes = put_class(class, classes)
     else
        classes(len, 1) = class;
     end
+end
+
+%% Callbacks
+
+function mouseMove(object, eventdata)
+    global x y index images
+    % track the mouse position
+    p = get(gca, 'CurrentPoint');
+    x = p(1,1);
+    y = p(1,2);
+
+    if index <= length_of(images)
+        show_image();
+    end
+end
+
+% Keyboard shortcuts
+
+function keyPressCallback(source, eventdata)
+   global next_image undo round hexagonal trigonal square unclear void bubbles single double
+   switch eventdata.Key
+       case 'return'
+           nextimage_callback(next_image, []);
+       case 'control'
+           undo_callback(undo, []);
+       case 'r'
+           class_button_callback(round, []);
+       case 'h'
+           class_button_callback(hexagonal, []);
+       case 't'
+           class_button_callback(trigonal, []);
+       case 'q'
+           class_button_callback(square, []); 
+       case 'u'
+           class_button_callback(unclear, []);
+       case 'v'
+           class_button_callback(void, []);
+       case 'b'
+           class_button_callback(bubbles, []);
+       case 's'
+           class_button_callback(single, []);
+       case 'd'
+           class_button_callback(double, []);
+   end
+end
+
+% Push button callbacks.
+
+% save points of the current image and show next image
+function nextimage_callback(source,eventdata)
+    global images index points classes warning
+    if index > length_of(images)
+        close_program();
+        return
+    end
+    if (is_even(points) && class_given(classes)) || isempty(points)
+        save_points();
+        show_new_image();
+    elseif ~is_even(points)
+        set(warning, 'String', 'Wrong ammount of points. Add or remove points before moving to next image.', 'Visible', 'on')
+    else
+        set(warning, 'String', 'One of following classes needs to be selected: round, hexagonal, trigonal, square or unclear', 'Visible', 'on')
+    end
+end
+
+% clear last given point and show image
+function undo_callback(source,eventdata)
+    global points classes
+    points = remove_last_item(points);
+    if ~is_even(points)
+        classes = remove_last_item(classes);
+    end
+    show_image();
+end
+
+function class_button_callback(source, eventdata)
+    global points classes class_name_mapping
+    if is_even(points) && ~isempty(points)
+        class_name = class_name_mapping(source.String);
+        classes = put_class(class_name, classes);
+    end
+    show_image();
+end
+
+function relabel_callback(source, eventdata)
+    global fmessage index csv_file_name
+    csv_file = fopen(csv_file_name, 'w');
+    fclose(csv_file);
+    index = 1;
+    close(fmessage);
+end
+
+function no_relabel_callback(source, eventdata)
+    global fmessage
+    close(fmessage);
 end
