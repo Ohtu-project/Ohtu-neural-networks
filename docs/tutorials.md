@@ -80,7 +80,7 @@ We assume that you have already gone through the basic installation steps descri
 ### How to evaluate a model from your local computer
 To get the defect predictions over a set of pictures, run, from the keras-retinanet directory:
 `keras_retinanet/bin/evaluate.py --save-path <path> csv test_annotation_multi.csv class_mapping_multi.csv <model weights file>`
-In which <path> is the path where you want to save your images, for example ~/mirrored_more/
+In which `<path>` is the path where you want to save your images, for example ~/mirrored_more/
 And `<model weights file>` is, for example, snapshots/resnet50_csv_68.h5
 
 ## How to set up Ukko2 for the first use
