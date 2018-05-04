@@ -87,7 +87,7 @@ And `<model weights file>` is, for example, snapshots/resnet50_csv_68.h5
 If you are not familiar with Ukko2, please read the [user guide](https://wiki.helsinki.fi/display/it4sci/Ukko2+User+Guide)
 
 To access it, use `ssh ukko2.cs.helsinki.fi`
-You have to be in the university network (use some school computer). If you want to use it from your laptop, additional steps are required for all the funcionalities, please contact Vitória.
+You have to be in the university network (use some school computer). If you want to use it from your laptop, additional steps are required due to the double authentication.
 
 ### (Optional) Tmux
 Before anything, I highly recommend initiating a tmux session: it keeps your processes running regardless of connection issues, and it enables you to keep many windows open in tmux. You can start it with:
@@ -173,6 +173,7 @@ To train a model in Ukko2, change the train script:
 Point `--snapshot-path` to the path where you want to save your models, I suggest `keras-retinanet/snapshots/<folder name>/`. 
 Make sure to change the `--steps` parameter to the number of lines you have in the csv file containing the annotations. We can also see how to implement to do it automatically in the future.
 Point `--weights` to the model path.
+The best model achieved this far can be downloaded through [this link](https://drive.google.com/file/d/1Tep6kfzR1e5sISfwUVGiB4kYiUqn4uwK/view?usp=sharing).
 
 
 To submit the training, use the following command:
