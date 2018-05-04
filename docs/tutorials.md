@@ -212,7 +212,7 @@ to see how your model evaluates the test set. A folder will be created in ~/resu
 
 To get the predictions for some crystal, first copy the data to be predicted.
 Change the pred script so that it has the parameters you desire, for example the path to the folder containing the images.
-Then run the pred script, which basically executes Predictions.py.
+Then run the pred script, which basically executes Predictions_ukko.py.
 
 
 ## How to submit training to Ukko after the first time
