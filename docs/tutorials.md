@@ -56,7 +56,7 @@ Now you can use the defect_detector function inside defect_detector.m to evaluat
 
 `defect_detector.m` can be moved from the matlab_integration folder to be used as a part of any matlab-project. The parameters given to the function are used to find the `Predictions_mat.py` file.
 
-Put the images that you want to use inside matlab_integration/images. It shouldn't contain any subfolders, just the jpg files of the images.
+Put the images that you want to use inside matlab_integration/images. It shouldn't contain any subfolders, just the jpg files of the images. `Predictions_mat.py` generates images from folder matlab_integration/images with bounding boxes (telling what model has detected) to folder defined by parameter `save_image_directory_path` of function `defect_detector`.
 
 If you are using Windows instead of Unix, modify the `Predictions_mat.py` script so that the paths contain "\\" instead of "/".
 
@@ -66,9 +66,9 @@ Lastly, here is an example of parameters to use in the `defect_detector` functio
 
 `path = '/home/matleino/Ohtu-neural-networks/matlab_integration/'`  
 `trained_model_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/trained-model/resnet50_csv_68.h5'`  
-`image_directory_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/images/'`  
-`csv_file = 'results.csv'`  
-
+`read_image_directory_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/images/'`   
+`save_image_directory_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/prediction_images/'`  
+`csv_file = 'results.csv'`    
 `defect_detector(path, trained_model_path, image_directory_path, csv_file)`
 
 ## How to run code in your local computer
