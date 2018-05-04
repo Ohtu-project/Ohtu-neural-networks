@@ -69,7 +69,7 @@ Lastly, here is an example of parameters to use in the `defect_detector` functio
 `read_image_directory_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/images/'`   
 `save_image_directory_path = '/home/matleino/Ohtu-neural-networks/matlab_integration/prediction_images/'`  
 `csv_file = 'results.csv'`    
-`defect_detector(path, trained_model_path, image_directory_path, csv_file)`
+`defect_detector(path, trained_model_path, read_image_directory_path, save_image_directory_path, csv_file)`
 
 ## How to run code in your local computer
 
