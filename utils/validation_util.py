@@ -12,7 +12,8 @@ def get_errors(arg):
 
     correct_model_file(errors, arg[1])
     correct_image_directory(errors, arg[2])
-    right_csv_name(errors, arg[3])
+    correct_image_directory(errors, arg[3])
+    right_csv_name(errors, arg[4])
     return errors
 
 def correct_image_directory(errors, directory):
@@ -52,10 +53,10 @@ def correct_number_of_arguments(errors, arg):
     '''
     Checks that the number of arguments is correct.
     '''
-    if len(arg) < 4:
+    if len(arg) < 5:
         errors.append("Too few arguments!")
         return False
-    elif len(arg) > 4:
+    elif len(arg) > 5:
         errors.append("Too many arguments!")
         return False
 
