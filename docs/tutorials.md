@@ -52,7 +52,7 @@ Then keras-retinanet should be ready for use.
 
 Now you can use the defect_detector function inside defect_detector.m to evaluate images.
 
-`defect_detector.m` has only one function, called `defect_detector`, with four parameters. More documentation on the function can be found in the `defect_detector.m` file itself.
+`defect_detector.m` has only one function, called `defect_detector`, with five parameters. More documentation on the function can be found in the `defect_detector.m` file itself.
 
 `defect_detector.m` can be moved from the matlab_integration folder to be used as a part of any matlab-project. The parameters given to the function are used to find the `Predictions_mat.py` file.
 
@@ -181,6 +181,8 @@ To submit the training, use the following command:
 
 After you finish the training job, please copy the .h5 file containing the latest model to your computer and update it to the Drive with some descriptive name.
 
+### Convert training model to inference model
+Generating predictions for images is done with inference model insted of training model, see https://github.com/fizyr/keras-retinanet#converting-a-training-model-to-inference-model
 
 ### (Optional) Useful commands
 
