@@ -12,4 +12,4 @@ module load Python cuDNN
 # Whatever additional modules you need
 source ~/myTensorflow/bin/activate
 
-python Predictions_ukko.py snapshots/resnet50_csv_50_13april2018.h5 Acrorad_1704-0601-8/Acrorad_1704-0601-8/Measurement_1/RAW/ testi.csv
+python Predictions_ukko.py snapshots/resnet50_csv_50_13april2018.h5 Acrorad_1704-0601-8/Acrorad_1704-0601-8/Measurement_1/RAW/ Acrorad_1704-0601-8/predictions testi.csv
