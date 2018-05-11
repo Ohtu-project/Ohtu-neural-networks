@@ -123,7 +123,7 @@ It will clone the retinanet repository, create a virtual environment called `myT
 ### Necessary files
 Copy the file containing the labels you wish to train on in keras-retinanet/.
 
-From Ohtu-neural-networks/nn/, copy `train`, `test`, and `pred` into keras-retinanet/.
+From Ohtu-neural-networks/nn/, copy `train`, `test`, `pred` and `Predictions_ukko.py` into keras-retinanet/.
 
 Modify `pred` so that it finds the csv files. Alternatively, from Ohtu-neural-networks/csv/, copy `class_mapping_multi.csv` and `test_annotation_multi.csv` into keras-retinanet/.
 You should also modify those three scripts with your own paths to files according to your ukko2 acount.
@@ -172,8 +172,9 @@ Ohtu-neural-networks/labelling_tools/. This script allow you also add relative p
 To train a model in Ukko2, change the train script:
 Point `--snapshot-path` to the path where you want to save your models, I suggest `keras-retinanet/snapshots/<folder name>/`. 
 Make sure to change the `--steps` parameter to the number of lines you have in the csv file containing the annotations. We can also see how to implement to do it automatically in the future.
-Point `--weights` to the model path.
-The best model achieved this far can be downloaded through [this link](https://drive.google.com/file/d/1Tep6kfzR1e5sISfwUVGiB4kYiUqn4uwK/view?usp=sharing).
+Point `--weights` to the model path, these weights are used to initialize model in training.
+(Giving argument `--weights` is optional, without it training weights are initialized with pretrained imagenet weights. It is also possible give argument `--snapshot` pointing model where training is continued. More information about different parameters for training can be found on file https://github.com/fizyr/keras-retinanet/blob/master/keras_retinanet/bin/train.py lines 330-363.)
+The best model achieved this far can be downloaded through [this link](https://drive.google.com/open?id=1XCUo09LAmpzruWiLlOTxBAbLKfTQOEwF).
 
 
 To submit the training, use the following command:
