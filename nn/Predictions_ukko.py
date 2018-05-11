@@ -4,7 +4,7 @@ This script is meant to be submitted to Ukko2, since it requires GPU usage.
 
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../Ohtu-neural-networks')))
 
 import setGPU
 import keras
@@ -18,12 +18,10 @@ from keras_retinanet.utils.colors import label_color
 
 # import miscellaneous modules
 import cv2
-#import os
 import numpy as np
 import time
 import glob
 import pandas as pd
-#import sys
 from utils.validation_util import get_errors
 
 # set tf backend to allow memory to grow, instead of claiming everything
