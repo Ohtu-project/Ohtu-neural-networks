@@ -42,7 +42,7 @@ def save_prediction_to_csv(model_path, read_image_path, save_image_path, predict
 
     labels = get_labels_from_model(images, read_image_path, save_image_path, model)
 
-    df = pd.DataFrame(labels, columns=['image', 'defect coordinates', 'label'])
+    df = pd.DataFrame(labels, columns=['image', 'defect coordinates', 'label', 'score'])
 
     # name of the file to save the predictions
     df.to_csv(predictionfile)
@@ -84,7 +84,7 @@ def get_labels_from_model(images, read_image_path, save_image_path, model):
                 continue
             b = boxes[0, idx, :4].astype(int)
 
-            Labels.append([image_name, b, labels_to_names[label]])
+            Labels.append([image_name, b, labels_to_names[label], score])
 
             color = label_color(label)
             draw_box(draw, b, color=color)
